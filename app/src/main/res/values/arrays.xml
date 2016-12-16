@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tablayout_titles" >
+        <item>@string/disease_history</item>
+    </string-array>
+</resources>

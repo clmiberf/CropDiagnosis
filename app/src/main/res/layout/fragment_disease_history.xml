@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp">
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/mspin_crop_disease_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        app:ms_arrowColor="@color/spinner_arrow_color"
+        app:ms_baseColor="@color/spinner_base_color"
+        app:ms_enableErrorLabel="true"
+        app:ms_enableFloatingLabel="true"
+        app:ms_floatingLabelColor="@color/spinner_floating_label_color"
+        app:ms_floatingLabelText="@string/crop"
+        app:ms_hint="@string/spinner_crop_chose_hint"
+        app:ms_multiline="false" />
+    <!--app:ms_floatingLabelText="floating label"-->
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/mspin_duration_disease_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mspin_crop_disease_history"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:ms_arrowColor="@color/spinner_arrow_color"
+        app:ms_baseColor="@color/spinner_base_color"
+        app:ms_enableErrorLabel="true"
+        app:ms_enableFloatingLabel="true"
+        app:ms_floatingLabelColor="@color/spinner_floating_label_color"
+        app:ms_floatingLabelText="@string/spinner_duration"
+        app:ms_hint="@string/spinner_duration_chose_hint"
+        app:ms_multiline="false" />
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/mspin_status_disease_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mspin_duration_disease_history"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:ms_arrowColor="@color/spinner_arrow_color"
+        app:ms_baseColor="@color/spinner_base_color"
+        app:ms_enableErrorLabel="true"
+        app:ms_enableFloatingLabel="true"
+        app:ms_floatingLabelColor="@color/spinner_floating_label_color"
+        app:ms_floatingLabelText="@string/status"
+        app:ms_hint="@string/spinner_status_chose_hint"
+        app:ms_multiline="false" />
+    <!--app:ms_floatingLabelText="floating label"-->
+    <!--app:ms_enableFloatingLabel="false"-->
+    <!--app:ms_enableErrorLabel="false"-->
+    <!--app:ms_baseColor="@color/base"-->
+    <!--app:ms_highlightColor="@color/highlight"-->
+    <!--app:ms_errorColor="@color/error"-->
+    <!--app:ms_typeface="typeface.ttf"-->
+    <!--app:ms_thickness="2dp"-->
+    <!--app:ms_hintColor="@color/hint"-->
+    <!--app:ms_arrowColor="@color/arrow"-->
+    <!--app:ms_arrowSize="16dp"-->
+    <!--app:ms_alignLabels="false"-->
+    <!--app:ms_floatingLabelColor="@color/floating_label"/>-->
+
+
+    <Button
+        android:id="@+id/btn_delete_disease_history"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="16dp"
+        android:text="@string/delete"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_back_disease_history"
+        style="?android:textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_delete_disease_history"
+        android:layout_marginTop="16dp"
+        android:text="@string/back"
+        android:textStyle="bold" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_content_disease_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mspin_status_disease_history"
+        android:layout_above="@id/btn_back_disease_history"></android.support.v7.widget.RecyclerView>
+</RelativeLayout>

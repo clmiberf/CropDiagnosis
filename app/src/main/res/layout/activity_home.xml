@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.developer.cropdiagnosis.ui.HomeActivity">
+
+    <com.ogaclejapan.smarttablayout.SmartTabLayout
+        android:id="@+id/tl_home"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tab_layout_height"
+        android:background="@color/colorPrimary"
+        android:paddingBottom="2dp"
+        app:stl_defaultTabTextColor="#ffffff"
+        app:stl_defaultTabTextSize="16sp"
+        app:stl_distributeEvenly="true"
+        app:stl_dividerThickness="0dp"
+        app:stl_indicatorColor="#ffffff"
+        app:stl_indicatorCornerRadius="2dp"
+        app:stl_indicatorInterpolation="linear"
+        app:stl_indicatorThickness="3dp"
+        app:stl_indicatorWidth="48dp"
+        app:stl_underlineColor="#ffe5e5e5"
+        app:stl_underlineThickness="0dp" />
+
+    <com.example.developer.cropdiagnosis.view.FragmentViewPager
+        android:id="@+id/vp_content_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tl_home">
+
+    </com.example.developer.cropdiagnosis.view.FragmentViewPager>
+</RelativeLayout>
