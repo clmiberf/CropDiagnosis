@@ -11,7 +11,7 @@ import android.net.NetworkInfo;
 
 public class NetManager {
     public static String getBaseUrl() {
-        return null;
+        return "192.168.0.1";
     }
 
     public static boolean isNetworkWorkWell(Context context) {

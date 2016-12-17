@@ -29,6 +29,7 @@ import rx.functions.Func1;
  */
 
 public class HttpMethod {
+
     private DiseaseHistoryApi diseaseApi = null;
     private ImageApi imageApi = null;
     private LoginApi loginApi = null;
