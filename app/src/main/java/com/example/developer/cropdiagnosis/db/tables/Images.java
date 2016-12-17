@@ -1,14 +1,13 @@
 package com.example.developer.cropdiagnosis.db.tables;
 
 import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Index;
-import org.greenrobot.greendao.annotation.NotNull;
-import org.greenrobot.greendao.annotation.ToOne;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.NotNull;
 
 /**
  * Created by Developer on 16-12-15.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 @Entity(nameInDb = "images")

@@ -11,6 +11,7 @@ import java.util.List;
 
 /**
  * Created by Developer on 16-12-14.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 public class DiseaseListAdapter extends RecyclerView.Adapter<DiseaseListAdapter.DiseaseHolder> {

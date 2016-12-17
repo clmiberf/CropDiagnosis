@@ -6,6 +6,7 @@ import android.net.NetworkInfo;
 
 /**
  * Created by Developer on 16-12-14.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 public class NetManager {

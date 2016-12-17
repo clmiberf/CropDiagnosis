@@ -1,11 +1,8 @@
 package com.example.developer.cropdiagnosis.view.interfaces;
 
-import android.animation.ValueAnimator;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-
 /**
  * Created by Developer on 16-12-14.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 public interface IProgressDialog {

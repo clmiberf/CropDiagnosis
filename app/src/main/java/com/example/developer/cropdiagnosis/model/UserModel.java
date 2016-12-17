@@ -2,6 +2,7 @@ package com.example.developer.cropdiagnosis.model;
 
 /**
  * Created by Developer on 16-12-14.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 public class UserModel {

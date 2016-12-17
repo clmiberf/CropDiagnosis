@@ -8,6 +8,7 @@ import rx.Observable;
 
 /**
  * Created by Developer on 16-12-15.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 public interface LoginApi {

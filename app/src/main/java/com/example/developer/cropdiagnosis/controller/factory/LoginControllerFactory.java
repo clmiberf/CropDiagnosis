@@ -5,6 +5,7 @@ import com.example.developer.cropdiagnosis.controller.interfaces.ILoginControlle
 
 /**
  * Created by Developer on 16-12-15.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 public class LoginControllerFactory {

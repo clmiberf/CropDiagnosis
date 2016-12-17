@@ -13,6 +13,7 @@ import java.util.List;
 
 /**
  * Created by developer on 16-10-18.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 public class FragmentViewPager extends ViewPager {

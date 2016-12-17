@@ -2,6 +2,7 @@ package com.example.developer.cropdiagnosis.db;
 
 /**
  * Created by Developer on 16-12-15.
+ * He is a intelligent Android developer.
  */
 
 public class DbConstants {

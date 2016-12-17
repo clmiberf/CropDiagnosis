@@ -9,6 +9,7 @@ import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
 import com.example.developer.cropdiagnosis.network.apis.ImageApi;
 import com.example.developer.cropdiagnosis.network.apis.LoginApi;
 import com.example.developer.cropdiagnosis.shared.NetManager;
+import com.example.developer.cropdiagnosis.shared.rxutils.RxJavaCustomTransformer;
 import com.example.developer.cropdiagnosis.ui.LoginActivity;
 import com.example.developer.cropdiagnosis.ui.fragments.DiseaseHistoryFragment;
 
@@ -19,9 +20,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Developer on 16-12-14.
@@ -60,8 +59,7 @@ public class HttpMethod {
 
     public void login(String username, String password, final LoginActivity.LoginCallback callback) {
         loginApi.login(username, password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxJavaCustomTransformer.<UserModelBean>defaultSchedulers())
                 .subscribe(new Subscriber<UserModelBean>() {
                     @Override
                     public void onCompleted() {
@@ -81,8 +79,7 @@ public class HttpMethod {
 
     public void downloadImage() {
         imageApi.downloadImage()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxJavaCustomTransformer.<ResponseBody>defaultSchedulers())
                 .map(new Func1<ResponseBody, Bitmap>() {
                     @Override
                     public Bitmap call(ResponseBody responseBody) {
@@ -110,10 +107,8 @@ public class HttpMethod {
 
     public void getDiseaseInfo(final DiseaseHistoryFragment.DiseaseHistoryCallback callback) {
         diseaseApi.getDiseaseHistory()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+                .compose(RxJavaCustomTransformer.<List<DiseaseModelBean>>defaultSchedulers())
                 .subscribe(new Subscriber<List<DiseaseModelBean>>() {
-
                     @Override
                     public void onCompleted() {
                     }

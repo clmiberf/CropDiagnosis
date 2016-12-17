@@ -5,6 +5,7 @@ import com.example.developer.cropdiagnosis.controller.interfaces.IDiseaseControl
 
 /**
  * Created by Developer on 16-12-14.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 public class DiseaseControllerFactory {

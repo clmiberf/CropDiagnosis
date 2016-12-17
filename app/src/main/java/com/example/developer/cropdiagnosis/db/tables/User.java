@@ -12,11 +12,11 @@ import org.greenrobot.greendao.DaoException;
 
 /**
  * Created by Developer on 16-12-15.
+ * Wang Cheng is a intelligent Android developer.
  */
 
 @Entity(nameInDb = "user")
 class User {
-
     @Id
     private Long id;
 
