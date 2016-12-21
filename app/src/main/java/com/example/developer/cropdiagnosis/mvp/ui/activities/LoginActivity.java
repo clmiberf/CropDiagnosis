@@ -2,11 +2,12 @@ package com.example.developer.cropdiagnosis.mvp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.controller.factory.LoginControllerFactory;
@@ -14,9 +15,9 @@ import com.example.developer.cropdiagnosis.mvp.controller.interfaces.ILoginContr
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.view.interfaces.IMessagePromptDialog;
+import com.example.developer.cropdiagnosis.shared.ConfigManager;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseActivity {
@@ -48,7 +49,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     public interface LoginCallback {
-        void onLoginFailed();
+        void onLoginFailed(String message);
 
         void onLoginSuccess(UserModelBean bean);
     }
@@ -57,8 +58,9 @@ public class LoginActivity extends BaseActivity {
     private ILoginController controller;
     private LoginCallback callback = new LoginCallback() {
         @Override
-        public void onLoginFailed() {
+        public void onLoginFailed(String message) {
             pbLoad.setVisibility(View.GONE);
+            Toast.makeText(LoginActivity.this, "failed" + message, Toast.LENGTH_SHORT).show();
         }
 
         @Override
@@ -96,6 +98,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void login() {
+        Log.e("login", "login");
         pbLoad.setVisibility(View.VISIBLE);
         controller.login(etUsername.getText().toString().trim(), etPassword.getText().toString().trim(), callback);
     }

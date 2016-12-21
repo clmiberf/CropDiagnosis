@@ -32,4 +32,6 @@
     <string name="disease_illustration">对病害的说明</string>
     <string name="submit">提交</string>
     <string name="disease_submit">病害采集</string>
+    <string name="username_not_allow_empty">用户名不能为空</string>
+    <string name="password_not_allow_empty">密码不能为空</string>
 </resources>

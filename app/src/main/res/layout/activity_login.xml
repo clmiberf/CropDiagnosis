@@ -54,12 +54,10 @@
         android:textStyle="bold" />
 
     <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar"
         android:id="@+id/pb_load_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone" />
-    <!--<com.example.developer.cropdiagnosis.mvp.view.impls.ProgressDialogImpl-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"></com.example.developer.cropdiagnosis.mvp.view.impls.ProgressDialogImpl>-->
+        android:visibility="invisible" />
 </LinearLayout>

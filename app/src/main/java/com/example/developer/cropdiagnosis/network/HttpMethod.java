@@ -2,10 +2,11 @@ package com.example.developer.cropdiagnosis.network;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
+import com.example.developer.cropdiagnosis.mvp.controller.impls.LoginControllerImpl;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
-import com.example.developer.cropdiagnosis.mvp.ui.activities.LoginActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseHistoryFragment;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
@@ -65,23 +66,22 @@ public class HttpMethod {
         return instance;
     }
 
-    public void login(String username, String password, final LoginActivity.LoginCallback callback) {
+    public void login(String username, String password, final LoginControllerImpl.LoginCallback callback) {
         loginApi.login(username, password)
                 .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<UserModelBean>>() {
                     @Override
                     public void onCompleted() {
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onLoginFailed();
+                        callback.onLoginFailed(e);
                     }
 
                     @Override
-                    public void onNext(HttpResult<UserModelBean> userModelBeanHttpResult) {
-                        callback.onLoginSuccess(userModelBeanHttpResult.getData());
+                    public void onNext(HttpResult<UserModelBean> result) {
+                        callback.onLoginSuccess(result);
                     }
                 });
     }
