@@ -4,7 +4,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.developer.cropdiagnosis.ui.MainActivity">
+    tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.MainActivity">
 
     <RelativeLayout
         android:id="@+id/rl_wrapper_main"

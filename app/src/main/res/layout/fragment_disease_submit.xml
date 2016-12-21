@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/crop" />
+
+    <fr.ganfra.materialspinner.MaterialSpinner
+        android:id="@+id/mspin_crop_kind_disease_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        app:ms_arrowColor="@color/spinner_arrow_color"
+        app:ms_baseColor="@color/spinner_base_color"
+        app:ms_enableErrorLabel="true"
+        app:ms_enableFloatingLabel="true"
+        app:ms_floatingLabelColor="@color/spinner_floating_label_color"
+        app:ms_floatingLabelText="@string/crop"
+        app:ms_hint="@string/spinner_crop_chose_hint"
+        app:ms_multiline="false"></fr.ganfra.materialspinner.MaterialSpinner>
+
+    <GridLayout
+        android:id="@+id/gl_images_wrapper_disease_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/gl_image_wrapper"></GridLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/illustration" />
+
+    <EditText
+        android:id="@+id/et_disease_illustration_disease_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/disease_illustration" />
+
+    <Button
+        android:id="@+id/btn_submit_disease_disease_submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/submit" />
+</LinearLayout>

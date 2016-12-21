@@ -1,10 +1,12 @@
 package com.example.developer.cropdiagnosis.network.apis;
 
-import com.example.developer.cropdiagnosis.model.beans.DiseaseModelBean;
+import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
+import com.example.developer.cropdiagnosis.network.HttpResult;
 
 import java.util.List;
 
 import retrofit2.http.GET;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -14,5 +16,5 @@ import rx.Observable;
 
 public interface DiseaseHistoryApi {
     @GET("diseaseHistory")
-    Observable<List<DiseaseModelBean>> getDiseaseHistory();
+    Observable<HttpResult<List<DiseaseModelBean>>> getDiseaseHistory(@Query("userId") String userId);
 }

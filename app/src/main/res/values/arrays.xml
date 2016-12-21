@@ -2,5 +2,6 @@
 <resources>
     <string-array name="tablayout_titles" >
         <item>@string/disease_history</item>
+        <item>@string/disease_submit</item>
     </string-array>
 </resources>

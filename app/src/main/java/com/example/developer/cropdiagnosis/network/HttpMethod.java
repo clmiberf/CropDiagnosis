@@ -3,16 +3,19 @@ package com.example.developer.cropdiagnosis.network;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.developer.cropdiagnosis.model.beans.DiseaseModelBean;
-import com.example.developer.cropdiagnosis.model.beans.UserModelBean;
+import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
+import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.LoginActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseHistoryFragment;
+import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
+import com.example.developer.cropdiagnosis.network.apis.DiseaseSubmitApi;
 import com.example.developer.cropdiagnosis.network.apis.ImageApi;
 import com.example.developer.cropdiagnosis.network.apis.LoginApi;
 import com.example.developer.cropdiagnosis.shared.NetManager;
 import com.example.developer.cropdiagnosis.shared.rxutils.RxJavaCustomTransformer;
-import com.example.developer.cropdiagnosis.ui.LoginActivity;
-import com.example.developer.cropdiagnosis.ui.fragments.DiseaseHistoryFragment;
 
+import java.io.File;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -26,14 +29,17 @@ import rx.functions.Func1;
  * Created by Developer on 16-12-14.
  * <p>
  * 用于执行网络请求的类
+ * <p>
+ * open the source file with VIM !!!!!!
  */
 
 public class HttpMethod {
 
+    private static HttpMethod instance = null;
     private DiseaseHistoryApi diseaseApi = null;
     private ImageApi imageApi = null;
     private LoginApi loginApi = null;
-    private static HttpMethod instance = null;
+    private DiseaseSubmitApi submitApi = null;
 
     private HttpMethod() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -45,6 +51,7 @@ public class HttpMethod {
         diseaseApi = retrofit.create(DiseaseHistoryApi.class);
         imageApi = retrofit.create(ImageApi.class);
         loginApi = retrofit.create(LoginApi.class);
+        submitApi = retrofit.create(DiseaseSubmitApi.class);
     }
 
     public static HttpMethod getInstance() {
@@ -60,10 +67,11 @@ public class HttpMethod {
 
     public void login(String username, String password, final LoginActivity.LoginCallback callback) {
         loginApi.login(username, password)
-                .compose(RxJavaCustomTransformer.<UserModelBean>defaultSchedulers())
-                .subscribe(new Subscriber<UserModelBean>() {
+                .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
+                .subscribe(new Subscriber<HttpResult<UserModelBean>>() {
                     @Override
                     public void onCompleted() {
+
                     }
 
                     @Override
@@ -72,14 +80,14 @@ public class HttpMethod {
                     }
 
                     @Override
-                    public void onNext(UserModelBean userModelBean) {
-                        callback.onLoginSuccess(userModelBean);
+                    public void onNext(HttpResult<UserModelBean> userModelBeanHttpResult) {
+                        callback.onLoginSuccess(userModelBeanHttpResult.getData());
                     }
                 });
     }
 
-    public void downloadImage() {
-        imageApi.downloadImage()
+    public void downloadImage(String url) {
+        imageApi.downloadImage(url)
                 .compose(RxJavaCustomTransformer.<ResponseBody>defaultSchedulers())
                 .map(new Func1<ResponseBody, Bitmap>() {
                     @Override
@@ -106,12 +114,31 @@ public class HttpMethod {
                 });
     }
 
-    public void getDiseaseInfo(final DiseaseHistoryFragment.DiseaseHistoryCallback callback) {
-        diseaseApi.getDiseaseHistory()
-                .compose(RxJavaCustomTransformer.<List<DiseaseModelBean>>defaultSchedulers())
-                .subscribe(new Subscriber<List<DiseaseModelBean>>() {
+    public void submitDisease(String userId, String cropKind, String description, List<File> imageFiles, DiseaseSubmitFragment.Callback callback) {
+        submitApi.submitDisease(userId)
+                .compose(RxJavaCustomTransformer.<HttpResult<Void>>defaultSchedulers())
+                .subscribe(new Subscriber<HttpResult<Void>>() {
                     @Override
                     public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                    }
+
+                    @Override
+                    public void onNext(HttpResult<Void> voidHttpResult) {
+                    }
+                });
+    }
+
+    public void getDiseaseInfo(String userId, final DiseaseHistoryFragment.DiseaseHistoryCallback callback) {
+        diseaseApi.getDiseaseHistory(userId)
+                .compose(RxJavaCustomTransformer.<HttpResult<List<DiseaseModelBean>>>defaultSchedulers())
+                .subscribe(new Subscriber<HttpResult<List<DiseaseModelBean>>>() {
+                    @Override
+                    public void onCompleted() {
+
                     }
 
                     @Override
@@ -120,8 +147,8 @@ public class HttpMethod {
                     }
 
                     @Override
-                    public void onNext(List<DiseaseModelBean> diseaseModelBeen) {
-                        callback.onLoadHistoryInfoSuccess(diseaseModelBeen);
+                    public void onNext(HttpResult<List<DiseaseModelBean>> listHttpResult) {
+                        callback.onLoadHistoryInfoSuccess(listHttpResult.getData());
                     }
                 });
     }

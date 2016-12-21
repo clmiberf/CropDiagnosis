@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.developer.cropdiagnosis.ui.LoginActivity">
+    tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.LoginActivity">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -57,9 +57,9 @@
         android:id="@+id/pb_load_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:visibility="gone" />
-    <!--<com.example.developer.cropdiagnosis.view.impls.ProgressDialogImpl-->
+    <!--<com.example.developer.cropdiagnosis.mvp.view.impls.ProgressDialogImpl-->
     <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"></com.example.developer.cropdiagnosis.view.impls.ProgressDialogImpl>-->
+    <!--android:layout_height="wrap_content"></com.example.developer.cropdiagnosis.mvp.view.impls.ProgressDialogImpl>-->
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:id="@+id/activity_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.developer.cropdiagnosis.ui.HomeActivity">
+    tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity">
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/tl_home"
@@ -25,11 +25,11 @@
         app:stl_underlineColor="#ffe5e5e5"
         app:stl_underlineThickness="0dp" />
 
-    <com.example.developer.cropdiagnosis.view.FragmentViewPager
+    <com.example.developer.cropdiagnosis.mvp.view.FragmentViewPager
         android:id="@+id/vp_content_home"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/tl_home">
 
-    </com.example.developer.cropdiagnosis.view.FragmentViewPager>
+    </com.example.developer.cropdiagnosis.mvp.view.FragmentViewPager>
 </RelativeLayout>

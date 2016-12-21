@@ -7,7 +7,7 @@ import com.example.developer.cropdiagnosis.db.tables.DaoMaster;
 import com.example.developer.cropdiagnosis.db.tables.DaoSession;
 import com.example.developer.cropdiagnosis.db.tables.DiseaseSample;
 import com.example.developer.cropdiagnosis.db.tables.DiseaseSampleDao;
-import com.example.developer.cropdiagnosis.model.beans.DiseaseModelBean;
+import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 
 import java.util.List;
 

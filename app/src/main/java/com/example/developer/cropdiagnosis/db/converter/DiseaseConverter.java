@@ -2,7 +2,7 @@ package com.example.developer.cropdiagnosis.db.converter;
 
 import com.example.developer.cropdiagnosis.db.DbConstants;
 import com.example.developer.cropdiagnosis.db.tables.DiseaseSample;
-import com.example.developer.cropdiagnosis.model.beans.DiseaseModelBean;
+import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 
 import java.util.List;
 
