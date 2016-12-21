@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity">
 
+
     <com.ogaclejapan.smarttablayout.SmartTabLayout
         android:id="@+id/tl_home"
         android:layout_width="match_parent"
