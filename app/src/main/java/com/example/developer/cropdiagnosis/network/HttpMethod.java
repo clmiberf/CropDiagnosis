@@ -2,7 +2,6 @@ package com.example.developer.cropdiagnosis.network;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 
 import com.example.developer.cropdiagnosis.mvp.controller.impls.LoginControllerImpl;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
@@ -13,12 +12,15 @@ import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseSubmitApi;
 import com.example.developer.cropdiagnosis.network.apis.ImageApi;
 import com.example.developer.cropdiagnosis.network.apis.LoginApi;
+import com.example.developer.cropdiagnosis.network.utils.HttpUtils;
 import com.example.developer.cropdiagnosis.shared.NetManager;
 import com.example.developer.cropdiagnosis.shared.rxutils.RxJavaCustomTransformer;
 
 import java.io.File;
 import java.util.List;
+import java.util.Map;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -114,8 +116,14 @@ public class HttpMethod {
                 });
     }
 
-    public void submitDisease(String userId, String cropKind, String description, List<File> imageFiles, DiseaseSubmitFragment.Callback callback) {
-        submitApi.submitDisease(userId)
+    public void submitDisease(String userId, String cropKind, String description, List<File> imageFiles, final DiseaseSubmitFragment.Callback callback) {
+
+        RequestBody userIdBody = HttpUtils.createStringBody(userId);
+        RequestBody cropKindBody = HttpUtils.createStringBody(cropKind);
+        RequestBody descriptionBody = HttpUtils.createStringBody(description);
+        Map<String, RequestBody> map = HttpUtils.createMultFileMap(imageFiles);
+
+        submitApi.submitDisease(userIdBody, cropKindBody, descriptionBody, map)
                 .compose(RxJavaCustomTransformer.<HttpResult<Void>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<Void>>() {
                     @Override
@@ -124,10 +132,12 @@ public class HttpMethod {
 
                     @Override
                     public void onError(Throwable e) {
+                        callback.onSubmitFailed();
                     }
 
                     @Override
                     public void onNext(HttpResult<Void> voidHttpResult) {
+                        callback.onSubmitSuccess();
                     }
                 });
     }

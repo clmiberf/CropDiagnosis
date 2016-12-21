@@ -15,7 +15,6 @@ import com.example.developer.cropdiagnosis.mvp.controller.interfaces.ILoginContr
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.view.interfaces.IMessagePromptDialog;
-import com.example.developer.cropdiagnosis.shared.ConfigManager;
 
 import butterknife.BindView;
 import butterknife.OnClick;
