@@ -22,10 +22,12 @@
         <activity
             android:name=".ui.LoginActivity"
             android:label="@string/login"
+            android:parentActivityName=".ui.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.RegisterActivity"
             android:label="@string/register"
+            android:parentActivityName=".ui.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.HomeActivity"
