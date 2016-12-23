@@ -46,19 +46,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     private IMessagePromptDialog messageDialog;
-//    private LoginCallback callback = new LoginCallback() {
-//        @Override
-//        public void onLoginFailed(String message) {
-//            pbLoad.setVisibility(View.GONE);
-//            Toast.makeText(LoginActivity.this, "failed" + message, Toast.LENGTH_SHORT).show();
-//        }
-//
-//        @Override
-//        public void onLoginSuccess(UserModelBean userModelBean) {
-
-//        }
-//    };
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +77,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     public void login(String username, String password) {
-        pbLoad.setVisibility(View.VISIBLE);
+//        pbLoad.setVisibility(View.VISIBLE);
         mPresenter.login(username, password);
     }
 

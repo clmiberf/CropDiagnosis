@@ -2,13 +2,15 @@ package com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base;
 
 /**
  * Created by Developer on 16-12-23.
- * Wang Cheng is a intelligent Android developer.
  */
 
 public interface RequestCallback<T> {
+	// called when request is post
     void beforeRequest();
 
+	// called when reponse is return success
     void success(T data);
 
+	// called when error is occurred
     void onError(String errorMsg);
 }

@@ -12,6 +12,7 @@ import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseSubmitApi;
 import com.example.developer.cropdiagnosis.network.apis.ImageApi;
 import com.example.developer.cropdiagnosis.network.apis.LoginApi;
+import com.example.developer.cropdiagnosis.network.apis.RegisterApi;
 import com.example.developer.cropdiagnosis.network.utils.HttpUtils;
 import com.example.developer.cropdiagnosis.shared.NetManager;
 import com.example.developer.cropdiagnosis.shared.rxutils.RxJavaCustomTransformer;
@@ -44,6 +45,7 @@ public class HttpMethod {
     private ImageApi imageApi = null;
     private LoginApi loginApi = null;
     private DiseaseSubmitApi submitApi = null;
+    private RegisterApi registerApi = null;
 
     private HttpMethod() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -56,6 +58,7 @@ public class HttpMethod {
         imageApi = retrofit.create(ImageApi.class);
         loginApi = retrofit.create(LoginApi.class);
         submitApi = retrofit.create(DiseaseSubmitApi.class);
+        registerApi = retrofit.create(RegisterApi.class);
     }
 
     public static HttpMethod getInstance() {
@@ -71,6 +74,26 @@ public class HttpMethod {
 
     public Subscription login(String username, String password, final RequestCallback<UserModelBean> callback) {
         return loginApi.login(username, password)
+                .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
+                .subscribe(new Subscriber<HttpResult<UserModelBean>>() {
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onError(e.toString());
+                    }
+
+                    @Override
+                    public void onNext(HttpResult<UserModelBean> result) {
+                        callback.success(result.getData());
+                    }
+                });
+    }
+
+    public Subscription register(String phoneNumber, String password, int userType, String province, String city, String county, String village, final RequestCallback<UserModelBean> callback) {
+        return registerApi.register(phoneNumber, password, userType, province, city, county, village)
                 .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<UserModelBean>>() {
                     @Override

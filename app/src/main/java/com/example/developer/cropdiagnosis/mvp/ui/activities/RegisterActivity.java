@@ -6,19 +6,24 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
+import com.example.developer.cropdiagnosis.mvp.presenter.impls.RegisterPresenterImpl;
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.RegisterPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IMessagePromptDialog;
 import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IProgressDialog;
+import com.example.developer.cropdiagnosis.mvp.view.RegisterView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterView {
 
     @BindView(R.id.et_tel_number_register)
     EditText etTelNumber;
@@ -36,7 +41,7 @@ public class RegisterActivity extends BaseActivity {
     Spinner spinProvince;
     @BindView(R.id.spin_city_register)
     Spinner spinCity;
-    @BindView(R.id.spin_country_register)
+    @BindView(R.id.spin_county_register)
     Spinner spinCountry;
     @BindView(R.id.et_village_register)
     EditText etVillage;
@@ -46,6 +51,8 @@ public class RegisterActivity extends BaseActivity {
     Button btnReset;
     @BindView(R.id.activity_register)
     LinearLayout activity;
+    @BindView(R.id.pb_load_register)
+    ProgressBar pbLoad;
 
     @OnClick({R.id.rd_person_register, R.id.rd_company_register, R.id.btn_register_register, R.id.btn_reset_register})
     public void onClick(View view) {
@@ -79,7 +86,13 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void initVariables() {
+        initPresenter();
+    }
 
+    private void initPresenter() {
+        mPresenter = new RegisterPresenterImpl();
+        mPresenter.attachView(this);
+        mPresenter.onCreate();
     }
 
     @Override
@@ -93,5 +106,27 @@ public class RegisterActivity extends BaseActivity {
 
     private void register(UserModelBean user) {
         progressDialog.showProgressDialog();
+    }
+
+    @Override
+    public void registerSuccess() {
+        Intent it = new Intent(RegisterActivity.this, HomeActivity.class);
+        startActivity(it);
+        finish();
+    }
+
+    @Override
+    public void registerFailed(String errorMsg) {
+        Toast.makeText(this, errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showProgress() {
+        pbLoad.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        pbLoad.setVisibility(View.GONE);
     }
 }
