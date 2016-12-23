@@ -1,7 +1,7 @@
 package com.example.developer.cropdiagnosis.mvp.presenter.factory;
 
-import com.example.developer.cropdiagnosis.mvp.presenter.impls.SubmitDieasePresenterImpl;
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.ISubmitDiseasePresenter;
+import com.example.developer.cropdiagnosis.mvp.presenter.impls.DiseaseSubmitPresenterImpl;
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.DiseaseSubmitPresenter;
 
 /**
  * Created by Developer on 16-12-21.
@@ -9,7 +9,7 @@ import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.ISubmitDisea
  */
 
 public class DiseaseSubmitFactory {
-    public static ISubmitDiseasePresenter createSubmitController() {
-        return new SubmitDieasePresenterImpl();
+    public static DiseaseSubmitPresenter createSubmitController() {
+        return new DiseaseSubmitPresenterImpl();
     }
 }

@@ -7,7 +7,6 @@ import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base.RequestCallback;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseHistoryFragment;
-import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseSubmitApi;
 import com.example.developer.cropdiagnosis.network.apis.ImageApi;
@@ -136,14 +135,13 @@ public class HttpMethod {
                 });
     }
 
-    public void submitDisease(String userId, String cropKind, String description, List<File> imageFiles, final DiseaseSubmitFragment.Callback callback) {
-
+    public Subscription submitDisease(String userId, String cropKind, String description, List<File> imageFiles, final RequestCallback<Void> callback) {
         RequestBody userIdBody = HttpUtils.createStringBody(userId);
         RequestBody cropKindBody = HttpUtils.createStringBody(cropKind);
         RequestBody descriptionBody = HttpUtils.createStringBody(description);
         Map<String, RequestBody> map = HttpUtils.createMultFileMap(imageFiles);
 
-        submitApi.submitDisease(userIdBody, cropKindBody, descriptionBody, map)
+        return submitApi.submitDisease(userIdBody, cropKindBody, descriptionBody, map)
                 .compose(RxJavaCustomTransformer.<HttpResult<Void>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<Void>>() {
                     @Override
@@ -152,12 +150,12 @@ public class HttpMethod {
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onSubmitFailed();
+                        callback.onError(e.toString());
                     }
 
                     @Override
                     public void onNext(HttpResult<Void> voidHttpResult) {
-                        callback.onSubmitSuccess();
+                        callback.success(null);
                     }
                 });
     }

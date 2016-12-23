@@ -49,7 +49,8 @@ public class ConfigManager {
         edit.putString(USER_PROVINCE, bean.province);
         edit.putStringSet(USER_CROPS, new HashSet<>(bean.crops));
         edit.putBoolean(IS_USER_LOGIN, true);
-        edit.commit();
+//        edit.commit();
+        edit.apply();
         return true;
     }
 

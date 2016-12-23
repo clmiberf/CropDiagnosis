@@ -3,6 +3,7 @@ package com.example.developer.cropdiagnosis.mvp.presenter.impls;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.impls.LoginModelApiImpl;
 import com.example.developer.cropdiagnosis.mvp.model.interfaces.LoginModelApi;
+import com.example.developer.cropdiagnosis.mvp.presenter.impls.base.BasePresenterImpl;
 import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.LoginPresenter;
 import com.example.developer.cropdiagnosis.mvp.view.LoginView;
 

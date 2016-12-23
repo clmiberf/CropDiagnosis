@@ -1,5 +1,7 @@
 package com.example.developer.cropdiagnosis.mvp.presenter.interfaces;
 
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base.BasePresenter;
+
 import java.io.File;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  * Wang Cheng is a intelligent Android developer.
  */
 
-public interface ISubmitDiseasePresenter {
+public interface DiseaseSubmitPresenter extends BasePresenter {
     void submitDisease(String userId,
                        String cropKind,
                        String description,

@@ -1,4 +1,4 @@
-package com.example.developer.cropdiagnosis.mvp.presenter.impls;
+package com.example.developer.cropdiagnosis.mvp.presenter.impls.base;
 
 import android.support.annotation.NonNull;
 

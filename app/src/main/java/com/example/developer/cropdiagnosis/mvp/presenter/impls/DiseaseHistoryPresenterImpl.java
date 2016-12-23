@@ -3,7 +3,7 @@ package com.example.developer.cropdiagnosis.mvp.presenter.impls;
 import android.content.Context;
 
 import com.example.developer.cropdiagnosis.mvp.model.DiseaseModel;
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.IDiseasePresenter;
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.IDiseaseHistoryPresenter;
 import com.example.developer.cropdiagnosis.shared.NetManager;
 
 /**
@@ -11,7 +11,7 @@ import com.example.developer.cropdiagnosis.shared.NetManager;
  * Wang Cheng is a intelligent Android developer.
  */
 
-public class DiseasePresenterImpl implements IDiseasePresenter {
+public class DiseaseHistoryPresenterImpl implements IDiseaseHistoryPresenter {
     @Override
     public void getDiseaseListInfo(Context context, String userId) {
         // 判断用户名是否为空

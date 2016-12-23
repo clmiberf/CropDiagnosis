@@ -14,9 +14,8 @@ import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.adapter.DiseaseListAdapter;
 import com.example.developer.cropdiagnosis.db.DbConstants;
 import com.example.developer.cropdiagnosis.mvp.presenter.factory.DiseaseControllerFactory;
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.IDiseasePresenter;
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.IDiseaseHistoryPresenter;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
-import com.example.developer.cropdiagnosis.shared.ConfigManager;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,7 +42,7 @@ public class DiseaseHistoryFragment extends Fragment {
     RecyclerView rvContent;
 
     private DiseaseListAdapter diseaseAdapter = null;
-    private IDiseasePresenter presenter = null;
+    private IDiseaseHistoryPresenter presenter = null;
     private List<DiseaseModelBean> data = new ArrayList<>();
 
     private DiseaseHistoryCallback callback = new DiseaseHistoryCallback() {
