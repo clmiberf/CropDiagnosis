@@ -1,4 +1,4 @@
-package com.example.developer.cropdiagnosis.mvp.view.interfaces;
+package com.example.developer.cropdiagnosis.mvp.ui.component.interfaces;
 
 /**
  * Created by Developer on 16-12-14.

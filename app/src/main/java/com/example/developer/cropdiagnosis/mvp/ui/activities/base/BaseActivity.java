@@ -5,18 +5,25 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base.BasePresenter;
 import com.example.developer.cropdiagnosis.shared.ThemeManager;
 
 import butterknife.ButterKnife;
+import rx.Subscription;
 
 /**
  * Created by Developer on 16-12-17.
  * Wang Cheng is a intelligent Android developer.
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
+
+    protected T mPresenter = null;
+    protected Subscription mSubscription = null;
 
     public abstract int getLayoutId();
+
+    protected abstract void initVariables();
 
     // 先初始化配置，在初始化布局
     protected abstract void initViews();
@@ -28,7 +35,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         setNigthOrDayMode();
         setContentView(layoutId);
         ButterKnife.bind(this);
+        initVariables();
         initViews();
+        if (mPresenter != null) {
+            mPresenter.onCreate();
+        }
     }
 
     private void setNigthOrDayMode() {

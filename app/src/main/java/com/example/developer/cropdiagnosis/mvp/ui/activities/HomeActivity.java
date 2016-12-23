@@ -5,9 +5,9 @@ import android.support.v4.app.Fragment;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.component.FragmentViewPager;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseHistoryFragment;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment;
-import com.example.developer.cropdiagnosis.mvp.view.FragmentViewPager;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 import java.util.ArrayList;
@@ -40,6 +40,11 @@ public class HomeActivity extends BaseActivity {
     @Override
     public int getLayoutId() {
         return R.layout.activity_home;
+    }
+
+    @Override
+    protected void initVariables() {
+
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.example.developer.cropdiagnosis.mvp.view.impls;
+package com.example.developer.cropdiagnosis.mvp.ui.component.impls;
 
 import android.content.Context;
 import android.os.Build;
@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 
 import com.example.developer.cropdiagnosis.R;
-import com.example.developer.cropdiagnosis.mvp.view.interfaces.IProgressDialog;
+import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IProgressDialog;
 
 import butterknife.BindView;
 

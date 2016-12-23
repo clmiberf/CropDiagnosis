@@ -1,9 +1,9 @@
-package com.example.developer.cropdiagnosis.mvp.view.factory;
+package com.example.developer.cropdiagnosis.mvp.ui.component.factory;
 
 import android.content.Context;
 
-import com.example.developer.cropdiagnosis.mvp.view.impls.ProgressDialogImpl;
-import com.example.developer.cropdiagnosis.mvp.view.interfaces.IProgressDialog;
+import com.example.developer.cropdiagnosis.mvp.ui.component.impls.ProgressDialogImpl;
+import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IProgressDialog;
 
 /**
  * Created by Developer on 16-12-16.

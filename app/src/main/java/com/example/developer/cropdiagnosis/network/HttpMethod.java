@@ -3,9 +3,9 @@ package com.example.developer.cropdiagnosis.network;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.developer.cropdiagnosis.mvp.controller.impls.LoginControllerImpl;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base.RequestCallback;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseHistoryFragment;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
@@ -26,6 +26,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.functions.Func1;
 
 /**
@@ -68,8 +69,8 @@ public class HttpMethod {
         return instance;
     }
 
-    public void login(String username, String password, final LoginControllerImpl.LoginCallback callback) {
-        loginApi.login(username, password)
+    public Subscription login(String username, String password, final RequestCallback<UserModelBean> callback) {
+        return loginApi.login(username, password)
                 .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<UserModelBean>>() {
                     @Override
@@ -78,12 +79,12 @@ public class HttpMethod {
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onLoginFailed(e);
+                        callback.onError(e.toString());
                     }
 
                     @Override
                     public void onNext(HttpResult<UserModelBean> result) {
-                        callback.onLoginSuccess(result);
+                        callback.success(result.getData());
                     }
                 });
     }
@@ -98,20 +99,16 @@ public class HttpMethod {
                     }
                 })
                 .subscribe(new Subscriber<Object>() {
-
                     @Override
                     public void onCompleted() {
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
                     }
 
                     @Override
                     public void onNext(Object o) {
-
                     }
                 });
     }

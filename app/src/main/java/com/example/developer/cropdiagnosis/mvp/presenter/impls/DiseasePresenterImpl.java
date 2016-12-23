@@ -1,10 +1,9 @@
-package com.example.developer.cropdiagnosis.mvp.controller.impls;
+package com.example.developer.cropdiagnosis.mvp.presenter.impls;
 
 import android.content.Context;
 
-import com.example.developer.cropdiagnosis.mvp.controller.interfaces.IDiseaseController;
 import com.example.developer.cropdiagnosis.mvp.model.DiseaseModel;
-import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseHistoryFragment;
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.IDiseasePresenter;
 import com.example.developer.cropdiagnosis.shared.NetManager;
 
 /**
@@ -12,19 +11,19 @@ import com.example.developer.cropdiagnosis.shared.NetManager;
  * Wang Cheng is a intelligent Android developer.
  */
 
-public class DiseaseControllerImpl implements IDiseaseController {
+public class DiseasePresenterImpl implements IDiseasePresenter {
     @Override
-    public void getDiseaseListInfo(Context context, String userId, DiseaseHistoryFragment.DiseaseHistoryCallback callback) {
+    public void getDiseaseListInfo(Context context, String userId) {
         // 判断用户名是否为空
         if (userId == null) {
-            callback.onLoadHistoryInfoFailed(null);
+//            callback.onLoadHistoryInfoFailed(null);
             return;
         }
 
         DiseaseModel diseaseModel = new DiseaseModel();
         // 判断网络条件是否良好
         if (NetManager.isNetworkWorkWell(context)) {
-            diseaseModel.getFromNetwork(userId, callback);
+//            diseaseModel.getFromNetwork(userId, callback);
         } else {
 
         }

@@ -2,24 +2,22 @@ package com.example.developer.cropdiagnosis.mvp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
-import com.example.developer.cropdiagnosis.mvp.controller.factory.LoginControllerFactory;
-import com.example.developer.cropdiagnosis.mvp.controller.interfaces.ILoginController;
-import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
+import com.example.developer.cropdiagnosis.mvp.presenter.impls.LoginPresenterImpl;
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.LoginPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
-import com.example.developer.cropdiagnosis.mvp.view.interfaces.IMessagePromptDialog;
+import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IMessagePromptDialog;
+import com.example.developer.cropdiagnosis.mvp.view.LoginView;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginView {
 
     @BindView(R.id.et_username_login)
     EditText etUsername;
@@ -42,49 +40,44 @@ public class LoginActivity extends BaseActivity {
             case R.id.btn_forget_pwsd_login:
                 break;
             case R.id.btn_login_login:
-                login();
+                login(etUsername.getText().toString().trim(), etPassword.getText().toString().trim());
                 break;
         }
     }
 
-    public interface LoginCallback {
-        void onLoginFailed(String message);
-
-        void onLoginSuccess(UserModelBean bean);
-    }
-
     private IMessagePromptDialog messageDialog;
-    private ILoginController controller;
-    private LoginCallback callback = new LoginCallback() {
-        @Override
-        public void onLoginFailed(String message) {
-            pbLoad.setVisibility(View.GONE);
-            Toast.makeText(LoginActivity.this, "failed" + message, Toast.LENGTH_SHORT).show();
-        }
+//    private LoginCallback callback = new LoginCallback() {
+//        @Override
+//        public void onLoginFailed(String message) {
+//            pbLoad.setVisibility(View.GONE);
+//            Toast.makeText(LoginActivity.this, "failed" + message, Toast.LENGTH_SHORT).show();
+//        }
+//
+//        @Override
+//        public void onLoginSuccess(UserModelBean userModelBean) {
 
-        @Override
-        public void onLoginSuccess(UserModelBean userModelBean) {
-            pbLoad.setVisibility(View.GONE);
-            Intent it = new Intent(LoginActivity.this, HomeActivity.class);
-            setResult(RESULT_OK);
-            finish();
-        }
-    };
+//        }
+//    };
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initConfig();
-    }
-
-    private void initConfig() {
-        controller = LoginControllerFactory.createLoginController();
     }
 
     @Override
     public int getLayoutId() {
         return R.layout.activity_login;
+    }
+
+    @Override
+    protected void initVariables() {
+        initPrsenter();
+    }
+
+    private void initPrsenter() {
+        mPresenter = new LoginPresenterImpl();
+        mPresenter.attachView(this);
     }
 
     @Override
@@ -96,9 +89,30 @@ public class LoginActivity extends BaseActivity {
         return false;
     }
 
-    private void login() {
-        Log.e("login", "login");
+    public void login(String username, String password) {
         pbLoad.setVisibility(View.VISIBLE);
-        controller.login(etUsername.getText().toString().trim(), etPassword.getText().toString().trim(), callback);
+        mPresenter.login(username, password);
+    }
+
+    @Override
+    public void showProgress() {
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void loginSuccess() {
+        pbLoad.setVisibility(View.GONE);
+        Intent it = new Intent(LoginActivity.this, HomeActivity.class);
+        setResult(RESULT_OK);
+        finish();
+    }
+
+    @Override
+    public void loginFailed(String msg) {
+
     }
 }

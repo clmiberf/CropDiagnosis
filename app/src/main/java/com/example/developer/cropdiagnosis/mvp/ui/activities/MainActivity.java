@@ -1,10 +1,10 @@
 package com.example.developer.cropdiagnosis.mvp.ui.activities;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -12,9 +12,9 @@ import android.widget.ImageView;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
+import com.example.developer.cropdiagnosis.shared.ConfigManager;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
@@ -30,6 +30,10 @@ public class MainActivity extends BaseActivity {
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initVariables() {
     }
 
     @Override
@@ -52,6 +56,30 @@ public class MainActivity extends BaseActivity {
         set.setDuration(900);
         set.playTogether(ObjectAnimator.ofFloat(ivLogoBg, "scaleX", new float[]{1.0F, 1.25F, 0.75F, 1.15F, 1.0F}),
                 ObjectAnimator.ofFloat(ivLogoBg, "scaleY", new float[]{1.0F, 0.75F, 1.25F, 0.85F, 1.0F}));
+        set.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (ConfigManager.isUserLogin()) {
+                    finish();
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
         set.start();
     }
 

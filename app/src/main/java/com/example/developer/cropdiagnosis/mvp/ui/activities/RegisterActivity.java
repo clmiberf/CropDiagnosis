@@ -2,7 +2,6 @@ package com.example.developer.cropdiagnosis.mvp.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,11 +12,10 @@ import android.widget.Spinner;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
-import com.example.developer.cropdiagnosis.mvp.view.interfaces.IMessagePromptDialog;
-import com.example.developer.cropdiagnosis.mvp.view.interfaces.IProgressDialog;
+import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IMessagePromptDialog;
+import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IProgressDialog;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends BaseActivity {
@@ -66,16 +64,6 @@ public class RegisterActivity extends BaseActivity {
         }
     }
 
-    public interface RegisterCallback {
-        void onGetCheckCodeSuccess(String checkCode);
-
-        void onGetCheckCodeFailed();
-
-        void onRegisterSuccess();
-
-        void onRegisterFailed();
-    }
-
     private IProgressDialog progressDialog = null;
     private IMessagePromptDialog messageDialog = null;
 
@@ -87,6 +75,11 @@ public class RegisterActivity extends BaseActivity {
     @Override
     public int getLayoutId() {
         return R.layout.activity_register;
+    }
+
+    @Override
+    protected void initVariables() {
+
     }
 
     @Override

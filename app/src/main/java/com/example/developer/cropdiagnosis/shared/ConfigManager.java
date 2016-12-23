@@ -26,6 +26,16 @@ public class ConfigManager {
     private static final String USER_PHONE_NUMBER = "user_phone_number";
     private static final String USER_VILLAGE = "user_village";
     private static final String USER_PROVINCE = "user_province";
+    private static final String IS_USER_LOGIN = "is_user_login";
+
+    /**
+     * 判断用户是否登录
+     *
+     * @return
+     */
+    public static boolean isUserLogin() {
+        return CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).getBoolean(IS_USER_LOGIN, false);
+    }
 
     public static boolean saveUserInfo(UserModelBean bean) {
         SharedPreferences.Editor edit = CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).edit();
@@ -38,6 +48,7 @@ public class ConfigManager {
         edit.putString(USER_VILLAGE, bean.village);
         edit.putString(USER_PROVINCE, bean.province);
         edit.putStringSet(USER_CROPS, new HashSet<>(bean.crops));
+        edit.putBoolean(IS_USER_LOGIN, true);
         edit.commit();
         return true;
     }
@@ -45,20 +56,18 @@ public class ConfigManager {
     /**
      * 获取用户的id
      *
-     * @param context
      * @return 用户的id
      */
-    public static String getUserId(Context context) {
+    public static String getUserId() {
         return CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).getString(USER_ID, null);
     }
 
     /**
      * 获取用户关注的作物
      *
-     * @param context
      * @return
      */
-    public static Set<String> getCrops(Context context) {
+    public static Set<String> getCrops() {
         return CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).getStringSet(USER_CROPS, null);
     }
 }

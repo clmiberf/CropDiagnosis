@@ -13,8 +13,8 @@ import android.widget.ArrayAdapter;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.adapter.DiseaseListAdapter;
 import com.example.developer.cropdiagnosis.db.DbConstants;
-import com.example.developer.cropdiagnosis.mvp.controller.factory.DiseaseControllerFactory;
-import com.example.developer.cropdiagnosis.mvp.controller.interfaces.IDiseaseController;
+import com.example.developer.cropdiagnosis.mvp.presenter.factory.DiseaseControllerFactory;
+import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.IDiseasePresenter;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.shared.ConfigManager;
 
@@ -43,7 +43,7 @@ public class DiseaseHistoryFragment extends Fragment {
     RecyclerView rvContent;
 
     private DiseaseListAdapter diseaseAdapter = null;
-    private IDiseaseController presenter = null;
+    private IDiseasePresenter presenter = null;
     private List<DiseaseModelBean> data = new ArrayList<>();
 
     private DiseaseHistoryCallback callback = new DiseaseHistoryCallback() {
@@ -102,7 +102,7 @@ public class DiseaseHistoryFragment extends Fragment {
     }
 
     private void updateDiseaseHistoryInfo() {
-        presenter.getDiseaseListInfo(getContext(), ConfigManager.getUserId(getContext()), callback);
+//        presenter.getDiseaseListInfo(getContext(), ConfigManager.getUserId(), callback);
     }
 
     public interface DiseaseHistoryCallback {

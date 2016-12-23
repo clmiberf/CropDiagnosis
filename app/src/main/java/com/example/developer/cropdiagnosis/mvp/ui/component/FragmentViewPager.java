@@ -1,4 +1,4 @@
-package com.example.developer.cropdiagnosis.mvp.view;
+package com.example.developer.cropdiagnosis.mvp.ui.component;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

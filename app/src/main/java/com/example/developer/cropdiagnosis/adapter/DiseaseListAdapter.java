@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
-import com.example.developer.cropdiagnosis.mvp.view.SingleDiseaseItemView;
+import com.example.developer.cropdiagnosis.mvp.ui.component.SingleDiseaseItemView;
 
 import java.util.List;
 
