@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base.RequestCallback;
-import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseHistoryFragment;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseSubmitApi;
 import com.example.developer.cropdiagnosis.network.apis.ImageApi;
@@ -45,6 +44,7 @@ public class HttpMethod {
     private LoginApi loginApi = null;
     private DiseaseSubmitApi submitApi = null;
     private RegisterApi registerApi = null;
+    private DiseaseHistoryApi diseaseHistoryApi = null;
 
     private HttpMethod() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -58,6 +58,7 @@ public class HttpMethod {
         loginApi = retrofit.create(LoginApi.class);
         submitApi = retrofit.create(DiseaseSubmitApi.class);
         registerApi = retrofit.create(RegisterApi.class);
+        diseaseHistoryApi = retrofit.create(DiseaseHistoryApi.class);
     }
 
     public static HttpMethod getInstance() {
@@ -106,6 +107,27 @@ public class HttpMethod {
 
                     @Override
                     public void onNext(HttpResult<UserModelBean> result) {
+                        callback.success(result.getData());
+                    }
+                });
+    }
+
+    public Subscription loadDiseaseHistory(String userId, final RequestCallback<List<DiseaseModelBean>> callback) {
+        return diseaseHistoryApi.getDiseaseHistory(userId)
+                .compose(RxJavaCustomTransformer.<HttpResult<List<DiseaseModelBean>>>defaultSchedulers())
+                .subscribe(new Subscriber<HttpResult<List<DiseaseModelBean>>>() {
+
+                    @Override
+                    public void onCompleted() {
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        callback.onError(e.toString());
+                    }
+
+                    @Override
+                    public void onNext(HttpResult<List<DiseaseModelBean>> result) {
                         callback.success(result.getData());
                     }
                 });
@@ -160,23 +182,22 @@ public class HttpMethod {
                 });
     }
 
-    public void getDiseaseInfo(String userId, final DiseaseHistoryFragment.DiseaseHistoryCallback callback) {
+    public void getDiseaseInfo(String userId, final RequestCallback<List<DiseaseModelBean>> callback) {
         diseaseApi.getDiseaseHistory(userId)
                 .compose(RxJavaCustomTransformer.<HttpResult<List<DiseaseModelBean>>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<List<DiseaseModelBean>>>() {
                     @Override
                     public void onCompleted() {
-
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onLoadHistoryInfoFailed(e);
+                        callback.onError(e.toString());
                     }
 
                     @Override
-                    public void onNext(HttpResult<List<DiseaseModelBean>> listHttpResult) {
-                        callback.onLoadHistoryInfoSuccess(listHttpResult.getData());
+                    public void onNext(HttpResult<List<DiseaseModelBean>> result) {
+                        callback.success(result.getData());
                     }
                 });
     }
