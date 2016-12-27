@@ -19,7 +19,6 @@ import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
 import com.example.developer.cropdiagnosis.shared.ConfigManager;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
@@ -87,9 +86,7 @@ public class DiseaseSubmitFragment extends BaseFragment<DiseaseSubmitPresenter> 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     private void refreshUI() {

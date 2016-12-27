@@ -11,10 +11,10 @@ import com.example.developer.cropdiagnosis.network.HttpMethod;
  */
 
 public class DiseaseModel {
-    public void getFromDatabase(Context context, DiseaseHistoryFragment.DiseaseHistoryCallback callback) {
-    }
+//    public void getFromDatabase(Context context, DiseaseHistoryFragment.DiseaseHistoryCallback callback) {
+//    }
 
-    public void getFromNetwork(String userId, DiseaseHistoryFragment.DiseaseHistoryCallback callback) {
-        HttpMethod.getInstance().getDiseaseInfo(userId, callback);
-    }
+//    public void getFromNetwork(String userId, DiseaseHistoryFragment.DiseaseHistoryCallback callback) {
+//        HttpMethod.getInstance().getDiseaseInfo(userId, callback);
+//    }
 }
