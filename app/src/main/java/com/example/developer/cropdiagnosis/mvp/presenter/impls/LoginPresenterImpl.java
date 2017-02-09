@@ -24,7 +24,6 @@ public class LoginPresenterImpl extends BasePresenterImpl<LoginView, UserModelBe
     @Override
     public void login(String username, String password) {
         if (api != null) {
-            beforeRequest();
             mSubscription = api.login(username, password, this);
         }
     }

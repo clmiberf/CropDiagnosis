@@ -15,6 +15,7 @@ import rx.Subscription;
 public class LoginModelApiImpl implements LoginModelApi {
     @Override
     public Subscription login(String username, String password, RequestCallback<UserModelBean> callback) {
+        callback.beforeRequest();
         return HttpMethod.getInstance().login(username, password, callback);
     }
 }
