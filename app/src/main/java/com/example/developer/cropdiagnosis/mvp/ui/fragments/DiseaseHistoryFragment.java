@@ -1,12 +1,18 @@
 package com.example.developer.cropdiagnosis.mvp.ui.fragments;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.adapter.DiseaseListAdapter;
+import com.example.developer.cropdiagnosis.dagger2.component.DaggerActivityComponent;
+import com.example.developer.cropdiagnosis.dagger2.module.ActivityModule;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseHistoryPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
@@ -75,7 +81,10 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     @Override
     protected void initializeInjector() {
-
+        DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(getActivity()))
+                .build()
+                .inject(this);
     }
 
     protected void initVariables() {
@@ -101,8 +110,13 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         rvContent.setAdapter(diseaseAdapter);
     }
 
-    private void updateDiseaseHistoryInfo() {
-//        presenter.getDiseaseListInfo(getContext(), ConfigManager.getUserId(), callback);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        mPresenter.attachView(this);
+        mPresenter.onCreate(savedInstanceState);
+        return view;
     }
 
     @Override

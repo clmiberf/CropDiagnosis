@@ -23,6 +23,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.functions.Func1;
@@ -173,21 +174,7 @@ public class HttpMethod {
                 });
     }
 
-    public void getDiseaseInfo(String userId) {
-        diseaseApi.getDiseaseHistory(userId)
-                .compose(RxJavaCustomTransformer.<HttpResult<List<DiseaseModelBean>>>defaultSchedulers())
-                .subscribe(new Subscriber<HttpResult<List<DiseaseModelBean>>>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onNext(HttpResult<List<DiseaseModelBean>> result) {
-                    }
-                });
+    public Observable<HttpResult<List<DiseaseModelBean>>> getDiseaseInfo(String userId) {
+        return diseaseApi.getDiseaseHistory(userId);
     }
 }
