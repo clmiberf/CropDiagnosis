@@ -78,7 +78,10 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     @Override
     protected void initializeInjector() {
-
+        DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(getActivity()))
+                .build()
+                .inject(this);
     }
 
     protected void initVariables() {
@@ -107,8 +110,13 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     }
 
 
-    private void updateDiseaseHistoryInfo() {
-//        presenter.getDiseaseListInfo(getContext(), ConfigManager.getUserId(), callback);
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        mPresenter.attachView(this);
+        mPresenter.onCreate(savedInstanceState);
+        return view;
     }
 
     @Override

@@ -109,7 +109,6 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         }
     };
 
-
     @OnClick({R.id.rd_person_register, R.id.rd_company_register, R.id.btn_get_check_code, R.id.btn_register_register, R.id.btn_reset_register})
     public void onClick(View view) {
         switch (view.getId()) {

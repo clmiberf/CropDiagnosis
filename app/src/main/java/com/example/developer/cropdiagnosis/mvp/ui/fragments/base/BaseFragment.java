@@ -29,6 +29,7 @@ public abstract class BaseFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ButterKnife.bind(this.getActivity());
+        initializeInjector();
     }
 
     @Nullable
