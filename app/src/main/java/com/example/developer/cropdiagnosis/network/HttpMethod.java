@@ -5,7 +5,6 @@ import android.graphics.BitmapFactory;
 
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base.RequestCallback;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseSubmitApi;
 import com.example.developer.cropdiagnosis.network.apis.ImageApi;
@@ -72,7 +71,7 @@ public class HttpMethod {
         return instance;
     }
 
-    public Subscription login(String username, String password, final RequestCallback<UserModelBean> callback) {
+    public Subscription login(String username, String password) {
         return loginApi.login(username, password)
                 .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<UserModelBean>>() {
@@ -82,17 +81,15 @@ public class HttpMethod {
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onError(e.toString());
                     }
 
                     @Override
                     public void onNext(HttpResult<UserModelBean> result) {
-                        callback.success(result.getData());
                     }
                 });
     }
 
-    public Subscription register(String phoneNumber, String password, int userType, String province, String city, String county, String village, final RequestCallback<UserModelBean> callback) {
+    public Subscription register(String phoneNumber, String password, int userType, String province, String city, String county, String village) {
         return registerApi.register(phoneNumber, password, userType, province, city, county, village)
                 .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<UserModelBean>>() {
@@ -102,17 +99,15 @@ public class HttpMethod {
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onError(e.toString());
                     }
 
                     @Override
                     public void onNext(HttpResult<UserModelBean> result) {
-                        callback.success(result.getData());
                     }
                 });
     }
 
-    public Subscription loadDiseaseHistory(String userId, final RequestCallback<List<DiseaseModelBean>> callback) {
+    public Subscription loadDiseaseHistory(String userId) {
         return diseaseHistoryApi.getDiseaseHistory(userId)
                 .compose(RxJavaCustomTransformer.<HttpResult<List<DiseaseModelBean>>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<List<DiseaseModelBean>>>() {
@@ -123,12 +118,10 @@ public class HttpMethod {
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onError(e.toString());
                     }
 
                     @Override
                     public void onNext(HttpResult<List<DiseaseModelBean>> result) {
-                        callback.success(result.getData());
                     }
                 });
     }
@@ -157,7 +150,7 @@ public class HttpMethod {
                 });
     }
 
-    public Subscription submitDisease(String userId, String cropKind, String description, List<File> imageFiles, final RequestCallback<Void> callback) {
+    public Subscription submitDisease(String userId, String cropKind, String description, List<File> imageFiles) {
         RequestBody userIdBody = HttpUtils.createStringBody(userId);
         RequestBody cropKindBody = HttpUtils.createStringBody(cropKind);
         RequestBody descriptionBody = HttpUtils.createStringBody(description);
@@ -172,17 +165,15 @@ public class HttpMethod {
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onError(e.toString());
                     }
 
                     @Override
                     public void onNext(HttpResult<Void> voidHttpResult) {
-                        callback.success(null);
                     }
                 });
     }
 
-    public void getDiseaseInfo(String userId, final RequestCallback<List<DiseaseModelBean>> callback) {
+    public void getDiseaseInfo(String userId) {
         diseaseApi.getDiseaseHistory(userId)
                 .compose(RxJavaCustomTransformer.<HttpResult<List<DiseaseModelBean>>>defaultSchedulers())
                 .subscribe(new Subscriber<HttpResult<List<DiseaseModelBean>>>() {
@@ -192,12 +183,10 @@ public class HttpMethod {
 
                     @Override
                     public void onError(Throwable e) {
-                        callback.onError(e.toString());
                     }
 
                     @Override
                     public void onNext(HttpResult<List<DiseaseModelBean>> result) {
-                        callback.success(result.getData());
                     }
                 });
     }

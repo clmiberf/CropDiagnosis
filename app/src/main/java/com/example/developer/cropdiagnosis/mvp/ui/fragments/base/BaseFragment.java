@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base.BasePresenter;
+import com.example.developer.cropdiagnosis.mvp.presenter.BasePresenter;
 
 import butterknife.ButterKnife;
 import rx.Subscription;
@@ -17,21 +17,19 @@ import rx.Subscription;
  * Wang Cheng is a intelligent Android developer.
  */
 
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
+public abstract class BaseFragment extends Fragment {
 
-    protected T mPresenter;
     private View mFragmentView;
     protected Subscription mSubscription;
 
     protected abstract int getLayoutId();
 
-    protected abstract void initVariables();
-
-    protected abstract void initViews(View view);
+    protected abstract void initializeInjector();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this.getActivity());
     }
 
     @Nullable
@@ -40,20 +38,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         if (mFragmentView == null) {
             mFragmentView = inflater.inflate(getLayoutId(), container, false);
             ButterKnife.bind(this, mFragmentView);
-            initVariables();
-            initViews(mFragmentView);
         }
         return mFragmentView;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mPresenter != null) {
-            mPresenter.onCreate();
-        }
-        if (mSubscription != null && !mSubscription.isUnsubscribed()) {
-            mSubscription.unsubscribe();
-        }
     }
 }

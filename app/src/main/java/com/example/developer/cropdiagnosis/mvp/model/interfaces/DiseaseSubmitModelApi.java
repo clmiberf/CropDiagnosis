@@ -1,7 +1,5 @@
 package com.example.developer.cropdiagnosis.mvp.model.interfaces;
 
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base.RequestCallback;
-
 import java.io.File;
 import java.util.List;
 
@@ -13,5 +11,5 @@ import rx.Subscription;
  */
 
 public interface DiseaseSubmitModelApi {
-    Subscription submitDisease(String userId, String cropKind, String description, List<File> imageFiles, RequestCallback<Void> callback);
+    Subscription submitDisease(String userId, String cropKind, String description, List<File> imageFiles);
 }

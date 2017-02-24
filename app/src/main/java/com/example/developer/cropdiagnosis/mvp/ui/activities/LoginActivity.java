@@ -8,8 +8,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.developer.cropdiagnosis.R;
-import com.example.developer.cropdiagnosis.mvp.presenter.impls.LoginPresenterImpl;
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.LoginPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IMessagePromptDialog;
 import com.example.developer.cropdiagnosis.mvp.view.LoginView;
@@ -17,7 +15,7 @@ import com.example.developer.cropdiagnosis.mvp.view.LoginView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginView {
+public class LoginActivity extends BaseActivity implements LoginView {
 
     @BindView(R.id.et_username_login)
     EditText etUsername;
@@ -63,8 +61,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     private void initPrsenter() {
-        mPresenter = new LoginPresenterImpl();
-        mPresenter.attachView(this);
     }
 
     @Override
@@ -78,7 +74,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     public void login(String username, String password) {
 //        pbLoad.setVisibility(View.VISIBLE);
-        mPresenter.login(username, password);
     }
 
     @Override

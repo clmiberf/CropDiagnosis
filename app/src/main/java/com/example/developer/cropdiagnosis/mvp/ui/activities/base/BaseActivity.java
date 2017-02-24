@@ -5,7 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.base.BasePresenter;
+import com.example.developer.cropdiagnosis.mvp.presenter.BasePresenter;
 import com.example.developer.cropdiagnosis.shared.ThemeManager;
 
 import butterknife.ButterKnife;
@@ -16,9 +16,8 @@ import rx.Subscription;
  * Wang Cheng is a intelligent Android developer.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
-    protected T mPresenter = null;
     protected Subscription mSubscription = null;
 
     public abstract int getLayoutId();
@@ -37,9 +36,6 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         ButterKnife.bind(this);
         initVariables();
         initViews();
-        if (mPresenter != null) {
-            mPresenter.onCreate();
-        }
     }
 
     private void setNigthOrDayMode() {

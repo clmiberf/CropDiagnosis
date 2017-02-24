@@ -12,8 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
-import com.example.developer.cropdiagnosis.mvp.presenter.impls.DiseaseSubmitPresenterImpl;
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.DiseaseSubmitPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
 import com.example.developer.cropdiagnosis.shared.ConfigManager;
@@ -22,7 +20,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
-public class DiseaseSubmitFragment extends BaseFragment<DiseaseSubmitPresenter> implements DiseaseSubmitView {
+public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmitView {
 
     @BindView(R.id.mspin_crop_kind_disease_submit)
     MaterialSpinner mspinCropKind;
@@ -49,6 +47,10 @@ public class DiseaseSubmitFragment extends BaseFragment<DiseaseSubmitPresenter> 
     }
 
     @Override
+    protected void initializeInjector() {
+
+    }
+
     public void initViews(View view) {
         adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -56,7 +58,6 @@ public class DiseaseSubmitFragment extends BaseFragment<DiseaseSubmitPresenter> 
         mspinCropKind.setError("Hello world");
     }
 
-    @Override
     public void initVariables() {
         if (ConfigManager.getCrops() != null) {
             crops = (String[]) ConfigManager.getCrops().toArray();
@@ -67,9 +68,9 @@ public class DiseaseSubmitFragment extends BaseFragment<DiseaseSubmitPresenter> 
     }
 
     private void initPresenter() {
-        mPresenter = new DiseaseSubmitPresenterImpl();
-        mPresenter.attachView(this);
-        mPresenter.onCreate();
+//        mPresenter = new DiseaseSubmitPresenterImpl();
+//        mPresenter.attachView(this);
+//        mPresenter.onCreate();
     }
 
     @OnClick(R.id.btn_submit_disease_disease_submit)
@@ -80,7 +81,7 @@ public class DiseaseSubmitFragment extends BaseFragment<DiseaseSubmitPresenter> 
     private void submit() {
         pbWait.setVisibility(View.VISIBLE);
         // not completed
-        mPresenter.submitDisease(ConfigManager.getUserId(), strCropKind, strDescription, null);
+//        mPresenter.submitDisease(ConfigManager.getUserId(), strCropKind, strDescription, null);
     }
 
     @Override

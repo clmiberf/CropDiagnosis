@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,22 +16,18 @@ import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
-import com.example.developer.cropdiagnosis.mvp.presenter.impls.RegisterPresenterImpl;
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.RegisterPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IMessagePromptDialog;
 import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IProgressDialog;
 import com.example.developer.cropdiagnosis.mvp.view.RegisterView;
-import com.mob.commons.SMSSDK;
 
 import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 import cn.smssdk.EventHandler;
-import cn.smssdk.gui.RegisterPage;
 
-public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterView {
+public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @BindView(R.id.et_tel_number_register)
     EditText etTelNumber;
@@ -197,9 +192,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     }
 
     private void initPresenter() {
-        mPresenter = new RegisterPresenterImpl();
-        mPresenter.attachView(this);
-        mPresenter.onCreate();
     }
 
     @Override

@@ -8,13 +8,14 @@ import android.widget.ArrayAdapter;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.adapter.DiseaseListAdapter;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
-import com.example.developer.cropdiagnosis.mvp.presenter.impls.DiseaseHistoryPresenterImpl;
-import com.example.developer.cropdiagnosis.mvp.presenter.interfaces.DiseaseHistoryPresenter;
+import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseHistoryPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseHistoryView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import fr.ganfra.materialspinner.MaterialSpinner;
@@ -24,7 +25,7 @@ import fr.ganfra.materialspinner.MaterialSpinner;
  * Wang Cheng is a intelligent Android developer.
  */
 
-public class DiseaseHistoryFragment extends BaseFragment<DiseaseHistoryPresenter> implements DiseaseHistoryView {
+public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHistoryView {
 
     @BindView(R.id.mspin_crop_disease_history)
     MaterialSpinner mspinCrop;
@@ -36,9 +37,11 @@ public class DiseaseHistoryFragment extends BaseFragment<DiseaseHistoryPresenter
     RecyclerView rvContent;
 
     private DiseaseListAdapter diseaseAdapter = null;
-    private DiseaseHistoryPresenter presenter = null;
     private List<DiseaseModelBean> data = new ArrayList<>();
     private ArrayAdapter<String> adapter = null;
+
+    @Inject
+    public DiseaseHistoryPresenter mPresenter = null;
 
 //    private DiseaseHistoryCallback callback = new DiseaseHistoryCallback() {
 //        @Override
@@ -74,6 +77,10 @@ public class DiseaseHistoryFragment extends BaseFragment<DiseaseHistoryPresenter
     }
 
     @Override
+    protected void initializeInjector() {
+
+    }
+
     protected void initVariables() {
         data = new ArrayList<>();
         String[] crops = {"水稻", "玉米", "小麦"};
@@ -83,12 +90,8 @@ public class DiseaseHistoryFragment extends BaseFragment<DiseaseHistoryPresenter
     }
 
     private void initPresenter() {
-        mPresenter = new DiseaseHistoryPresenterImpl();
-        mPresenter.attachView(this);
-        mPresenter.onCreate();
     }
 
-    @Override
     protected void initViews(View view) {
         mspinCrop.setAdapter(adapter);
         mspinCrop.setError("Hello world");

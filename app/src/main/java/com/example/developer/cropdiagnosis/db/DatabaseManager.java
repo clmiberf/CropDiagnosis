@@ -16,11 +16,11 @@ import java.util.List;
  * Wang Cheng is a intelligent Android developer.
  */
 
-public class DbManager {
+public class DatabaseManager {
 
     private DaoMaster.DevOpenHelper devOpenHelper = null;
 
-    public DbManager(Context context) {
+    public DatabaseManager(Context context) {
         devOpenHelper = new DaoMaster.DevOpenHelper(context, DbConstants.DB_NAME);
     }
 
