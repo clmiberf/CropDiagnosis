@@ -35,5 +35,6 @@
     <string name="disease_submit">病害采集</string>
     <string name="username_not_allow_empty">用户名不能为空</string>
     <string name="password_not_allow_empty">密码不能为空</string>
+    <string name="load_data_failed">数据加载失败</string>
 
 </resources>

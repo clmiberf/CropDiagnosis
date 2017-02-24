@@ -1,12 +1,18 @@
 package com.example.developer.cropdiagnosis.mvp.ui.fragments;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.adapter.DiseaseListAdapter;
+import com.example.developer.cropdiagnosis.dagger2.component.DaggerActivityComponent;
+import com.example.developer.cropdiagnosis.dagger2.module.ActivityModule;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseHistoryPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
@@ -87,7 +93,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     protected void initVariables() {
         data = new ArrayList<>();
         String[] crops = {"水稻", "玉米", "小麦"};
-        String[] durations = {"水稻", "玉米", "小麦"};
+        String[] durations = {"一年内", "玉米", "小麦"};
         String[] status = {"水稻", "玉米", "小麦"};
         cropAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
         durationAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
