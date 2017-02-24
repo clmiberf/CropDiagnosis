@@ -38,7 +38,10 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     private DiseaseListAdapter diseaseAdapter = null;
     private List<DiseaseModelBean> data = new ArrayList<>();
-    private ArrayAdapter<String> adapter = null;
+    private ArrayAdapter<String> cropAdapter = null;
+    private ArrayAdapter<String> durationAdapter = null;
+    private ArrayAdapter<String> statusAdapter = null;
+
 
     @Inject
     public DiseaseHistoryPresenter mPresenter = null;
@@ -81,8 +84,13 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     protected void initVariables() {
         data = new ArrayList<>();
         String[] crops = {"水稻", "玉米", "小麦"};
-        adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        String[] durations = {"水稻", "玉米", "小麦"};
+        String[] status = {"水稻", "玉米", "小麦"};
+        cropAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
+        durationAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
+
+        cropAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         initPresenter();
     }
 
@@ -90,19 +98,25 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     }
 
     protected void initViews(View view) {
-        mspinCrop.setAdapter(adapter);
+        mspinCrop.setAdapter(cropAdapter);
         mspinCrop.setError("Hello world");
 
-        mspinDuration.setAdapter(adapter);
-        mspinStatus.setAdapter(adapter);
+//        mspinDuration.setAdapter(adapter);
+//        mspinStatus.setAdapter(adapter);
 
-        diseaseAdapter = new DiseaseListAdapter(this.getActivity(), data);
-        rvContent.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false));
-        rvContent.setAdapter(diseaseAdapter);
     }
+
 
     private void updateDiseaseHistoryInfo() {
 //        presenter.getDiseaseListInfo(getContext(), ConfigManager.getUserId(), callback);
+    }
+
+    @Override
+    public void initDiseaseListView(List<DiseaseModelBean> diseaseData) {
+        diseaseAdapter = new DiseaseListAdapter(this.getActivity(), diseaseData);
+        rvContent.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false));
+        rvContent.setAdapter(diseaseAdapter);
+
     }
 
     @Override

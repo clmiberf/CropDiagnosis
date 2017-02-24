@@ -11,6 +11,8 @@ import java.util.List;
  */
 
 public interface DiseaseHistoryView extends BaseView {
+    void initDiseaseListView(List<DiseaseModelBean> diseaseData);
+
     void loadSuccess(List<DiseaseModelBean> data);
 
     void loadFailed(String errorMsg);

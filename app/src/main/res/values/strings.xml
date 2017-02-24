@@ -20,10 +20,10 @@
     <string name="spinner_crop_chose_hint">选择作物</string>
     <string name="spinner_duration_chose_hint">选择时间</string>
     <string name="spinner_status_chose_hint">选择状态</string>
-    <string name="crop">作物</string>
-    <string name="spinner_duration">时间</string>
-    <string name="status">状态</string>
-    <string name="time">时间</string>
+    <string name="crop">作物:</string>
+    <string name="spinner_duration">时间:</string>
+    <string name="status">状态:</string>
+    <string name="crop_time">时间:</string>
     <string name="diagnosed">已诊断</string>
     <string name="not_diagnosed">未诊断</string>
 
@@ -35,4 +35,5 @@
     <string name="disease_submit">病害采集</string>
     <string name="username_not_allow_empty">用户名不能为空</string>
     <string name="password_not_allow_empty">密码不能为空</string>
+
 </resources>
