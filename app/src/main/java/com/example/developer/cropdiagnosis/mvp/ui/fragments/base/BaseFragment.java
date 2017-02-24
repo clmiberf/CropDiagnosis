@@ -20,7 +20,6 @@ import rx.Subscription;
 public abstract class BaseFragment extends Fragment {
 
     private View mFragmentView;
-    protected Subscription mSubscription;
 
     protected abstract int getLayoutId();
 

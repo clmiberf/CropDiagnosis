@@ -60,15 +60,14 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @BindView(R.id.btn_get_check_code)
     Button getCheckCode;
 
-    int i=60;
-
+    int i = 60;
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
-            Toast.makeText(RegisterActivity.this,"eeeee",Toast.LENGTH_SHORT).show();
+            Toast.makeText(RegisterActivity.this, "eeeee", Toast.LENGTH_SHORT).show();
             if (msg.what == -1) {
                 //修改控件文本进行倒计时  i 以60秒倒计时为例
-                getCheckCode.setText( i+" s");
+                getCheckCode.setText(i + " s");
             } else if (msg.what == -2) {
                 //修改控件文本，进行重新发送验证码
                 getCheckCode.setText("重新发送");
@@ -111,7 +110,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     };
 
 
-    @OnClick({R.id.rd_person_register, R.id.rd_company_register, R.id.btn_get_check_code,R.id.btn_register_register, R.id.btn_reset_register})
+    @OnClick({R.id.rd_person_register, R.id.rd_company_register, R.id.btn_get_check_code, R.id.btn_register_register, R.id.btn_reset_register})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rd_person_register:
@@ -122,7 +121,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
                 String phoneNum = etTelNumber.getText().toString().trim();
                 //待添加添加短信验证信息
                 //初始化SMSSDK
-                cn.smssdk.SMSSDK.initSDK(RegisterActivity.this,"1a8f8e2678f92","a55e900fcecaa4d136b85733e6336aa3");
+                cn.smssdk.SMSSDK.initSDK(RegisterActivity.this, "1a8f8e2678f92", "a55e900fcecaa4d136b85733e6336aa3");
                 EventHandler eventHandler = new EventHandler() {
                     @Override
                     public void afterEvent(int event, int result, Object data) {
@@ -136,7 +135,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
                 cn.smssdk.SMSSDK.registerEventHandler(eventHandler);
 
                 if (TextUtils.isEmpty(phoneNum)) {
-                    Toast.makeText(getApplicationContext(),"手机号码不能为空",
+                    Toast.makeText(getApplicationContext(), "手机号码不能为空",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -163,7 +162,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
                 }).start();
                 break;
             case R.id.btn_register_register:
-                Toast.makeText(RegisterActivity.this,"eeriee",Toast.LENGTH_SHORT).show();
+                Toast.makeText(RegisterActivity.this, "eeriee", Toast.LENGTH_SHORT).show();
                 Intent it = new Intent(RegisterActivity.this, HomeActivity.class);
                 setResult(RESULT_OK);
                 finish();

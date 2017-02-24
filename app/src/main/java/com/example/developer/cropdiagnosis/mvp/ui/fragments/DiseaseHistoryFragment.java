@@ -43,9 +43,6 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     @Inject
     public DiseaseHistoryPresenter mPresenter = null;
 
-//    private DiseaseHistoryCallback callback = new DiseaseHistoryCallback() {
-//        @Override
-//        public void onLoadHistoryInfoSuccess(List<DiseaseModelBean> datas) {
 //            data.clear();
 //            data.addAll(datas);
 //            diseaseAdapter.notifyDataSetChanged();
