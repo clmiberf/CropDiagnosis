@@ -3,6 +3,7 @@ package com.example.developer.cropdiagnosis.mvp.presenter;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.example.developer.cropdiagnosis.CropApplication;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.db.DbConstants;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
@@ -35,8 +36,34 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        loadCropKindInfo();
+        loadCropStatusInfo();
         loadDiseaseHistoryInfo(ConfigManager.getUserId());
+    }
+
+    /**
+     * 获取作物病例状态信息。
+     * 状态：
+     * 1.已诊断
+     * 2.未诊断
+     */
+    public void loadCropStatusInfo() {
+        List<String> diagnosedStatus = new ArrayList<>();
+        diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.diagnosed));
+        diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.not_diagnosed));
+        /**
+         * 调用 BaseView
+         */
+    }
+
+    /**
+     * 获取作物种类信息
+     */
+    public void loadCropKindInfo() {
+        ConfigManager.getUserPreferCrops().toArray();
+        /**
+         * 调用 BaseView
+         */
     }
 
     /**

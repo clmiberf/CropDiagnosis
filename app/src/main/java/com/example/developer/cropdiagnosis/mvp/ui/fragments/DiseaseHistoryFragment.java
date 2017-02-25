@@ -92,13 +92,9 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     protected void initVariables() {
         data = new ArrayList<>();
-        String[] crops = {"水稻", "玉米", "小麦"};
-        String[] durations = {"一年内", "玉米", "小麦"};
-        String[] status = {"水稻", "玉米", "小麦"};
-        cropAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
-        durationAdapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
-
-        cropAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        String[] crops = {"水稻", "玉米", "小麦"};
+//        String[] durations = {"一年内", "六个月内", "三个月内","一个月内","一周内"};
+//        String[] status = {"水稻", "玉米", "小麦"};
 
         initPresenter();
     }
@@ -106,14 +102,15 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     private void initPresenter() {
     }
 
-    protected void initViews(View view) {
-        mspinCrop.setAdapter(cropAdapter);
-        mspinCrop.setError("Hello world");
+//    protected void initViews(View view) {
+//        mspinCrop.setAdapter(cropAdapter);
+//        mspinCrop.setError("Hello world");
+//
+////        mspinDuration.setAdapter(adapter);
+////        mspinStatus.setAdapter(adapter);
+//
+//    }
 
-//        mspinDuration.setAdapter(adapter);
-//        mspinStatus.setAdapter(adapter);
-
-    }
 
 
     @Nullable
@@ -131,6 +128,33 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         rvContent.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false));
         rvContent.setAdapter(diseaseAdapter);
 
+    }
+
+    @Override
+    public void initCropSpinner(List<String> cropData) {
+        cropAdapter = new ArrayAdapter<>(this.getActivity(),
+                android.R.layout.simple_spinner_item, cropData);
+        cropAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mspinCrop.setAdapter(cropAdapter);
+        mspinCrop.setError("init cropSpinner error");
+    }
+
+    @Override
+    public void initDurationSpinner(List<String> durationData) {
+        durationAdapter = new ArrayAdapter<>(this.getActivity(),
+                android.R.layout.simple_spinner_item, durationData);
+        durationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mspinCrop.setAdapter(durationAdapter);
+        mspinCrop.setError("init durationSpinner error");
+    }
+
+    @Override
+    public void initStatusSpinner(List<String> statusData) {
+        durationAdapter = new ArrayAdapter<>(this.getActivity(),
+                android.R.layout.simple_spinner_item, statusData);
+        durationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mspinCrop.setAdapter(statusAdapter);
+        mspinCrop.setError("init statusSpinner error");
     }
 
     @Override

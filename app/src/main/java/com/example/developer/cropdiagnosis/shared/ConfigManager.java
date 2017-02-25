@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import com.example.developer.cropdiagnosis.CropApplication;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,6 +38,20 @@ public class ConfigManager {
         return CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).getBoolean(IS_USER_LOGIN, false);
     }
 
+    /**
+     * 获取用户关注的作物
+     *
+     * @return 作物名称的集合
+     */
+    public static Set<String> getUserPreferCrops() {
+        return CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).getStringSet(USER_CROPS, new HashSet<>(new ArrayList<String>()));
+    }
+
+    /**
+     * 保存用户信息，用户登录时从网络获取该信息，并将信息保存至该处
+     * @param bean
+     * @return true 则保存成功
+     */
     public static boolean saveUserInfo(UserModelBean bean) {
         SharedPreferences.Editor edit = CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).edit();
         edit.putString(USER_PASSWORD, bean.password);
@@ -61,14 +76,5 @@ public class ConfigManager {
      */
     public static String getUserId() {
         return CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).getString(USER_ID, null);
-    }
-
-    /**
-     * 获取用户关注的作物
-     *
-     * @return
-     */
-    public static Set<String> getCrops() {
-        return CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).getStringSet(USER_CROPS, null);
     }
 }
