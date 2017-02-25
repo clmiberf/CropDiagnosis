@@ -45,6 +45,7 @@ public class SingleDiseaseItemView extends FrameLayout {
 
     private void initView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.view_disease_item, this, true);
+
         tvCrop = (TextView) view.findViewById(R.id.tv_crop_disease_item);
         tvDate = (TextView) view.findViewById(R.id.tv_date_disease_item);
         tvStatus = (TextView) view.findViewById(R.id.tv_status_disease_item);

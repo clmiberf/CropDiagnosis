@@ -30,7 +30,7 @@ public class DiseaseListAdapter extends RecyclerView.Adapter<DiseaseListAdapter.
 
     public interface OnItemClickListener {
         void onItemClick(View view, int position);
-        void onItemLongClick(View view, int position);
+      //  void onItemLongClick(View view, int position);
     }
 
     public DiseaseListAdapter(Context context, List<DiseaseModelBean> datas) {
@@ -50,29 +50,29 @@ public class DiseaseListAdapter extends RecyclerView.Adapter<DiseaseListAdapter.
         holder.singleItemView.setDateText(datas.get(position).getSubmitTime());
         holder.singleItemView.setStatusText(datas.get(position).getDiseaseStatus());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.singleItemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (clickListener != null)
                 {
                     int pos = holder.getLayoutPosition();
-                    clickListener.onItemClick(holder.itemView,pos);
+                    clickListener.onItemClick(holder.singleItemView,pos);
                 }
             }
         });
 
-        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (clickListener != null)
-                {
-                    int pos = holder.getLayoutPosition();
-                    clickListener.onItemLongClick(holder.itemView,pos);
-                }
-                //表示此事件已经消费，不会触发单击事件
-                return true;
-            }
-        });
+//        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+//            @Override
+//            public boolean onLongClick(View view) {
+//                if (clickListener != null)
+//                {
+//                    int pos = holder.getLayoutPosition();
+//                    clickListener.onItemLongClick(holder.itemView,pos);
+//                }
+//                //表示此事件已经消费，不会触发单击事件
+//                return true;
+//            }
+//        });
     }
 
     @Override

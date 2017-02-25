@@ -1,13 +1,17 @@
 package com.example.developer.cropdiagnosis.mvp.ui.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.adapter.DiseaseListAdapter;
@@ -15,6 +19,7 @@ import com.example.developer.cropdiagnosis.dagger2.component.DaggerActivityCompo
 import com.example.developer.cropdiagnosis.dagger2.module.ActivityModule;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseHistoryPresenter;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.MainActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseHistoryView;
 
@@ -47,7 +52,6 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     private ArrayAdapter<String> cropAdapter = null;
     private ArrayAdapter<String> durationAdapter = null;
     private ArrayAdapter<String> statusAdapter = null;
-
 
     @Inject
     public DiseaseHistoryPresenter mPresenter = null;
@@ -92,6 +96,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     protected void initVariables() {
         data = new ArrayList<>();
+
 //        String[] crops = {"水稻", "玉米", "小麦"};
 //        String[] durations = {"一年内", "六个月内", "三个月内","一个月内","一周内"};
 //        String[] status = {"水稻", "玉米", "小麦"};
@@ -119,6 +124,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         View view = super.onCreateView(inflater, container, savedInstanceState);
         mPresenter.attachView(this);
         mPresenter.onCreate(savedInstanceState);
+
         return view;
     }
 
@@ -127,15 +133,34 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         diseaseAdapter = new DiseaseListAdapter(this.getActivity(), diseaseData);
         rvContent.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false));
         rvContent.setAdapter(diseaseAdapter);
-
+        diseaseAdapter.setClickListener(new DiseaseListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Toast.makeText(getActivity(),"4r44r4erfwe",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
     public void initCropSpinner(List<String> cropData) {
+
         cropAdapter = new ArrayAdapter<>(this.getActivity(),
                 android.R.layout.simple_spinner_item, cropData);
         cropAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mspinCrop.setAdapter(cropAdapter);
+        mspinCrop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+              //  String[] languages = getResources().getStringArray(R.array.languages);
+              // Toast.makeText(getActivity(),"32332",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        mspinCrop.setVisibility(View.VISIBLE);
         mspinCrop.setError("init cropSpinner error");
     }
 
@@ -144,8 +169,20 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         durationAdapter = new ArrayAdapter<>(this.getActivity(),
                 android.R.layout.simple_spinner_item, durationData);
         durationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mspinCrop.setAdapter(durationAdapter);
-        mspinCrop.setError("init durationSpinner error");
+        mspinDuration.setAdapter(durationAdapter);
+        mspinDuration.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //  String[] languages = getResources().getStringArray(R.array.languages);
+                // Toast.makeText(getActivity(),"32332",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        mspinDuration.setError("init durationSpinner error");
     }
 
     @Override
@@ -153,8 +190,20 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         durationAdapter = new ArrayAdapter<>(this.getActivity(),
                 android.R.layout.simple_spinner_item, statusData);
         durationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mspinCrop.setAdapter(statusAdapter);
-        mspinCrop.setError("init statusSpinner error");
+        mspinStatus.setAdapter(statusAdapter);
+        mspinStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                //  String[] languages = getResources().getStringArray(R.array.languages);
+                // Toast.makeText(getActivity(),"32332",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        mspinStatus.setError("init statusSpinner error");
     }
 
     @Override
