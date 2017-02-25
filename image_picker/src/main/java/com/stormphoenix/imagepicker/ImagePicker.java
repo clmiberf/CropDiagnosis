@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.stormphoenix.imagepicker.bean.ImageFolder;
 import com.stormphoenix.imagepicker.bean.ImageItem;
+import com.stormphoenix.imagepicker.loader.GlideImageLoader;
 import com.stormphoenix.imagepicker.loader.ImageLoader;
 import com.stormphoenix.imagepicker.view.CropImageView;
 
@@ -168,7 +169,7 @@ public class ImagePicker {
     }
 
     public ImageLoader getImageLoader() {
-        return imageLoader;
+        return new GlideImageLoader();
     }
 
     public void setImageLoader(ImageLoader imageLoader) {

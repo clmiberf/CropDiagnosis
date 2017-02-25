@@ -9,6 +9,8 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 
+import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment;
+
 import java.util.List;
 
 /**
@@ -48,6 +50,10 @@ public class FragmentViewPager extends ViewPager {
         this.titles = fragmentTitles;
         PageAdapter adapter = new PageAdapter(fragmentActivity.getSupportFragmentManager());
         super.setAdapter(adapter);
+    }
+
+    public DiseaseSubmitFragment getDisFragment() {
+        return (DiseaseSubmitFragment) fragments.get(1);
     }
 
     @Override

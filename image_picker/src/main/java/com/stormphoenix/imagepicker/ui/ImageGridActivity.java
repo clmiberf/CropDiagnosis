@@ -120,7 +120,7 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
         int id = v.getId();
         if (id == R.id.btn_ok) {
             Intent intent = new Intent();
-//            intent.putExtra(ImagePicker.EXTRA_RESULT_ITEMS, imagePicker.getSelectedImages());
+            intent.putExtra(ImagePicker.EXTRA_RESULT_ITEMS, imagePicker.getSelectedImages());
             setResult(ImagePicker.RESULT_CODE_ITEMS, intent);  //多选不允许裁剪裁剪，返回数据
 //            **********************
             ArrayList<ImageItem> images = imagePicker.getSelectedImages();

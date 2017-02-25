@@ -27,10 +27,18 @@
         app:ms_hint="@string/spinner_crop_chose_hint"
         app:ms_multiline="false"></fr.ganfra.materialspinner.MaterialSpinner>
 
-    <GridLayout
-        android:id="@+id/gl_images_wrapper_disease_submit"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_pic_monitor_site"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/gl_image_wrapper"></GridLayout>
+        android:layout_height="wrap_content"
+        android:choiceMode="singleChoice"
+        android:divider="@null"
+        android:fadingEdge="none"
+        android:listSelector="@android:color/transparent"
+        android:scrollbarStyle="outsideOverlay"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:spanCount="4"
+        tools:listitem="@layout/list_item_image" />
 
     <TextView
         android:layout_width="match_parent"
@@ -49,9 +57,4 @@
         android:layout_height="wrap_content"
         android:text="@string/submit" />
 
-    <ProgressBar
-        android:id="@+id/pb_wait_submit"
-        style="@style/Widget.AppCompat.ProgressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </LinearLayout>
