@@ -31,10 +31,11 @@ public class DiseaseSubmitPresenter extends BasePresenter<DiseaseSubmitView> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadCropKind();
+        initCropKind();
     }
 
-    public void loadCropKind() {
+
+    public void initCropKind() {
         List<String> crops = new ArrayList<String>(ConfigManager.getUserPreferCrops());
         /**
          * 调用BaseView 设置Adapter

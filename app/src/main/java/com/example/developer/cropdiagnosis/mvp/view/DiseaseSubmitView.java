@@ -14,9 +14,11 @@ public interface DiseaseSubmitView extends BaseView {
 
     String getCropKind();
 
+    void initPicturesListData(List<String> imagePaths);
+
     String getDiseaseDescription();
 
-    List<String> getUploadImagePaths();
+    List<String> getUploadPicturesPaths();
 
     void submitFailed(String errorMsg);
 
