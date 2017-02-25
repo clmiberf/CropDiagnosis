@@ -1,9 +1,11 @@
 package com.example.developer.cropdiagnosis.mvp.model.interfaces;
 
+import com.example.developer.cropdiagnosis.network.HttpResult;
+
 import java.io.File;
 import java.util.List;
 
-import rx.Subscription;
+import rx.Observable;
 
 /**
  * Created by Developer on 16-12-24.
@@ -11,5 +13,5 @@ import rx.Subscription;
  */
 
 public interface DiseaseSubmitModelApi {
-    Subscription submitDisease(String userId, String cropKind, String description, List<File> imageFiles);
+    Observable<HttpResult<Void>> submitDisease(String userId, String cropKind, String description, List<File> imageFiles);
 }

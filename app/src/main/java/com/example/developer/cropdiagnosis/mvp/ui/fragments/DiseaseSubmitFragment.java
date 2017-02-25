@@ -11,12 +11,13 @@ import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.dagger2.component.DaggerActivityComponent;
 import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseSubmitPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
 import com.example.developer.cropdiagnosis.shared.ConfigManager;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -106,8 +107,33 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     }
 
     @Override
+    public String getCropKind() {
+        return null;
+    }
+
+    @Override
+    public void initPicturesListData(List<String> imagePaths) {
+
+    }
+
+    @Override
+    public String getDiseaseDescription() {
+        return null;
+    }
+
+    @Override
+    public List<String> getUploadPicturesPaths() {
+        return null;
+    }
+
+    @Override
     public void submitFailed(String errorMsg) {
         Toast.makeText(getContext(), errorMsg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void setCropKindAdapter(List<String> crops) {
+
     }
 
     @Override
