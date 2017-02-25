@@ -37,9 +37,16 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         loadCropKindInfo();
+        loadCropStatusInfo();
         loadDiseaseHistoryInfo(ConfigManager.getUserId());
     }
 
+    /**
+     * 获取作物病例状态信息。
+     * 状态：
+     * 1.已诊断
+     * 2.未诊断
+     */
     public void loadCropStatusInfo() {
         List<String> diagnosedStatus = new ArrayList<>();
         diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.diagnosed));
@@ -49,6 +56,9 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
          */
     }
 
+    /**
+     * 获取作物种类信息
+     */
     public void loadCropKindInfo() {
         ConfigManager.getUserPreferCrops().toArray();
         /**

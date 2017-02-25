@@ -12,9 +12,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
+import com.example.developer.cropdiagnosis.dagger2.component.DaggerActivityComponent;
+import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseSubmitPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
 import com.example.developer.cropdiagnosis.shared.ConfigManager;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -38,8 +42,8 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     private String strCropKind;
     private String strDescription;
 
-    public DiseaseSubmitFragment() {
-    }
+    @Inject
+    DiseaseSubmitPresenter mPresenter = null;
 
     @Override
     public int getLayoutId() {
@@ -48,7 +52,9 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     @Override
     protected void initializeInjector() {
-
+        DaggerActivityComponent.builder()
+                .build()
+                .inject(this);
     }
 
     public void initViews(View view) {
@@ -59,8 +65,8 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     }
 
     public void initVariables() {
-        if (ConfigManager.getCrops() != null) {
-            crops = (String[]) ConfigManager.getCrops().toArray();
+        if (ConfigManager.getUserPreferCrops() != null) {
+            crops = (String[]) ConfigManager.getUserPreferCrops().toArray();
         } else {
             crops = new String[]{};
         }

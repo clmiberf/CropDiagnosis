@@ -151,27 +151,13 @@ public class HttpMethod {
                 });
     }
 
-    public Subscription submitDisease(String userId, String cropKind, String description, List<File> imageFiles) {
+    public Observable<HttpResult<Void>> submitDisease(String userId, String cropKind, String description, List<File> imageFiles) {
         RequestBody userIdBody = HttpUtils.createStringBody(userId);
         RequestBody cropKindBody = HttpUtils.createStringBody(cropKind);
         RequestBody descriptionBody = HttpUtils.createStringBody(description);
         Map<String, RequestBody> map = HttpUtils.createMultFileMap(imageFiles);
 
-        return submitApi.submitDisease(userIdBody, cropKindBody, descriptionBody, map)
-                .compose(RxJavaCustomTransformer.<HttpResult<Void>>defaultSchedulers())
-                .subscribe(new Subscriber<HttpResult<Void>>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onNext(HttpResult<Void> voidHttpResult) {
-                    }
-                });
+        return submitApi.submitDisease(userIdBody, cropKindBody, descriptionBody, map);
     }
 
     public Observable<HttpResult<List<DiseaseModelBean>>> getDiseaseInfo(String userId) {

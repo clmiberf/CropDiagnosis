@@ -112,7 +112,6 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
 //        mspinDuration.setAdapter(adapter);
 //        mspinStatus.setAdapter(adapter);
-
     }
 
 
