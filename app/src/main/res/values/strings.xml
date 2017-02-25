@@ -36,5 +36,18 @@
     <string name="username_not_allow_empty">用户名不能为空</string>
     <string name="password_not_allow_empty">密码不能为空</string>
     <string name="load_data_failed">数据加载失败</string>
+    <string name="title_activity_crop_disease_condition">CropDiseaseCondition</string>
+    <string name="title_activity_disease_condition">DiseaseConditionActivity</string>
+
+    <string name="caption">图片说明</string>
+    <string name="explanatory_note">文字说明:</string>
+    <string name="diagnosis">诊断结果</string>
+    <string name="disease_name">病名:</string>
+    <string name="disease_cause">病因:</string>
+    <string name="solution">解决方法:</string>
+    <string name="solution_time">时间:</string>
+    <string name="accept_person">受理人:</string>
+    <string name="evaluate">评价:</string>
+    <string name="supplementary_instruction">补充:</string>
 
 </resources>
