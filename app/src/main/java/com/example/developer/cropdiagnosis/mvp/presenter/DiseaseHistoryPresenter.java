@@ -3,6 +3,7 @@ package com.example.developer.cropdiagnosis.mvp.presenter;
 import android.content.Context;
 import android.os.Bundle;
 
+import com.example.developer.cropdiagnosis.CropApplication;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.db.DbConstants;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
@@ -39,8 +40,20 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
         loadDiseaseHistoryInfo(ConfigManager.getUserId());
     }
 
+    public void loadCropStatusInfo() {
+        List<String> diagnosedStatus = new ArrayList<>();
+        diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.diagnosed));
+        diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.not_diagnosed));
+        /**
+         * 调用 BaseView
+         */
+    }
+
     public void loadCropKindInfo() {
         ConfigManager.getUserPreferCrops().toArray();
+        /**
+         * 调用 BaseView
+         */
     }
 
     /**

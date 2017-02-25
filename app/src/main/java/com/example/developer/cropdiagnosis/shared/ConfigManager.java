@@ -47,6 +47,11 @@ public class ConfigManager {
         return CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).getStringSet(USER_CROPS, new HashSet<>(new ArrayList<String>()));
     }
 
+    /**
+     * 保存用户信息，用户登录时从网络获取该信息，并将信息保存至该处
+     * @param bean
+     * @return true 则保存成功
+     */
     public static boolean saveUserInfo(UserModelBean bean) {
         SharedPreferences.Editor edit = CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).edit();
         edit.putString(USER_PASSWORD, bean.password);
