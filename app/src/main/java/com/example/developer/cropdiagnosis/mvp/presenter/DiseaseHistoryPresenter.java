@@ -35,8 +35,12 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        loadCropKindInfo();
         loadDiseaseHistoryInfo(ConfigManager.getUserId());
+    }
+
+    public void loadCropKindInfo() {
+        ConfigManager.getUserPreferCrops().toArray();
     }
 
     /**
