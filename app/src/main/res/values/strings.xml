@@ -49,5 +49,6 @@
     <string name="accept_person">受理人:</string>
     <string name="evaluate">评价:</string>
     <string name="supplementary_instruction">补充:</string>
+    <string name="submiting">提交中</string>
 
 </resources>

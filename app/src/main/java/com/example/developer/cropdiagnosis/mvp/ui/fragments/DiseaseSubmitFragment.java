@@ -117,14 +117,39 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     }
 
     @Override
+    public String getCropKind() {
+        return null;
+    }
+
+    @Override
+    public void initPicturesListData(List<String> imagePaths) {
+
+    }
+
+    @Override
+    public String getDiseaseDescription() {
+        return null;
+    }
+
+    @Override
+    public List<String> getUploadPicturesPaths() {
+        return null;
+    }
+
+    @Override
     public void submitFailed(String errorMsg) {
         Toast.makeText(getContext(), errorMsg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
+    public void setCropKindAdapter(List<String> crops) {
+
+    }
+
+    @Override
     public void showProgress() {
         ProgressDialog progressDialog = new ProgressDialog(this.getActivity());
-        progressDialog.setMessage("提交中");
+        progressDialog.setMessage(getString(R.string.submiting));
         progressDialog.create();
         progressDialog.show();
     }
