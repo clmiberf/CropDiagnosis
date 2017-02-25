@@ -11,6 +11,7 @@ import android.widget.GridLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.dagger2.component.DaggerActivityComponent;
 import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseSubmitPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
@@ -27,7 +28,8 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmitView {
 
-    @BindView(R.id.mspin_crop_kind_disease_submit)
+    @BindView(
+            R.id.mspin_crop_kind_disease_submit)
     MaterialSpinner mspinCropKind;
     @BindView(R.id.gl_images_wrapper_disease_submit)
     GridLayout glImagesWrapper;

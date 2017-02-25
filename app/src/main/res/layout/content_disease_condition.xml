@@ -191,7 +191,6 @@
             android:id="@+id/evaluate_selection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/mspin_duration_disease_history"
             android:layout_margin="5dp"
             android:layout_weight="1"
             app:ms_arrowColor="@color/spinner_arrow_color"
