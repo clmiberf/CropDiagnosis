@@ -10,8 +10,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.condition.DiseaseConditionActivity"
-    tools:showIn="@layout/activity_disease_condition">
+    tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.condition.DiseaseConditionActivity">
 
     <LinearLayout
         android:id="@+id/spins_wrapper"
@@ -80,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/image_crop"/>
-    <TextView
+    <EditText
         android:id="@+id/content_word_instruction"
         android:layout_below="@id/word_instruction"
         android:layout_width="match_parent"
@@ -140,6 +139,7 @@
             android:gravity="center"
             android:layout_weight="4"/>
         <EditText
+            android:id="@+id/disease_solution"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
@@ -156,11 +156,13 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="1"/>
+
         <EditText
             android:id="@+id/solution_time"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"/>
+
         <TextView
             android:text="@string/accept_person"
             android:layout_width="match_parent"
