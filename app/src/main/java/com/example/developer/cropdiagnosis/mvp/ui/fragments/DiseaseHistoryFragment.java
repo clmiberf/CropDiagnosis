@@ -19,7 +19,11 @@ import com.example.developer.cropdiagnosis.dagger2.component.DaggerActivityCompo
 import com.example.developer.cropdiagnosis.dagger2.module.ActivityModule;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseHistoryPresenter;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.LoginActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.MainActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.RegisterActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.condition.DiseaseConditionActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseHistoryView;
 
@@ -136,7 +140,10 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         diseaseAdapter.setClickListener(new DiseaseListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Toast.makeText(getActivity(),"4r44r4erfwe",Toast.LENGTH_SHORT).show();
+                //you问题
+                Intent intent = new Intent(getActivity(), DiseaseConditionActivity.class);
+                startActivity(intent);
+               // Toast.makeText(getActivity(),"4r44r4erfwe",Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -2,7 +2,9 @@ package com.example.developer.cropdiagnosis.mvp.ui.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -74,11 +76,11 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     }
 
     public void initVariables() {
-        if (ConfigManager.getCrops() != null) {
-            crops = (String[]) ConfigManager.getCrops().toArray();
-        } else {
-            crops = new String[]{};
-        }
+//        if (ConfigManager.getCrops() != null) {
+//            crops = (String[]) ConfigManager.getCrops().toArray();
+//        } else {
+//            crops = new String[]{};
+//        }
         initPresenter();
     }
 
@@ -146,6 +148,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void showProgress() {
         ProgressDialog progressDialog = new ProgressDialog(this.getActivity());
