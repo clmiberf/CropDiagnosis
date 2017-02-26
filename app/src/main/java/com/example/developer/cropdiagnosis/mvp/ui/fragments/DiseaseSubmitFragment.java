@@ -76,7 +76,13 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
                 .inject(this);
     }
 
-    public void initViews(View view) {
+    public void initViews() {
+        crops = new String[5];
+        crops[0] = "apple";
+        crops[1] = "bananna";
+        crops[2] = "pear";
+        crops[3] = "fruit";
+        crops[4] = "bread";
         adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mspinCropKind.setAdapter(adapter);
@@ -115,6 +121,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
         // TODO: inflate a fragment view
         View view = super.onCreateView(inflater, container, savedInstanceState);
         initPicturesListView();
+        initViews();
         return view;
     }
 
