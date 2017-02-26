@@ -12,6 +12,7 @@ import com.example.developer.cropdiagnosis.network.HttpResult;
 import com.example.developer.cropdiagnosis.shared.ConfigManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -27,6 +28,9 @@ import rx.Subscriber;
 public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
 
     private Context mContext = null;
+    private List<String> cropDataList;
+    private List<String> diagnosedStatus;
+    private List<String> durationDataList;
 
     @Inject
     public DiseaseHistoryPresenter(Context context) {
@@ -38,7 +42,13 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
         super.onCreate(savedInstanceState);
         loadCropKindInfo();
         loadCropStatusInfo();
+        loadDurationInfo();
         loadDiseaseHistoryInfo(ConfigManager.getUserId());
+    }
+
+    private void loadDurationInfo() {
+        durationDataList = Arrays.asList("一个月", "一年");
+        mView.initDurationSpinner(durationDataList);
     }
 
     /**
@@ -48,12 +58,13 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
      * 2.未诊断
      */
     public void loadCropStatusInfo() {
-        List<String> diagnosedStatus = new ArrayList<>();
+        diagnosedStatus = new ArrayList<>();
         diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.diagnosed));
         diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.not_diagnosed));
         /**
          * 调用 BaseView
          */
+        mView.initStatusSpinner(diagnosedStatus);
     }
 
     /**
@@ -61,9 +72,11 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
      */
     public void loadCropKindInfo() {
         ConfigManager.getUserPreferCrops().toArray();
+        cropDataList = Arrays.asList("水稻", "小猫");
         /**
          * 调用 BaseView
          */
+        mView.initCropSpinner(cropDataList);
     }
 
     /**

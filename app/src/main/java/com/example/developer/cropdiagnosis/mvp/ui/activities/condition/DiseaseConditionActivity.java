@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
@@ -22,6 +23,9 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,26 +40,27 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     ImageView cropImage;
     //文字说明
     @BindView(R.id.word_instruction)
-    EditText instruction;
+    TextView instruction;
     //病名
     @BindView(R.id.disease_name)
-    EditText diseaseName;
+    TextView diseaseName;
     //病因
     @BindView(R.id.disease_cause)
-    EditText diseaseCause;
+    TextView diseaseCause;
     //解决方法
     @BindView(R.id.disease_solution)
-    EditText solution;
+    TextView solution;
     @BindView(R.id.solution_time)
-    EditText solutionDate;
+    TextView solutionDate;
     //受理人
     @BindView(R.id.disease_accept_person)
-    EditText acceptPerson;
+    TextView acceptPerson;
     //补充
     @BindView(R.id.supplementary)
-    EditText supplement;
+    TextView supplement;
     @BindView(R.id.disease_btn_submit)
     Button submit;
+
 
     private ArrayAdapter<String> evaluateAdapter = null;
 
@@ -63,7 +68,7 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.content_disease_condition;
     }
 
     @Override
@@ -79,29 +84,38 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_disease_condition);
-    }
+        initDiseaseName("张三");
+        initAccpter("李四");
+        initDiseaseCause("干旱病虫害");
+        List<String> eva = Arrays.asList("sfsd","sdfsd","fdsfds");
+        initEvaluate(eva);
+        initSupplement("有待提高");
+        initSoluteDate("2016.12.12");
+        initWordInstruction("今天天气真好");
+        initSolution("使用杀虫剂");
 
-    @Override
-    public void initDiseaseImageView(String imageUrl) {
-        Bitmap bmp = null;
-        try {
-            URL myurl = new URL(imageUrl);
-            //获得链接
-            HttpURLConnection connection = (HttpURLConnection) myurl.openConnection();
-            connection.setConnectTimeout(6000);
-            connection.setDoInput(true);
-            connection.setUseCaches(false);
-            InputStream is = connection.getInputStream();
-            bmp = BitmapFactory.decodeStream(is);
-            is.close();
-            cropImage.setImageBitmap(bmp);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
+//
+//    @Override
+//    public void initDiseaseImageView(String imageUrl) {
+//        Bitmap bmp = null;
+//        try {
+//            URL myurl = new URL(imageUrl);
+//            //获得链接
+//            HttpURLConnection connection = (HttpURLConnection) myurl.openConnection();
+//            connection.setConnectTimeout(6000);
+//            connection.setDoInput(true);
+//            connection.setUseCaches(false);
+//            InputStream is = connection.getInputStream();
+//            bmp = BitmapFactory.decodeStream(is);
+//            is.close();
+//            cropImage.setImageBitmap(bmp);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void initDiseaseName(String name) {

@@ -9,7 +9,7 @@ import java.util.List;
  */
 
 public interface DiseaseConditionView {
-    void initDiseaseImageView(String imageUrl);
+    //void initDiseaseImageView(String imageUrl);
     void initDiseaseName(String name);
     void initWordInstruction(String instruction);
     void initDiseaseCause(String cause);

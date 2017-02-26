@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +17,9 @@ import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.adapter.ImagePickerAdapter;
+import com.example.developer.cropdiagnosis.dagger2.component.DaggerActivityComponent;
+import com.example.developer.cropdiagnosis.dagger2.module.ActivityModule;
+import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseSubmitPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
@@ -29,6 +31,8 @@ import com.stormphoenix.imagepicker.ui.ImagePreviewDelActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -53,6 +57,9 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     private String[] crops = null;
     private ArrayAdapter<String> adapter = null;
 
+    @Inject
+    public DiseaseSubmitPresenter mPresenter = null;
+
     public DiseaseSubmitFragment() {
     }
 
@@ -63,7 +70,10 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     @Override
     protected void initializeInjector() {
-
+        DaggerActivityComponent.builder()
+                .activityModule(new ActivityModule(this.getActivity()))
+                .build()
+                .inject(this);
     }
 
     public void initViews(View view) {
@@ -160,6 +170,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     public void hideProgress() {
 
     }
+
     //初始化图片RecyclerView
     private void initPicturesListView() {
         selImageList = new ArrayList<>();

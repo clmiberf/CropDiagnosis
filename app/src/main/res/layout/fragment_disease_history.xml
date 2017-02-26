@@ -10,13 +10,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:text="@string/crop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_margin="5dp" />
+        <!--<TextView-->
+            <!--android:text="@string/crop"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_margin="5dp" />-->
 
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/mspin_crop_disease_history"
@@ -34,13 +34,13 @@
             app:ms_multiline="false" />
         <!--app:ms_floatingLabelText="floating label"-->
 
-        <TextView
-            android:text="@string/spinner_duration"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_margin="5dp" />
+        <!--<TextView-->
+            <!--android:text="@string/spinner_duration"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_margin="5dp" />-->
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/mspin_duration_disease_history"
             android:layout_width="match_parent"
@@ -57,13 +57,13 @@
             app:ms_hint="@string/spinner_duration_chose_hint"
             app:ms_multiline="false" />
 
-        <TextView
-            android:text="@string/status"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_margin="5dp" />
+        <!--<TextView-->
+            <!--android:text="@string/status"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_margin="5dp" />-->
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/mspin_status_disease_history"
             android:layout_width="match_parent"

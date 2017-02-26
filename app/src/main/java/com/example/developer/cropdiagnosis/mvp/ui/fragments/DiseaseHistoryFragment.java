@@ -28,6 +28,7 @@ import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseHistoryView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -50,12 +51,16 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     MaterialSpinner mspinStatus;
     @BindView(R.id.rv_content_disease_history)
     RecyclerView rvContent;
+    private List<DiseaseModelBean> diseaseModelList;
+    private DiseaseModelBean diseaseModel;
+
 
     private DiseaseListAdapter diseaseAdapter = null;
     private List<DiseaseModelBean> data = new ArrayList<>();
     private ArrayAdapter<String> cropAdapter = null;
     private ArrayAdapter<String> durationAdapter = null;
     private ArrayAdapter<String> statusAdapter = null;
+    String[] crops = {"水稻", "玉米", "小麦"};
 
     @Inject
     public DiseaseHistoryPresenter mPresenter = null;
@@ -101,7 +106,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     protected void initVariables() {
         data = new ArrayList<>();
 
-//        String[] crops = {"水稻", "玉米", "小麦"};
+
 //        String[] durations = {"一年内", "六个月内", "三个月内","一个月内","一周内"};
 //        String[] status = {"水稻", "玉米", "小麦"};
 
@@ -110,17 +115,6 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     private void initPresenter() {
     }
-
-//    protected void initViews(View view) {
-//        mspinCrop.setAdapter(cropAdapter);
-//        mspinCrop.setError("Hello world");
-//
-////        mspinDuration.setAdapter(adapter);
-////        mspinStatus.setAdapter(adapter);
-//
-//    }
-
-
 
     @Nullable
     @Override
@@ -194,9 +188,9 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     @Override
     public void initStatusSpinner(List<String> statusData) {
-        durationAdapter = new ArrayAdapter<>(this.getActivity(),
+        statusAdapter = new ArrayAdapter<>(this.getActivity(),
                 android.R.layout.simple_spinner_item, statusData);
-        durationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mspinStatus.setAdapter(statusAdapter);
         mspinStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
