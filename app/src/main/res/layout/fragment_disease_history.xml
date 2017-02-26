@@ -2,26 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_margin="16dp">
 
     <LinearLayout
         android:id="@+id/spins_wrapper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:text="@string/crop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_margin="1dp" />
+        <!--<TextView-->
+            <!--android:text="@string/crop"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_margin="5dp" />-->
 
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/mspin_crop_disease_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="1dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             app:ms_arrowColor="@color/spinner_arrow_color"
             app:ms_baseColor="@color/spinner_base_color"
@@ -33,19 +34,19 @@
             app:ms_multiline="false" />
         <!--app:ms_floatingLabelText="floating label"-->
 
-        <TextView
-            android:text="@string/spinner_duration"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_margin="1dp" />
+        <!--<TextView-->
+            <!--android:text="@string/spinner_duration"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_margin="5dp" />-->
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/mspin_duration_disease_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/mspin_crop_disease_history"
-            android:layout_margin="1dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             app:ms_arrowColor="@color/spinner_arrow_color"
             app:ms_baseColor="@color/spinner_base_color"
@@ -56,19 +57,19 @@
             app:ms_hint="@string/spinner_duration_chose_hint"
             app:ms_multiline="false" />
 
-        <TextView
-            android:text="@string/status"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_margin="1dp" />
+        <!--<TextView-->
+            <!--android:text="@string/status"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_weight="1"-->
+            <!--android:layout_margin="5dp" />-->
         <fr.ganfra.materialspinner.MaterialSpinner
             android:id="@+id/mspin_status_disease_history"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/mspin_duration_disease_history"
-            android:layout_margin="1dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             app:ms_arrowColor="@color/spinner_arrow_color"
             app:ms_baseColor="@color/spinner_base_color"

@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/image_crop"/>
-    <EditText
+    <TextView
         android:id="@+id/content_word_instruction"
         android:layout_below="@id/word_instruction"
         android:layout_width="match_parent"
@@ -104,7 +104,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="1"/>
-        <EditText
+        <TextView
             android:id="@+id/disease_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -116,7 +116,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="1"/>
-        <EditText
+        <TextView
             android:id="@+id/disease_cause"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -138,7 +138,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="4"/>
-        <EditText
+        <TextView
             android:id="@+id/disease_solution"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -157,7 +157,7 @@
             android:gravity="center"
             android:layout_weight="1"/>
 
-        <EditText
+        <TextView
             android:id="@+id/solution_time"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -169,7 +169,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="1"/>
-        <EditText
+        <TextView
             android:id="@+id/disease_accept_person"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -207,7 +207,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:layout_weight="1"/>
-        <EditText
+        <TextView
             android:id="@+id/supplementary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.adapter.DiseaseListAdapter;
@@ -17,6 +19,10 @@ import com.example.developer.cropdiagnosis.dagger2.component.DaggerActivityCompo
 import com.example.developer.cropdiagnosis.dagger2.module.ActivityModule;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseHistoryPresenter;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.LoginActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.MainActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.RegisterActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.condition.DiseaseConditionActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseHistoryView;
@@ -45,12 +51,16 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     MaterialSpinner mspinStatus;
     @BindView(R.id.rv_content_disease_history)
     RecyclerView rvContent;
+    private List<DiseaseModelBean> diseaseModelList;
+    private DiseaseModelBean diseaseModel;
+
 
     private DiseaseListAdapter diseaseAdapter = null;
     private List<DiseaseModelBean> data = new ArrayList<>();
     private ArrayAdapter<String> cropAdapter = null;
     private ArrayAdapter<String> durationAdapter = null;
     private ArrayAdapter<String> statusAdapter = null;
+    String[] crops = {"水稻", "玉米", "小麦"};
 
     @Inject
     public DiseaseHistoryPresenter mPresenter = null;
@@ -96,7 +106,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     protected void initVariables() {
         data = new ArrayList<>();
 
-//        String[] crops = {"水稻", "玉米", "小麦"};
+
 //        String[] durations = {"一年内", "六个月内", "三个月内","一个月内","一周内"};
 //        String[] status = {"水稻", "玉米", "小麦"};
 
@@ -112,6 +122,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         View view = super.onCreateView(inflater, container, savedInstanceState);
         mPresenter.attachView(this);
         mPresenter.onCreate(savedInstanceState);
+
         return view;
     }
 
@@ -126,7 +137,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
                 //you问题
                 Intent intent = new Intent(getActivity(), DiseaseConditionActivity.class);
                 startActivity(intent);
-                // Toast.makeText(getActivity(),"4r44r4erfwe",Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(),"4r44r4erfwe",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -141,8 +152,8 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         mspinCrop.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                //  String[] languages = getResources().getStringArray(R.array.languages);
-                // Toast.makeText(getActivity(),"32332",Toast.LENGTH_SHORT).show();
+              //  String[] languages = getResources().getStringArray(R.array.languages);
+              // Toast.makeText(getActivity(),"32332",Toast.LENGTH_SHORT).show();
             }
 
             @Override
