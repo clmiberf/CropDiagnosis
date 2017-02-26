@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
@@ -22,6 +23,8 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -36,26 +39,27 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     ImageView cropImage;
     //文字说明
     @BindView(R.id.word_instruction)
-    EditText instruction;
+    TextView instruction;
     //病名
     @BindView(R.id.disease_name)
-    EditText diseaseName;
+    TextView diseaseName;
     //病因
     @BindView(R.id.disease_cause)
-    EditText diseaseCause;
+    TextView diseaseCause;
     //解决方法
     @BindView(R.id.disease_solution)
-    EditText solution;
+    TextView solution;
     @BindView(R.id.solution_time)
-    EditText solutionDate;
+    TextView solutionDate;
     //受理人
     @BindView(R.id.disease_accept_person)
-    EditText acceptPerson;
+    TextView acceptPerson;
     //补充
     @BindView(R.id.supplementary)
-    EditText supplement;
+    TextView supplement;
     @BindView(R.id.disease_btn_submit)
     Button submit;
+
 
     private ArrayAdapter<String> evaluateAdapter = null;
 
@@ -63,7 +67,7 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
 
     @Override
     public int getLayoutId() {
-        return 0;
+        return R.layout.content_disease_condition;
     }
 
     @Override
@@ -79,7 +83,10 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.content_disease_condition);
+//        initDiseaseName("张三");
+//        initAccpter("李四");
+//        initDiseaseCause("干旱病虫害");
+//        //List<String> eva =
     }
 
     @Override

@@ -50,12 +50,16 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     MaterialSpinner mspinStatus;
     @BindView(R.id.rv_content_disease_history)
     RecyclerView rvContent;
+    private List<DiseaseModelBean> diseaseModelList;
+    private DiseaseModelBean diseaseModel;
+
 
     private DiseaseListAdapter diseaseAdapter = null;
     private List<DiseaseModelBean> data = new ArrayList<>();
     private ArrayAdapter<String> cropAdapter = null;
     private ArrayAdapter<String> durationAdapter = null;
     private ArrayAdapter<String> statusAdapter = null;
+    String[] crops = {"水稻", "玉米", "小麦"};
 
     @Inject
     public DiseaseHistoryPresenter mPresenter = null;
@@ -101,7 +105,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     protected void initVariables() {
         data = new ArrayList<>();
 
-//        String[] crops = {"水稻", "玉米", "小麦"};
+
 //        String[] durations = {"一年内", "六个月内", "三个月内","一个月内","一周内"};
 //        String[] status = {"水稻", "玉米", "小麦"};
 
@@ -128,7 +132,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
         View view = super.onCreateView(inflater, container, savedInstanceState);
         mPresenter.attachView(this);
         mPresenter.onCreate(savedInstanceState);
-
+        initCropSpinner(crops);
         return view;
     }
 
@@ -149,7 +153,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     }
 
     @Override
-    public void initCropSpinner(List<String> cropData) {
+    public void initCropSpinner(String[] cropData) {
 
         cropAdapter = new ArrayAdapter<>(this.getActivity(),
                 android.R.layout.simple_spinner_item, cropData);
