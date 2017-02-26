@@ -1,7 +1,9 @@
 package com.example.developer.cropdiagnosis.mvp.ui.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
@@ -20,11 +22,12 @@ import java.util.List;
 import butterknife.BindView;
 
 import static com.stormphoenix.imagepicker.ImagePicker.REQUEST_CODE_PREVIEW;
+import static com.stormphoenix.imagepicker.ImagePicker.REQUEST_CODE_TAKE;
 import static com.stormphoenix.imagepicker.ImagePicker.RESULT_CODE_ITEMS;
 
 public class HomeActivity extends BaseActivity {
 
-    public static final int PICK_IMAGE = 100;
+    public static final int PICK_IMAGE = 102;
     public static final int PRESS_BACK = 101;
 
     @BindView(R.id.tl_home)

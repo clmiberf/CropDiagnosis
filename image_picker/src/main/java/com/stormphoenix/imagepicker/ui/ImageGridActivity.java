@@ -3,8 +3,10 @@ package com.stormphoenix.imagepicker.ui;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
@@ -237,28 +239,34 @@ public class ImageGridActivity extends ImageBaseActivity implements ImageDataSou
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == ImagePicker.REQUEST_CODE_TAKE) {
-            finish();
-        } else if (requestCode == ImagePicker.REQUEST_CODE_PREVIEW) {
-
+            if ( resultCode == -1) {
+                Intent intent = new Intent();
+                intent.putExtra(ImagePicker.EXTRA_RESULT_ITEMS, imagePicker.getSelectedImages());
+                setResult(ImagePicker.RESULT_CODE_ITEMS, intent);   //单选不需要裁剪，返回数据
+//                finish();
+            }
         }
+//        else if (requestCode == ImagePicker.REQUEST_CODE_PREVIEW) {
+//
+//        }
 //        if (data != null) {
 //            if (resultCode == ImagePicker.RESULT_CODE_BACK) {
-//                isOrigin = data.getBooleanExtra(ImagePreviewActivity.ISORIGIN, false);
+//                isOrigin = data.getBooleanExtra(ImagePreviewActivity.ISORIGIN, true);
 //            } else {
-//                //从拍照界面返回
-//                //点击 X , 没有选择照片
+//                从拍照界面返回
+//                点击 X , 没有选择照片
 //                if (data.getSerializableExtra(ImagePicker.EXTRA_RESULT_ITEMS) == null) {
-//                    //什么都不做
+//                    什么都不做
 //                } else {
-//                    //说明是从裁剪页面过来的数据，直接返回就可以
+//                    说明是从裁剪页面过来的数据，直接返回就可以
 //                    setResult(ImagePicker.RESULT_CODE_ITEMS, data);
 //                    finish();
 //                }
 //            }
 //        } else {
-//            //如果是裁剪，因为裁剪指定了存储的Uri，所以返回的data一定为null
+//            如果是裁剪，因为裁剪指定了存储的Uri，所以返回的data一定为null
 //            if (resultCode == RESULT_OK && requestCode == ImagePicker.REQUEST_CODE_TAKE) {
-//                //发送广播通知图片增加了
+//                发送广播通知图片增加了
 //                ImagePicker.galleryAddPic(this, imagePicker.getTakeImageFile());
 //                ImageItem imageItem = new ImageItem();
 //                imageItem.path = imagePicker.getTakeImageFile().getAbsolutePath();

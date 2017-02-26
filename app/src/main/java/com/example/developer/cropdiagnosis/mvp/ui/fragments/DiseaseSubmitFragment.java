@@ -21,12 +21,10 @@ import com.example.developer.cropdiagnosis.adapter.ImagePickerAdapter;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
-import com.example.developer.cropdiagnosis.shared.ConfigManager;
 import com.stormphoenix.imagepicker.FishImageType;
 import com.stormphoenix.imagepicker.ImagePicker;
 import com.stormphoenix.imagepicker.bean.ImageItem;
 import com.stormphoenix.imagepicker.ui.ImageGridActivity;
-import com.stormphoenix.imagepicker.ui.ImagePreviewActivity;
 import com.stormphoenix.imagepicker.ui.ImagePreviewDelActivity;
 
 import java.util.ArrayList;
@@ -90,6 +88,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 //        mPresenter.onCreate();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick(R.id.btn_submit_disease_disease_submit)
     public void onClick() {
         showProgress();

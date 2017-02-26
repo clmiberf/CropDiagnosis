@@ -1,6 +1,7 @@
 package com.stormphoenix.imagepicker;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -238,6 +239,22 @@ public class ImagePicker {
         mCurrentImageFolderPosition = 0;
     }
 
+    public void test(Activity activity, int reqCode) {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        SimpleDateFormat timeStampFormat = new SimpleDateFormat(
+                "yyyy_MM_dd_HH_mm_ss");
+        String filename = timeStampFormat.format(new Date());
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.TITLE, filename);
+
+        Uri photoUri = activity.getContentResolver().insert(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+        activity.startActivityForResult(intent, reqCode);
+
+    }
+
     /**
      * 拍照的方法
      */
@@ -259,6 +276,7 @@ public class ImagePicker {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
             } else {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(takeImageFile));
+                Log.d("Uri", Uri.fromFile(takeImageFile)+"");
             }
         }
         activity.startActivityForResult(takePictureIntent, requestCode);
