@@ -28,6 +28,7 @@ import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseHistoryView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -115,24 +116,13 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     private void initPresenter() {
     }
 
-//    protected void initViews(View view) {
-//        mspinCrop.setAdapter(cropAdapter);
-//        mspinCrop.setError("Hello world");
-//
-////        mspinDuration.setAdapter(adapter);
-////        mspinStatus.setAdapter(adapter);
-//
-//    }
-
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
         mPresenter.attachView(this);
         mPresenter.onCreate(savedInstanceState);
-        initCropSpinner(crops);
+
         return view;
     }
 
@@ -153,7 +143,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     }
 
     @Override
-    public void initCropSpinner(String[] cropData) {
+    public void initCropSpinner(List<String> cropData) {
 
         cropAdapter = new ArrayAdapter<>(this.getActivity(),
                 android.R.layout.simple_spinner_item, cropData);
@@ -198,9 +188,9 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     @Override
     public void initStatusSpinner(List<String> statusData) {
-        durationAdapter = new ArrayAdapter<>(this.getActivity(),
+        statusAdapter = new ArrayAdapter<>(this.getActivity(),
                 android.R.layout.simple_spinner_item, statusData);
-        durationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mspinStatus.setAdapter(statusAdapter);
         mspinStatus.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
