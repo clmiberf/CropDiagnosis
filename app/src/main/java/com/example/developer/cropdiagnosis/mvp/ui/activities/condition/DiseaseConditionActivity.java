@@ -25,6 +25,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -83,32 +84,38 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        initDiseaseName("张三");
-//        initAccpter("李四");
-//        initDiseaseCause("干旱病虫害");
-//        //List<String> eva =
-    }
+        initDiseaseName("张三");
+        initAccpter("李四");
+        initDiseaseCause("干旱病虫害");
+        List<String> eva = Arrays.asList("sfsd","sdfsd","fdsfds");
+        initEvaluate(eva);
+        initSupplement("有待提高");
+        initSoluteDate("2016.12.12");
+        initWordInstruction("今天天气真好");
+        initSolution("使用杀虫剂");
 
-    @Override
-    public void initDiseaseImageView(String imageUrl) {
-        Bitmap bmp = null;
-        try {
-            URL myurl = new URL(imageUrl);
-            //获得链接
-            HttpURLConnection connection = (HttpURLConnection) myurl.openConnection();
-            connection.setConnectTimeout(6000);
-            connection.setDoInput(true);
-            connection.setUseCaches(false);
-            InputStream is = connection.getInputStream();
-            bmp = BitmapFactory.decodeStream(is);
-            is.close();
-            cropImage.setImageBitmap(bmp);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
+//
+//    @Override
+//    public void initDiseaseImageView(String imageUrl) {
+//        Bitmap bmp = null;
+//        try {
+//            URL myurl = new URL(imageUrl);
+//            //获得链接
+//            HttpURLConnection connection = (HttpURLConnection) myurl.openConnection();
+//            connection.setConnectTimeout(6000);
+//            connection.setDoInput(true);
+//            connection.setUseCaches(false);
+//            InputStream is = connection.getInputStream();
+//            bmp = BitmapFactory.decodeStream(is);
+//            is.close();
+//            cropImage.setImageBitmap(bmp);
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void initDiseaseName(String name) {

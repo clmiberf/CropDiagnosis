@@ -70,7 +70,7 @@
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="@mipmap/logo_bg"/>
+        android:background="@mipmap/crop_background"/>
         <!--android:layout_width="150dp"-->
     <TextView
         android:text="@string/explanatory_note"
@@ -84,7 +84,8 @@
         android:layout_below="@id/word_instruction"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@mipmap/logo_bg" />
+        android:textColor="#000000"
+        android:background="#F5F5F5" />
     <TextView
         android:id="@+id/crop_diagnose"
         android:text="@string/diagnosis"
