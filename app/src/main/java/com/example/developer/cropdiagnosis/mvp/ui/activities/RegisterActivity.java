@@ -180,6 +180,11 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     }
 
     @Override
+    protected void initializeInjector() {
+
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.activity_register;
     }

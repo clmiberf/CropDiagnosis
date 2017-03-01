@@ -28,7 +28,7 @@ import static com.stormphoenix.imagepicker.ImagePicker.REQUEST_CODE_PREVIEW;
 import static com.stormphoenix.imagepicker.ImagePicker.REQUEST_CODE_TAKE;
 import static com.stormphoenix.imagepicker.ImagePicker.RESULT_CODE_ITEMS;
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity  {
 
     public static final int PICK_IMAGE = 102;
     public static final int PRESS_BACK = 101;
@@ -41,6 +41,11 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void initializeInjector() {
+
     }
 
     /**

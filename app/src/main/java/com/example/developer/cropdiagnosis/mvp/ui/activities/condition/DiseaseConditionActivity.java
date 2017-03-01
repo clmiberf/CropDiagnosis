@@ -80,6 +80,11 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     }
 
     @Override
+    protected void initializeInjector() {
+
+    }
+
+    @Override
     public void initDiseaseName(String name) {
 
     }

@@ -69,6 +69,11 @@ public class DiagnoseActivity extends BaseActivity implements DiseaseConditionVi
     }
 
     @Override
+    protected void initializeInjector() {
+
+    }
+
+    @Override
     public void initDiseaseName(String name) {
         diseaseName.setText(name);
     }

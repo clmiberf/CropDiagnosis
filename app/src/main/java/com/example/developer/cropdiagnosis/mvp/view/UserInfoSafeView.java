@@ -9,10 +9,9 @@ import java.util.List;
  */
 
 public interface UserInfoSafeView extends BaseView {
-    void initSafeUserAccount(String account);
-    void initSafeUserQQ(String qq);
-    void initSafeUserWeChat(String weChat);
-    void initSafeTelephone(String telephone);
-    void initSafeUserMailbox(String mailbox);
-    void initSafeChangePassword();
+    void loadSafeUserAccount(String account);
+    void loadSafeUserQQ(String qq);
+    void loadSafeUserWeChat(String weChat);
+    void loadSafeTelephone(String telephone);
+    void loadSafeUserMailbox(String mailbox);
 }

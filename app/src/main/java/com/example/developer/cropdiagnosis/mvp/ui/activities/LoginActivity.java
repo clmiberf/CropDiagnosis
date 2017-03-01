@@ -51,6 +51,11 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Override
+    protected void initializeInjector() {
+
+    }
+
+    @Override
     public int getLayoutId() {
         return R.layout.activity_login;
     }

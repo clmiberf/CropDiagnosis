@@ -47,6 +47,11 @@ public class MainActivity extends BaseActivity {
         initAnimation();
     }
 
+    @Override
+    protected void initializeInjector() {
+
+    }
+
     private void initAnimation() {
         startLogoAnimation();
     }
