@@ -4,9 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.uersinfo.UserInfoActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.component.FragmentViewPager;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseHistoryFragment;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment;
@@ -65,6 +68,23 @@ public class HomeActivity extends BaseActivity {
         fragments.add(new DiseaseSubmitFragment());
         vpContent.setData(this, fragments, tabTitles);
         tabTitle.setViewPager(vpContent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_menu_layout,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.user_message:
+                Intent intent = new Intent(HomeActivity.this, UserInfoActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_diagnose"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.condition.DiagnoseActivity"
+    >
+
+    <!--<android.support.v7.widget.CardView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="center"-->
+        <!--android:background="#FFFFFF"-->
+        <!--app:cardCornerRadius="5dp">-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/diagnose_condition_1"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="@string/disease_name"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    />
+                <TextView
+                    android:id="@+id/disease_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#f5f5f5"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:lines="1"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/disease_cause"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                     />
+                <TextView
+                    android:id="@+id/disease_cause"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
+                    android:background="#f5f5f5"
+                    android:lines="1"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/diagnose_condition_2"
+                android:layout_below="@+id/diagnose_condition_1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:text="@string/solution_time"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                     />
+
+                <TextView
+                    android:id="@+id/solution_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:background="#f5f5f5"
+                    android:layout_marginLeft="8dp"
+                    android:layout_weight="1"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/diagnose_condition_3"
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/solution"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    />
+                <TextView
+                    android:id="@+id/disease_solution"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="8dp"
+                    android:gravity="center"
+                    android:background="#f5f5f5"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:text="@string/accept_person"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/textView" />
+
+                <TextView
+                    android:id="@+id/disease_accept_person"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginLeft="8dp"
+                    android:background="#f5f5f5"
+                    android:layout_weight="1"/>
+                <fr.ganfra.materialspinner.MaterialSpinner
+                    android:id="@+id/evaluate_selection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    app:ms_arrowColor="@color/spinner_arrow_color"
+                    app:ms_baseColor="@color/spinner_base_color"
+                    app:ms_enableErrorLabel="true"
+                    app:ms_enableFloatingLabel="true"
+                    app:ms_floatingLabelColor="@color/spinner_floating_label_color"
+                    app:ms_floatingLabelText="@string/evaluate"
+                    app:ms_hint="@string/spinner_evaluate_chose_hint"
+                    app:ms_multiline="false" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+    <!--</android.support.v7.widget.CardView>-->
+
+
+</RelativeLayout>

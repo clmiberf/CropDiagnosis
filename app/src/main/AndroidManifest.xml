@@ -54,7 +54,20 @@
         <activity
             android:name=".mvp.ui.activities.condition.DiseaseConditionActivity"
             android:label="@string/title_activity_disease_condition"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"></activity>
+            android:parentActivityName=".mvp.ui.activities.HomeActivity" />
+        <activity
+            android:name=".mvp.ui.activities.condition.DiagnoseActivity"
+            android:label="@string/title_activity_diagnose"
+            android:parentActivityName=".mvp.ui.activities.condition.DiseaseConditionActivity" />
+        <activity
+            android:name=".mvp.ui.activities.uersinfo.UserInfoActivity"
+            android:label="@string/title_activity_user_information"
+            android:parentActivityName=".mvp.ui.activities.HomeActivity" />
+        <activity
+            android:name=".mvp.ui.activities.uersinfo.UserInfoSafeActivity"
+            android:label="@string/title_activity_user_info_safe"
+            android:parentActivityName=".mvp.ui.activities.uersinfo.UserInfoActivity"
+            ></activity>
     </application>
 
 </manifest>

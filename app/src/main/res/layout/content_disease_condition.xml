@@ -12,52 +12,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.condition.DiseaseConditionActivity">
 
-    <LinearLayout
-        android:id="@+id/spins_wrapper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:text="@string/crop"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/crop_disease_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            />
-
-        <TextView
-            android:text="@string/crop_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/date_disease_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:text="@string/status"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/status_disease_item"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-    </LinearLayout>
-
     <TextView
         android:id="@+id/picture_instruction"
         android:text="@string/caption"
+        android:textSize="20dp"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,155 +25,23 @@
         android:id="@+id/image_crop"
         android:scaleType="centerCrop"
         android:layout_below="@+id/picture_instruction"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:background="@mipmap/crop_background"/>
         <!--android:layout_width="150dp"-->
-    <TextView
-        android:text="@string/explanatory_note"
-        android:layout_marginTop="10dp"
-        android:id="@+id/word_instruction"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/image_crop"/>
-    <TextView
-        android:id="@+id/content_word_instruction"
-        android:layout_below="@id/word_instruction"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:textColor="#000000"
-        android:background="#F5F5F5" />
-    <TextView
-        android:id="@+id/crop_diagnose"
+
+    <Button
+        android:id="@+id/crop_diagnose_btn"
         android:text="@string/diagnosis"
-        android:layout_marginTop="10dp"
+        android:textSize="20dp"
+        android:layout_marginTop="20dp"
         android:layout_below="@+id/content_word_instruction"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <LinearLayout
-        android:id="@+id/diagnose_condition_1"
-        android:layout_below="@+id/crop_diagnose"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
-        <TextView
-            android:text="@string/disease_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/disease_name"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:lines="1"/>
-        <TextView
-            android:text="@string/disease_cause"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/disease_cause"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:lines="1"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/diagnose_condition_2"
-        android:layout_below="@+id/diagnose_condition_1"
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:text="@string/solution"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="4"/>
-        <TextView
-            android:id="@+id/disease_solution"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/diagnose_condition_3"
-        android:layout_below="@+id/diagnose_condition_2"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal">
-        <TextView
-            android:text="@string/solution_time"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:id="@+id/solution_time"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-        <TextView
-            android:text="@string/accept_person"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/disease_accept_person"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-    </LinearLayout>
-    <LinearLayout
-        android:id="@+id/diagnose_condition_4"
-        android:layout_below="@+id/diagnose_condition_3"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal">
-        <TextView
-            android:text="@string/evaluate"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"/>
-        <fr.ganfra.materialspinner.MaterialSpinner
-            android:id="@+id/evaluate_selection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            app:ms_arrowColor="@color/spinner_arrow_color"
-            app:ms_baseColor="@color/spinner_base_color"
-            app:ms_enableErrorLabel="true"
-            app:ms_enableFloatingLabel="true"
-            app:ms_floatingLabelColor="@color/spinner_floating_label_color"
-            app:ms_floatingLabelText="@string/status"
-            app:ms_hint="@string/spinner_status_chose_hint"
-            app:ms_multiline="false" />
-        <TextView
-            android:text="@string/supplementary_instruction"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"/>
-        <TextView
-            android:id="@+id/supplementary"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
 
 
-    </LinearLayout>
+
     <Button
         android:id="@+id/disease_btn_submit"
         android:layout_below="@+id/diagnose_condition_4"
@@ -223,5 +49,71 @@
         android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="@string/explanatory_note"
+        android:textSize="20dp"
+        android:layout_marginTop="14dp"
+        android:id="@+id/word_instruction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_crop"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/content_word_instruction"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:textColor="#000000"
+        android:background="#F5F5F5"
+        android:layout_below="@+id/word_instruction"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <LinearLayout
+        android:id="@+id/diagnose_condition_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/crop_diagnose_btn"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout
+            android:id="@+id/diagnose_condition_6"
+            android:layout_below="@+id/diagnose_condition_4"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+            <TextView
+                android:text="@string/supplementary_instruction"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="4"/>
+            <TextView
+                android:id="@+id/supplementary"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+        </LinearLayout>
+
+        <!--<fr.ganfra.materialspinner.MaterialSpinner-->
+            <!--android:id="@+id/evaluate_selection"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_margin="5dp"-->
+            <!--android:layout_weight="3"-->
+            <!--app:ms_arrowColor="@color/spinner_arrow_color"-->
+            <!--app:ms_baseColor="@color/spinner_base_color"-->
+            <!--app:ms_enableErrorLabel="true"-->
+            <!--app:ms_enableFloatingLabel="true"-->
+            <!--app:ms_floatingLabelColor="@color/spinner_floating_label_color"-->
+            <!--app:ms_floatingLabelText="@string/evaluate"-->
+            <!--app:ms_hint="@string/spinner_evaluate_chose_hint"-->
+            <!--app:ms_multiline="false" />-->
+    </LinearLayout>
 
 </RelativeLayout>
