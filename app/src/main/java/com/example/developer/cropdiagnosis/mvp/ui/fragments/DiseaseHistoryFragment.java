@@ -110,11 +110,8 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 //        String[] durations = {"一年内", "六个月内", "三个月内","一个月内","一周内"};
 //        String[] status = {"水稻", "玉米", "小麦"};
 
-        initPresenter();
     }
 
-    private void initPresenter() {
-    }
 
     @Nullable
     @Override

@@ -7,6 +7,7 @@ import com.example.developer.cropdiagnosis.network.HttpMethod;
 import com.example.developer.cropdiagnosis.network.HttpResult;
 import com.example.developer.cropdiagnosis.shared.ConfigManager;
 import com.example.developer.cropdiagnosis.shared.rxutils.RxJavaCustomTransformer;
+import com.stormphoenix.imagepicker.bean.ImageItem;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -32,16 +33,27 @@ public class DiseaseSubmitPresenter extends BasePresenter<DiseaseSubmitView> {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initCropKind();
+        initPicturesList();
     }
 
 
-    public void initCropKind() {
+    private void initCropKind() {
         List<String> crops = new ArrayList<String>(ConfigManager.getUserPreferCrops());
+        crops.add("苹果");
+        crops.add("香蕉");
+        crops.add("梨子");
+        crops.add("荔枝");
+
         /**
          * 调用BaseView 设置Adapter
          * setCropKindAdapter(String);
          */
         mView.setCropKindAdapter(crops);
+    }
+
+    private void initPicturesList() {
+        List<ImageItem> selImageList = new ArrayList<>();
+        mView.setPicturesListView(selImageList);
     }
 
     private void submitDisease(String userId, String cropKind, String description, List<String> imagePaths) {
@@ -67,4 +79,6 @@ public class DiseaseSubmitPresenter extends BasePresenter<DiseaseSubmitView> {
                     }
                 });
     }
+
+
 }

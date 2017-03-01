@@ -104,7 +104,7 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
                 model.setDiseaseStatus(DbConstants.DiagnosedStatus.NOT_DIAGNOSED);
                 model.setHasCommented(false);
                 model.setImageUrl(null);
-                model.setSolution("并入膏肓，无法医治");
+                model.setSolution("病入膏肓，无法医治");
                 model.setDiseaseReason("浇水过少");
                 model.setSubmitTime(new Date(System.currentTimeMillis()));
 
