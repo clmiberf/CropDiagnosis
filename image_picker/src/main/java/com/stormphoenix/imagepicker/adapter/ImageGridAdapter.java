@@ -102,7 +102,8 @@ public class ImageGridAdapter extends BaseAdapter {
                     if (!((ImageBaseActivity) mActivity).checkPermission(Manifest.permission.CAMERA)) {
                         ActivityCompat.requestPermissions(mActivity, new String[]{Manifest.permission.CAMERA}, ImageGridActivity.REQUEST_PERMISSION_CAMERA);
                     } else {
-                        imagePicker.takePicture(mActivity, imageType, ImagePicker.REQUEST_CODE_TAKE);
+//                        imagePicker.takePicture(mActivity, imageType, ImagePicker.REQUEST_CODE_TAKE);
+                        imagePicker.test(mActivity, ImagePicker.REQUEST_CODE_TAKE);
                     }
                 }
             });

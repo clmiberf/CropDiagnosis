@@ -54,7 +54,6 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     private List<ImageItem> selImageList;
     private int maxImgCount;
     private ImagePickerAdapter imagePickerAdapter;
-    private String[] crops = null;
     private ArrayAdapter<String> adapter = null;
 
     @Inject
@@ -76,12 +75,6 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
                 .inject(this);
     }
 
-    public void initViews(View view) {
-        adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mspinCropKind.setAdapter(adapter);
-        mspinCropKind.setError("Hello world");
-    }
 
     public void initVariables() {
 //        if (ConfigManager.getCrops() != null) {
@@ -89,14 +82,8 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 //        } else {
 //            crops = new String[]{};
 //        }
-        initPresenter();
     }
 
-    private void initPresenter() {
-//        mPresenter = new DiseaseSubmitPresenterImpl();
-//        mPresenter.attachView(this);
-//        mPresenter.onCreate();
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick(R.id.btn_submit_disease_disease_submit)
@@ -112,9 +99,9 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
         View view = super.onCreateView(inflater, container, savedInstanceState);
-        initPicturesListView();
+        mPresenter.attachView(this);
+        mPresenter.onCreate(savedInstanceState);
         return view;
     }
 
@@ -132,10 +119,6 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
         return null;
     }
 
-    @Override
-    public void initPicturesListData(List<String> imagePaths) {
-
-    }
 
     @Override
     public String getDiseaseDescription() {
@@ -154,7 +137,22 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     @Override
     public void setCropKindAdapter(List<String> crops) {
+        adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mspinCropKind.setAdapter(adapter);
+        mspinCropKind.setError("Hello world");
+    }
 
+    //初始化图片RecyclerView
+    @Override
+    public void setPicturesListView(List<ImageItem> imageList) {
+        selImageList = imageList;
+        maxImgCount = 10;
+        imagePickerAdapter = new ImagePickerAdapter(this.getActivity(), selImageList, maxImgCount);
+        imagePickerAdapter.setOnItemClickListener(this);
+        recyclerView.setLayoutManager(new GridLayoutManager(this.getActivity(), 4));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(imagePickerAdapter);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -171,16 +169,6 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     }
 
-    //初始化图片RecyclerView
-    private void initPicturesListView() {
-        selImageList = new ArrayList<>();
-        maxImgCount = 10;
-        imagePickerAdapter = new ImagePickerAdapter(this.getActivity(), selImageList, maxImgCount);
-        imagePickerAdapter.setOnItemClickListener(this);
-        recyclerView.setLayoutManager(new GridLayoutManager(this.getActivity(), 4));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(imagePickerAdapter);
-    }
 
     //更新图片RecyclerView
     public void addPicturesData(List<ImageItem> imageItems) {

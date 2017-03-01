@@ -1,6 +1,7 @@
 package com.example.developer.cropdiagnosis.mvp.view;
 
 import com.example.developer.cropdiagnosis.mvp.view.base.BaseView;
+import com.stormphoenix.imagepicker.bean.ImageItem;
 
 import java.util.List;
 
@@ -14,8 +15,6 @@ public interface DiseaseSubmitView extends BaseView {
 
     String getCropKind();
 
-    void initPicturesListData(List<String> imagePaths);
-
     String getDiseaseDescription();
 
     List<String> getUploadPicturesPaths();
@@ -23,4 +22,6 @@ public interface DiseaseSubmitView extends BaseView {
     void submitFailed(String errorMsg);
 
     void setCropKindAdapter(List<String> crops);
+
+    void setPicturesListView(List<ImageItem> selImageList);
 }
