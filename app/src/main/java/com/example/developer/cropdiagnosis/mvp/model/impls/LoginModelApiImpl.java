@@ -1,6 +1,7 @@
 package com.example.developer.cropdiagnosis.mvp.model.impls;
 
 import com.example.developer.cropdiagnosis.mvp.model.interfaces.LoginModelApi;
+import com.example.developer.cropdiagnosis.mvp.view.LoginView;
 import com.example.developer.cropdiagnosis.network.HttpMethod;
 
 import rx.Subscription;
@@ -12,7 +13,7 @@ import rx.Subscription;
 
 public class LoginModelApiImpl implements LoginModelApi {
     @Override
-    public Subscription login(String username, String password) {
-        return HttpMethod.getInstance().login(username, password);
+    public Subscription login(String username, String password, LoginView view) {
+        return HttpMethod.getInstance().login(username, password, view);
     }
 }

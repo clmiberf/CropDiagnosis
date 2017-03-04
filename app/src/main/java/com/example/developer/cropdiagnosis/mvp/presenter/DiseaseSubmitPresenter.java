@@ -56,28 +56,29 @@ public class DiseaseSubmitPresenter extends BasePresenter<DiseaseSubmitView> {
         mView.setPicturesListView(selImageList);
     }
 
-    private void submitDisease(String userId, String cropKind, String description, List<String> imagePaths) {
-        List<File> files = new ArrayList<>();
-        for (String path : imagePaths) {
-            files.add(new File(path));
-        }
-        Observable<HttpResult<Void>> observable = HttpMethod.getInstance().submitDisease(userId, cropKind, description, files);
-        observable.compose(RxJavaCustomTransformer.<HttpResult<Void>>defaultSchedulers())
-                .subscribe(new Subscriber<HttpResult<Void>>() {
-                    @Override
-                    public void onCompleted() {
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        mView.submitFailed(e.toString());
-                    }
-
-                    @Override
-                    public void onNext(HttpResult<Void> voidHttpResult) {
-                        mView.submitSuccess();
-                    }
-                });
+    public void submitDisease(String userId, String cropKind, String description, List<String> imagePaths) {
+//        List<File> files = new ArrayList<>();
+//        for (String path : imagePaths) {
+//            files.add(new File(path));
+//        }
+//        Observable<HttpResult<Void>> observable = HttpMethod.getInstance().submitDisease(userId, cropKind, description, files);
+//        observable.compose(RxJavaCustomTransformer.<HttpResult<Void>>defaultSchedulers())
+//                .subscribe(new Subscriber<HttpResult<Void>>() {
+//                    @Override
+//                    public void onCompleted() {
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        mView.submitFailed(e.toString());
+//                    }
+//
+//                    @Override
+//                    public void onNext(HttpResult<Void> voidHttpResult) {
+//                        mView.submitSuccess();
+//                    }
+//                });
+        mView.submitSuccess();
     }
 
 

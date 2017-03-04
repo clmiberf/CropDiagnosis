@@ -2,10 +2,15 @@ package com.example.developer.cropdiagnosis.mvp.presenter;
 
 import android.os.Bundle;
 
+import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
+import com.example.developer.cropdiagnosis.mvp.model.impls.UserInfoModelApiImpl;
 import com.example.developer.cropdiagnosis.mvp.view.UserInfoView;
+import com.example.developer.cropdiagnosis.network.HttpResult;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import rx.Observable;
 
 /**
  * Created by xiang on 2017/3/1.
@@ -32,9 +37,14 @@ public class UserInfoPresenter extends BasePresenter<UserInfoView> {
         loadUserLocationSpinner(list);
     }
 
+    //从本地获取id和password
+    String id = null;
+    String password = null;
+
     //获取数据就在这里
     public void getData() {
-
+        UserInfoModelApiImpl userInfoModelApi = new UserInfoModelApiImpl();
+        userInfoModelApi.getUserInfo(id, password, mView);
     }
 
     private void loadUserAccount(String account) {

@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
@@ -23,6 +25,7 @@ import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseSubmitPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
+import com.example.developer.cropdiagnosis.shared.ConfigManager;
 import com.stormphoenix.imagepicker.FishImageType;
 import com.stormphoenix.imagepicker.ImagePicker;
 import com.stormphoenix.imagepicker.bean.ImageItem;
@@ -36,7 +39,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import fr.ganfra.materialspinner.MaterialSpinner;
 
 import static com.stormphoenix.imagepicker.ImagePicker.REQUEST_CODE_PREVIEW;
 
@@ -44,7 +46,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
         , ImagePickerAdapter.OnRecyclerViewItemClickListener {
 
     @BindView(R.id.mspin_crop_kind_disease_submit)
-    MaterialSpinner mspinCropKind;
+    Spinner mspinCropKind;
     @BindView(R.id.rv_pic_monitor_site)
     RecyclerView recyclerView;
     @BindView(R.id.et_disease_illustration_disease_submit)
@@ -55,6 +57,8 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     private int maxImgCount;
     private ImagePickerAdapter imagePickerAdapter;
     private ArrayAdapter<String> adapter = null;
+    List<String> cropList;
+    ProgressDialog progressDialog;
 
     @Inject
     public DiseaseSubmitPresenter mPresenter = null;
@@ -88,13 +92,17 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @OnClick(R.id.btn_submit_disease_disease_submit)
     public void onClick() {
+        Log.d("crop", cropList.get(mspinCropKind.getSelectedItemPosition()));
         showProgress();
         submit();
     }
 
     private void submit() {
-        // not completed
-//        mPresenter.submitDisease(ConfigManager.getUserId(), strCropKind, strDescription, null);
+        //submitDisease()方法的最后一个参数应传入照片的地址list
+        mPresenter.submitDisease(ConfigManager.getUserId(),
+                cropList.get(mspinCropKind.getSelectedItemPosition()),
+                etDiseaseIllustration.getText().toString(),
+                null);
     }
 
     @Override
@@ -111,7 +119,8 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     @Override
     public void submitSuccess() {
-
+        Log.d("DiseaseSubmitFragmetn", "submitSuccess");
+        hideProgress();
     }
 
     @Override
@@ -137,10 +146,10 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     @Override
     public void setCropKindAdapter(List<String> crops) {
-        adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, crops);
+        cropList = crops;
+        adapter = new ArrayAdapter<>(this.getActivity(), android.R.layout.simple_spinner_item, cropList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mspinCropKind.setAdapter(adapter);
-        mspinCropKind.setError("Hello world");
     }
 
     //初始化图片RecyclerView
@@ -158,7 +167,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void showProgress() {
-        ProgressDialog progressDialog = new ProgressDialog(this.getActivity());
+        progressDialog = new ProgressDialog(this.getActivity());
         progressDialog.setMessage(getString(R.string.submiting));
         progressDialog.create();
         progressDialog.show();
@@ -166,7 +175,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     @Override
     public void hideProgress() {
-
+        progressDialog.dismiss();
     }
 
 
@@ -183,7 +192,6 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
         selImageList.addAll(imageItems);
         imagePickerAdapter.setImages(selImageList);
     }
-
 
     @Override
     public void onItemClick(View view, int position) {
@@ -202,5 +210,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
                 break;
         }
     }
+
+
 
 }

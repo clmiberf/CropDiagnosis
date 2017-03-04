@@ -5,6 +5,7 @@ import com.example.developer.cropdiagnosis.network.HttpResult;
 import java.io.File;
 import java.util.List;
 
+import retrofit2.http.GET;
 import rx.Observable;
 
 /**

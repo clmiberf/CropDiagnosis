@@ -1,6 +1,7 @@
 package com.example.developer.cropdiagnosis.mvp.model.impls;
 
 import com.example.developer.cropdiagnosis.mvp.model.interfaces.RegisterModelApi;
+import com.example.developer.cropdiagnosis.mvp.view.RegisterView;
 import com.example.developer.cropdiagnosis.network.HttpMethod;
 
 import rx.Subscription;
@@ -12,7 +13,8 @@ import rx.Subscription;
 
 public class RegisterModelApiImpl implements RegisterModelApi {
     @Override
-    public Subscription register(String phoneNumber, String password, int userType, String province, String city, String county, String village) {
-        return HttpMethod.getInstance().register(phoneNumber, password, userType, province, city, county, village);
+    public Subscription register(String phoneNumber, String password, boolean isPersion, String province
+            , String city, String county, String village, RegisterView view) {
+        return HttpMethod.getInstance().register(phoneNumber, password, isPersion, province, city, county, village, view);
     }
 }

@@ -61,14 +61,13 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         super.onCreate(savedInstanceState);
         userInfoPresenter.attachView(this);
         userInfoPresenter.onCreate(savedInstanceState);
+        userInfoPresenter.getData();
     }
 
     @Override
     protected void initializeInjector() {
 
     }
-
-
 
     @Override
     public void showProgress() {
@@ -111,6 +110,11 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
                 android.R.layout.simple_spinner_item, locationList);
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mspinLocation.setAdapter(locationAdapter);
+    }
+
+    @Override
+    public void getUserInfoSuccess() {
+
     }
 
     @OnClick({R.id.user_open_vip, R.id.btn_account_safe})

@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.developer.cropdiagnosis.R;
+import com.example.developer.cropdiagnosis.mvp.model.impls.LoginModelApiImpl;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IMessagePromptDialog;
 import com.example.developer.cropdiagnosis.mvp.view.LoginView;
@@ -38,7 +39,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
             case R.id.btn_forget_pwsd_login:
                 break;
             case R.id.btn_login_login:
-                login(etUsername.getText().toString().trim(), etPassword.getText().toString().trim());
+                login();
                 break;
         }
     }
@@ -77,8 +78,9 @@ public class LoginActivity extends BaseActivity implements LoginView {
         return false;
     }
 
-    public void login(String username, String password) {
-//        pbLoad.setVisibility(View.VISIBLE);
+    public void login() {
+        LoginModelApiImpl loginModelApi = new LoginModelApiImpl();
+        loginModelApi.login(etUsername.getText().toString(), etPassword.getText().toString(), this);
     }
 
     @Override
@@ -100,6 +102,5 @@ public class LoginActivity extends BaseActivity implements LoginView {
 
     @Override
     public void loginFailed(String msg) {
-
     }
 }

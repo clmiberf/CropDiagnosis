@@ -17,4 +17,5 @@ public interface UserInfoView extends BaseView {
     void loadUserId(String userId);
     void loadUserSafeOnclik();
     void loadUserLocationSpinner(List<String> locationList);
+    void getUserInfoSuccess();
 }

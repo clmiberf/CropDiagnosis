@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -16,12 +18,16 @@ import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
+import com.example.developer.cropdiagnosis.mvp.model.impls.RegisterModelApiImpl;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IMessagePromptDialog;
 import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IProgressDialog;
 import com.example.developer.cropdiagnosis.mvp.view.RegisterView;
 
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -59,6 +65,14 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     ProgressBar pbLoad;
     @BindView(R.id.btn_get_check_code)
     Button getCheckCode;
+
+    private ArrayAdapter<String> provinceAdapter = null;
+    private ArrayAdapter<String> cityAdapter = null;
+    private ArrayAdapter<String> countyAdapter = null;
+    private List<String> provinces = new ArrayList<>();
+    private List<String> cities = new ArrayList<>();
+    private List<String> counties = new ArrayList<>();
+
 
     int i = 60;
 
@@ -161,10 +175,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
                 }).start();
                 break;
             case R.id.btn_register_register:
-                Toast.makeText(RegisterActivity.this, "eeriee", Toast.LENGTH_SHORT).show();
-                Intent it = new Intent(RegisterActivity.this, HomeActivity.class);
-                setResult(RESULT_OK);
-                finish();
+                registe();
                 break;
             case R.id.btn_reset_register:
                 break;
@@ -177,6 +188,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initSpinner();
     }
 
     @Override
@@ -199,6 +211,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @Override
     protected void initViews() {
+        rdPerson.setChecked(true);
+        rdCompany.setChecked(false);
         // 初始化 progressDialog 和 messageDialog
     }
 
@@ -212,6 +226,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @Override
     public void registerSuccess() {
+        hideProgress();
         Intent it = new Intent(RegisterActivity.this, HomeActivity.class);
         startActivity(it);
         finish();
@@ -231,4 +246,40 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     public void hideProgress() {
         pbLoad.setVisibility(View.GONE);
     }
+
+    private void registe() {
+        RegisterModelApiImpl registerModelApi = new RegisterModelApiImpl();
+        registerModelApi.register(etTelNumber.getText().toString()
+                , etCheckCode.getText().toString()
+                , rdPerson.isChecked()
+                , provinces.get(spinProvince.getSelectedItemPosition())
+                , cities.get(spinCity.getSelectedItemPosition())
+                , counties.get(spinCountry.getSelectedItemPosition())
+                , etVillage.getText().toString(), this);
+        showProgress();
+    }
+
+    private void initSpinner() {
+        provinces.add("湖北");
+        provinces.add("江西");
+        provinces.add("湖南");
+        cities.add("武汉");
+        cities.add("黄石");
+        cities.add("黄冈");
+        counties.add("洪山");
+        counties.add("武昌");
+        counties.add("汉口");
+        provinceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, provinces);
+        provinceAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        cityAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities);
+        cityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        countyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, counties);
+        countyAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinCity.setAdapter(cityAdapter);
+        spinProvince.setAdapter(provinceAdapter);
+        spinCountry.setAdapter(countyAdapter);
+
+
+    }
+
 }

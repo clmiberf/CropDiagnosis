@@ -1,5 +1,7 @@
 package com.example.developer.cropdiagnosis.mvp.model.interfaces;
 
+import com.example.developer.cropdiagnosis.mvp.view.RegisterView;
+
 import rx.Subscription;
 
 /**
@@ -8,5 +10,6 @@ import rx.Subscription;
  */
 
 public interface RegisterModelApi {
-    Subscription register(String phoneNumber, String password, int userType, String province, String city, String county, String village);
+    Subscription register(String phoneNumber, String password, boolean isPerson
+            , String province, String city, String county, String village, RegisterView view);
 }

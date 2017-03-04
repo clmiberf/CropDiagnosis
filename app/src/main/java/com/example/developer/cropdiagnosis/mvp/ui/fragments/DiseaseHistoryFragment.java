@@ -60,35 +60,9 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     private ArrayAdapter<String> cropAdapter = null;
     private ArrayAdapter<String> durationAdapter = null;
     private ArrayAdapter<String> statusAdapter = null;
-    String[] crops = {"水稻", "玉米", "小麦"};
 
     @Inject
     public DiseaseHistoryPresenter mPresenter = null;
-
-//            data.clear();
-//            data.addAll(datas);
-//            diseaseAdapter.notifyDataSetChanged();
-//        }
-//
-//        @Override
-//        public void onLoadHistoryInfoFailed(Throwable e) {
-//            for (int i = 0; i < 10; i++) {
-//                DiseaseModelBean bean = new DiseaseModelBean();
-//                bean.setAcceptExpertName("李飞飞");
-//                bean.setCommentDetails("我的图像识别");
-//                bean.setCommentType(DbConstants.CommentType.VERY_GOOD);
-//                bean.setCrop("橘子");
-//                bean.setDescription("机器学习教会了我很多");
-//                bean.setDiseaseName("机器不会识图");
-//                bean.setHasCommented(true);
-//                bean.setImageUrl(null);
-//                bean.setSolution("一起努力吧");
-//                bean.setSubmitTime(new Date());
-//                bean.setSolveTime(new Date());
-//                data.add(bean);
-//            }
-//        }
-//    };
 
     @Override
     protected int getLayoutId() {
@@ -105,11 +79,6 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     protected void initVariables() {
         data = new ArrayList<>();
-
-
-//        String[] durations = {"一年内", "六个月内", "三个月内","一个月内","一周内"};
-//        String[] status = {"水稻", "玉米", "小麦"};
-
     }
 
 

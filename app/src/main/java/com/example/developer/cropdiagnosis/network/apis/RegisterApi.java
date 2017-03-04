@@ -18,7 +18,7 @@ public interface RegisterApi {
     @FormUrlEncoded
     Observable<HttpResult<UserModelBean>> register(@Field("tel_number") String phoneNumber,
                                                    @Field("password") String password,
-                                                   @Field("user_type") int userType,
+                                                   @Field("user_type") boolean isPersion,
                                                    @Field("province") String province,
                                                    @Field("city") String city,
                                                    @Field("county") String county,
