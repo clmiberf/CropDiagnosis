@@ -2,6 +2,7 @@ package com.example.developer.cropdiagnosis.mvp.model.interfaces;
 
 import android.text.style.SubscriptSpan;
 
+import com.example.developer.cropdiagnosis.mvp.presenter.UserInfoPresenter;
 import com.example.developer.cropdiagnosis.mvp.view.UserInfoView;
 
 import rx.Subscription;
@@ -11,5 +12,5 @@ import rx.Subscription;
  */
 
 public interface UserInfoModelApi {
-    Subscription getUserInfo(String id, String password, UserInfoView view);
+    Subscription getUserInfo(String id, String password,UserInfoPresenter presenter);
 }

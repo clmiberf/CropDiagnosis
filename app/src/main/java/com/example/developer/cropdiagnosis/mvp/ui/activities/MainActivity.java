@@ -110,11 +110,13 @@ public class MainActivity extends BaseActivity {
     public void register(View view) {
         Intent it = new Intent(MainActivity.this, RegisterActivity.class);
         startActivityForResult(it, REQUEST_REGISTER);
+        finish();
     }
 
     public void login(View view) {
         Intent it = new Intent(MainActivity.this, LoginActivity.class);
         startActivityForResult(it, REQUEST_LOGIN);
+        finish();
     }
 
     @Override

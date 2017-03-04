@@ -1,5 +1,7 @@
 package com.example.developer.cropdiagnosis.mvp.model.beans;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
 /**
@@ -18,7 +20,12 @@ public class UserModelBean {
     /**
      * 电话号码
      */
-    public String phoneNumber;
+    public String user_Tel;
+
+    /**
+     * 身份证号
+     */
+    public String user_IDcard;
 
     /**
      * 用户账号密码
@@ -28,8 +35,12 @@ public class UserModelBean {
     /**
      * 用户账号id
      */
-    public String idNumber;
+    public String user_Id;
 
+    /**
+     * 用户账号名
+     */
+    public String username;
     /**
      * 用户所在省
      */
@@ -64,6 +75,8 @@ public class UserModelBean {
      * 用户类型 “公司”还是“个人”
      */
     public int userType;
+
+
 
     /**
      * 检查UserModelBean的值是否合法

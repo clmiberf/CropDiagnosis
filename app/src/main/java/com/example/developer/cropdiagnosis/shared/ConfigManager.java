@@ -56,10 +56,10 @@ public class ConfigManager {
         SharedPreferences.Editor edit = CropApplication.getInstance().getSharedPreferences(USER_SHARES, Context.MODE_PRIVATE).edit();
         edit.putString(USER_PASSWORD, bean.password);
         edit.putString(USER_EMAIL, bean.email);
-        edit.putString(USER_ID_NUMBER, bean.idNumber);
+//        edit.putString(USER_ID_NUMBER, bean.idNumber);
         edit.putString(USER_CITY, bean.city);
         edit.putString(USER_COUNTY, bean.county);
-        edit.putString(USER_PHONE_NUMBER, bean.phoneNumber);
+//        edit.putString(USER_PHONE_NUMBER, bean.phoneNumber);
         edit.putString(USER_VILLAGE, bean.village);
         edit.putString(USER_PROVINCE, bean.province);
         edit.putStringSet(USER_CROPS, new HashSet<>(bean.crops));

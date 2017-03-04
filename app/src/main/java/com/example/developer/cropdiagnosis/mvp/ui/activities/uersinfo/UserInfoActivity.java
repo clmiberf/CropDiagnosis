@@ -2,6 +2,7 @@ package com.example.developer.cropdiagnosis.mvp.ui.activities.uersinfo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -61,7 +62,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         super.onCreate(savedInstanceState);
         userInfoPresenter.attachView(this);
         userInfoPresenter.onCreate(savedInstanceState);
-        userInfoPresenter.getData();
+        userInfoPresenter.getData(PreferenceManager.getDefaultSharedPreferences(this));
     }
 
     @Override

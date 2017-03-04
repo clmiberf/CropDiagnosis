@@ -1,6 +1,7 @@
 package com.example.developer.cropdiagnosis.mvp.ui.activities.uersinfo;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -57,6 +58,7 @@ public class UserInfoSafeActivity extends BaseActivity implements UserInfoSafeVi
         super.onCreate(savedInstanceState);
         mPresenter.attachView(this);
         mPresenter.onCreate(savedInstanceState);
+        mPresenter.getData(PreferenceManager.getDefaultSharedPreferences(this));
     }
 
     @Override

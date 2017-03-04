@@ -1,5 +1,6 @@
 package com.example.developer.cropdiagnosis.mvp.presenter;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.example.developer.cropdiagnosis.mvp.view.UserInfoSafeView;
@@ -11,19 +12,23 @@ import javax.inject.Inject;
  */
 
 public class UserInfoSafePresenter extends BasePresenter<UserInfoSafeView> {
+
     @Inject
     public UserInfoSafePresenter() {
 
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initData();
+//        initData();
     }
 
     //获取数据就在这里
-    public void getData() {
-
+    public void getData(SharedPreferences preferences) {
+        loadSafeTelephone(preferences.getString("user_Tel", ""));
+        loadSafeUserAccount(preferences.getString("user_Id", ""));
+//        loadSafeUserMailbox();
     }
 
     //假数据在这里
