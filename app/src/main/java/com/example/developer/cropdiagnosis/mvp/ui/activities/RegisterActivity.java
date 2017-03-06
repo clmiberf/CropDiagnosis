@@ -1,9 +1,11 @@
 package com.example.developer.cropdiagnosis.mvp.ui.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -189,6 +191,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initSpinner();
+        hideProgress();
     }
 
     @Override
@@ -227,7 +230,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @Override
     public void registerSuccess() {
         hideProgress();
-        Intent it = new Intent(RegisterActivity.this, HomeActivity.class);
+        Intent it = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(it);
         finish();
     }

@@ -1,9 +1,8 @@
 package com.example.developer.cropdiagnosis.mvp.presenter;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
-import com.example.developer.cropdiagnosis.mvp.model.impls.UserInfoModelApiImpl;
 import com.example.developer.cropdiagnosis.mvp.view.UserInfoView;
 import com.example.developer.cropdiagnosis.network.HttpResult;
 
@@ -20,7 +19,7 @@ public class UserInfoPresenter extends BasePresenter<UserInfoView> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initData();
+//        initData();
     }
 
     //假数据在这里
@@ -42,9 +41,14 @@ public class UserInfoPresenter extends BasePresenter<UserInfoView> {
     String password = null;
 
     //获取数据就在这里
-    public void getData() {
-        UserInfoModelApiImpl userInfoModelApi = new UserInfoModelApiImpl();
-        userInfoModelApi.getUserInfo(id, password, mView);
+    public void getData(SharedPreferences preferences) {
+        loadUserAccount(preferences.getString("user_Id", ""));
+        loadUserName(preferences.getString("username", ""));
+        loadUserId(preferences.getString("userIdcard", ""));
+    }
+
+    public void onGetDataSuccess() {
+
     }
 
     private void loadUserAccount(String account) {

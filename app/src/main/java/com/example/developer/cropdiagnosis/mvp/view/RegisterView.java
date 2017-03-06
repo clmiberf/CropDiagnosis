@@ -1,5 +1,6 @@
 package com.example.developer.cropdiagnosis.mvp.view;
 
+import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.view.base.BaseView;
 
 /**

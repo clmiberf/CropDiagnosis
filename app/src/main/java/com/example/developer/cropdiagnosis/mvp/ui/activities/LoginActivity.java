@@ -1,17 +1,22 @@
 package com.example.developer.cropdiagnosis.mvp.ui.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.developer.cropdiagnosis.R;
+import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.impls.LoginModelApiImpl;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.component.interfaces.IMessagePromptDialog;
 import com.example.developer.cropdiagnosis.mvp.view.LoginView;
+
+import java.io.FileInputStream;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -28,6 +33,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
     Button btnLogin;
     @BindView(R.id.pb_load_login)
     ProgressBar pbLoad;
+
 
     @OnClick({R.id.et_username_login, R.id.et_password_login, R.id.btn_forget_pwsd_login, R.id.btn_login_login})
     public void onClick(View view) {
@@ -93,10 +99,27 @@ public class LoginActivity extends BaseActivity implements LoginView {
     }
 
     @Override
-    public void loginSuccess() {
+    public void loginSuccess(UserModelBean user) {
         pbLoad.setVisibility(View.GONE);
+        if (user != null ) {
+            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+            editor.putString("username", etUsername.getText().toString());
+            editor.putString("password", etPassword.getText().toString());
+            editor.putInt("userType", user.userType);
+            editor.putString("user_Tel", user.user_Tel);
+            editor.putString("province", user.province);
+            editor.putString("city", user.city);
+            editor.putString("county", user.county);
+            editor.putString("village", user.village);
+            editor.putString("userIdcard", user.user_IDcard);
+            editor.putString("user_Id", user.user_Id);
+            editor.commit();
+//            FileInputStream inputStream = user.
+        }
+//        editor.putString("")
         Intent it = new Intent(LoginActivity.this, HomeActivity.class);
-        setResult(RESULT_OK);
+        startActivity(it);
+//        setResult(RESULT_OK);
         finish();
     }
 

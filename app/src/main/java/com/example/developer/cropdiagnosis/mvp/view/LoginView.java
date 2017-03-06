@@ -1,5 +1,6 @@
 package com.example.developer.cropdiagnosis.mvp.view;
 
+import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.view.base.BaseView;
 
 /**
@@ -8,7 +9,7 @@ import com.example.developer.cropdiagnosis.mvp.view.base.BaseView;
  */
 
 public interface LoginView extends BaseView {
-    void loginSuccess();
+    void loginSuccess(UserModelBean user);
 
     void loginFailed(String msg);
 }

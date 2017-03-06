@@ -2,20 +2,16 @@ package com.example.developer.cropdiagnosis.network;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
-import com.example.developer.cropdiagnosis.mvp.ui.activities.uersinfo.UserInfoActivity;
+import com.example.developer.cropdiagnosis.mvp.presenter.UserInfoPresenter;
 import com.example.developer.cropdiagnosis.mvp.view.LoginView;
 import com.example.developer.cropdiagnosis.mvp.view.RegisterView;
-import com.example.developer.cropdiagnosis.mvp.view.UserInfoView;
-import com.example.developer.cropdiagnosis.mvp.view.base.BaseView;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseSubmitApi;
 import com.example.developer.cropdiagnosis.network.apis.ImageApi;
 import com.example.developer.cropdiagnosis.network.apis.LoginApi;
 import com.example.developer.cropdiagnosis.network.apis.RegisterApi;
-import com.example.developer.cropdiagnosis.network.apis.UserInfoApi;
 import com.example.developer.cropdiagnosis.network.utils.HttpUtils;
 import com.example.developer.cropdiagnosis.shared.NetManager;
 import com.example.developer.cropdiagnosis.shared.rxutils.RxJavaCustomTransformer;
@@ -51,7 +47,6 @@ public class HttpMethod {
     private DiseaseSubmitApi submitApi = null;
     private RegisterApi registerApi = null;
     private DiseaseHistoryApi diseaseHistoryApi = null;
-    private UserInfoApi userInfoApi = null;
 
     private HttpMethod() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -66,7 +61,6 @@ public class HttpMethod {
         submitApi = retrofit.create(DiseaseSubmitApi.class);
         registerApi = retrofit.create(RegisterApi.class);
         diseaseHistoryApi = retrofit.create(DiseaseHistoryApi.class);
-        userInfoApi = retrofit.create(UserInfoApi.class);
     }
 
     public static HttpMethod getInstance() {
@@ -81,7 +75,7 @@ public class HttpMethod {
     }
 
     public Subscription login(String username, String password, LoginView view) {
-//        return loginApi.login(username, password)
+//        Subscription subscription =  loginApi.login(username, password)
 //                .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
 //                .subscribe(new Subscriber<HttpResult<UserModelBean>>() {
 //                    @Override
@@ -94,11 +88,13 @@ public class HttpMethod {
 //
 //                    @Override
 //                    public void onNext(HttpResult<UserModelBean> result) {
-//                        view.loginSuccess();
+//                        view.loginSuccess(result.getData());
 //                    }
 //                });
-        view.loginSuccess();
+//        return subscription;
+        view.loginSuccess(null);
         return null;
+
     }
 
     public Subscription register(String phoneNumber, String password, boolean isPersion
@@ -108,6 +104,7 @@ public class HttpMethod {
 //                .subscribe(new Subscriber<HttpResult<UserModelBean>>() {
 //                    @Override
 //                    public void onCompleted() {
+//
 //                    }
 //
 //                    @Override
@@ -116,7 +113,8 @@ public class HttpMethod {
 //
 //                    @Override
 //                    public void onNext(HttpResult<UserModelBean> result) {
-//                        view.registerSuccess();
+//                        UserModelBean user = result.getData();
+//                        view.registerSuccess(user);
 //                    }
 //                });
         view.registerSuccess();
@@ -177,13 +175,6 @@ public class HttpMethod {
 
     public Observable<HttpResult<List<DiseaseModelBean>>> getDiseaseInfo(String userId) {
         return diseaseApi.getDiseaseHistory(userId);
-    }
-
-    public Subscription getUserInfo(String id, String password, UserInfoView view) {
-        //这里应该写上
-        //userInfoApi.getUserInfo()。。。
-        view.getUserInfoSuccess();
-        return null;
     }
 
 }
