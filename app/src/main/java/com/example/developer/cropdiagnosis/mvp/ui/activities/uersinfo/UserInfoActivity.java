@@ -31,8 +31,8 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
     TextView userId;
     @BindView(R.id.uer_location_selection)
     Spinner mspinLocation;
-    @BindView(R.id.user_open_vip)
-    Button userOpenVip;
+//    @BindView(R.id.user_open_vip)
+//    Button userOpenVip;
     @BindView(R.id.btn_account_safe)
     Button btnAccountSafe;
     @BindView(R.id.content_user_information)
@@ -117,11 +117,11 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
 
     }
 
-    @OnClick({R.id.user_open_vip, R.id.btn_account_safe})
+    @OnClick({R.id.btn_account_safe})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.user_open_vip:
-                break;
+//            case R.id.user_open_vip:
+//                break;
             case R.id.btn_account_safe:
                 Intent intent = new Intent(UserInfoActivity.this, UserInfoSafeActivity.class);
                 startActivity(intent);
