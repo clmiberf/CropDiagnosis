@@ -102,28 +102,32 @@ public class LoginActivity extends BaseActivity implements LoginView {
     public void loginSuccess(UserModelBean user) {
         pbLoad.setVisibility(View.GONE);
         if (user != null ) {
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
-            editor.putString("username", etUsername.getText().toString());
-            editor.putString("password", etPassword.getText().toString());
-            editor.putInt("userType", user.userType);
-            editor.putString("user_Tel", user.user_Tel);
-            editor.putString("province", user.province);
-            editor.putString("city", user.city);
-            editor.putString("county", user.county);
-            editor.putString("village", user.village);
-            editor.putString("userIdcard", user.user_IDcard);
-            editor.putString("user_Id", user.user_Id);
-            editor.commit();
-//            FileInputStream inputStream = user.
+            saveToPreference(user);
         }
-//        editor.putString("")
         Intent it = new Intent(LoginActivity.this, HomeActivity.class);
         startActivity(it);
-//        setResult(RESULT_OK);
         finish();
     }
 
     @Override
     public void loginFailed(String msg) {
     }
+
+    private void saveToPreference(UserModelBean user) {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        editor.putInt("user_Type", user.user_Type);
+        editor.putString("user_Tel", user.user_Tel);
+        editor.putString("city", user.city);
+        editor.putString("user_Password", user.user_Password);
+        editor.putString("IDcard", user.IDcard);
+        editor.putString("county", user.county);
+        editor.putString("user_Email", user.user_Email);
+        editor.putString("user_Name", user.user_Name);
+        editor.putString("province", user.province);
+        editor.putString("user_Id", user.user_Id);
+        editor.putString("user_Money", user.user_Money);
+        editor.putString("village", user.village);
+        editor.apply();
+    }
+
 }

@@ -26,9 +26,9 @@ public class UserInfoSafePresenter extends BasePresenter<UserInfoSafeView> {
 
     //获取数据就在这里
     public void getData(SharedPreferences preferences) {
-        loadSafeTelephone(preferences.getString("user_Tel", ""));
-        loadSafeUserAccount(preferences.getString("user_Id", ""));
-//        loadSafeUserMailbox();
+        loadSafeUserAccount(preferences.getString("user_Id", "123456"));
+        loadSafeTelephone(preferences.getString("user_Tel", "12345678910"));
+        loadSafeUserMailbox(preferences.getString("user_Email", "34543213@qq.com"));
     }
 
     //假数据在这里
