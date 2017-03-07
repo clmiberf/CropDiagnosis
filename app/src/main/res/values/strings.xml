@@ -21,6 +21,7 @@
     <string name="spinner_duration_chose_hint">选择时间</string>
     <string name="spinner_status_chose_hint">选择状态</string>
     <string name="spinner_evaluate_chose_hint">选择评价</string>
+    <string name="spinner_location_chose_hint">选择所在地</string>
     <string name="crop">作物:</string>
     <string name="spinner_duration">时间:</string>
     <string name="status">状态:</string>
@@ -40,14 +41,14 @@
     <string name="title_activity_crop_disease_condition">CropDiseaseCondition</string>
     <string name="title_activity_disease_condition">病害内容</string>
 
-    <string name="caption">图片说明</string>
-    <string name="explanatory_note">文字说明 </string>
+    <string name="caption">图片说明：</string>
+    <string name="explanatory_note">文字说明: </string>
     <string name="diagnosis">查看诊断结果</string>
-    <string name="disease_name">病名</string>
-    <string name="disease_cause">病因</string>
-    <string name="solution">解决\n方法 </string>
-    <string name="solution_time">时间 </string>
-    <string name="accept_person">受理\n人 </string>
+    <string name="disease_name">病名：</string>
+    <string name="disease_cause">病因：</string>
+    <string name="solution">解决方法</string>
+    <string name="solution_time">时间： </string>
+    <string name="accept_person">受理人： </string>
     <string name="evaluate">评价 </string>
     <string name="supplementary_instruction">补充 </string>
     <string name="submiting">提交中</string>

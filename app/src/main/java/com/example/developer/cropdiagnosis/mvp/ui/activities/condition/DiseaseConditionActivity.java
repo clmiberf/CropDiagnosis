@@ -43,8 +43,6 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     //补充
     @BindView(R.id.supplementary)
     TextView supplement;
-    @BindView(R.id.disease_btn_submit)
-    Button submit;
     @BindView(R.id.crop_diagnose_btn)
     Button diagnoseBtn;
 
