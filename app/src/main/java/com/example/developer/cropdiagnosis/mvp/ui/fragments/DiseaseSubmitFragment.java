@@ -2,8 +2,10 @@ package com.example.developer.cropdiagnosis.mvp.ui.fragments;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,7 +27,6 @@ import com.example.developer.cropdiagnosis.mvp.presenter.DiseaseSubmitPresenter;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.base.BaseFragment;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
-import com.example.developer.cropdiagnosis.shared.ConfigManager;
 import com.stormphoenix.imagepicker.FishImageType;
 import com.stormphoenix.imagepicker.ImagePicker;
 import com.stormphoenix.imagepicker.bean.ImageItem;
@@ -59,6 +60,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     private ArrayAdapter<String> adapter = null;
     List<String> cropList;
     ProgressDialog progressDialog;
+    SharedPreferences preferences;
 
     @Inject
     public DiseaseSubmitPresenter mPresenter = null;
@@ -99,10 +101,10 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
 
     private void submit() {
         //submitDisease()方法的最后一个参数应传入照片的地址list
-        mPresenter.submitDisease(ConfigManager.getUserId(),
+        mPresenter.submitDisease(preferences.getString("user_Id", ""),
                 cropList.get(mspinCropKind.getSelectedItemPosition()),
                 etDiseaseIllustration.getText().toString(),
-                null);
+                selImageList);
     }
 
     @Override
@@ -110,6 +112,7 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
         View view = super.onCreateView(inflater, container, savedInstanceState);
         mPresenter.attachView(this);
         mPresenter.onCreate(savedInstanceState);
+        preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         return view;
     }
 

@@ -2,9 +2,14 @@ package com.example.developer.cropdiagnosis.network;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+
+import com.example.developer.cropdiagnosis.db.DbConstants;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
+import com.example.developer.cropdiagnosis.mvp.model.interfaces.DiseaseHistoryModelApi;
 import com.example.developer.cropdiagnosis.mvp.presenter.UserInfoPresenter;
+import com.example.developer.cropdiagnosis.mvp.view.DiseaseHistoryView;
+import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
 import com.example.developer.cropdiagnosis.mvp.view.LoginView;
 import com.example.developer.cropdiagnosis.mvp.view.RegisterView;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
@@ -17,6 +22,8 @@ import com.example.developer.cropdiagnosis.shared.NetManager;
 import com.example.developer.cropdiagnosis.shared.rxutils.RxJavaCustomTransformer;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -121,23 +128,51 @@ public class HttpMethod {
         return null;
     }
 
-    public Subscription loadDiseaseHistory(String userId) {
-        return diseaseHistoryApi.getDiseaseHistory(userId)
-                .compose(RxJavaCustomTransformer.<HttpResult<List<DiseaseModelBean>>>defaultSchedulers())
-                .subscribe(new Subscriber<HttpResult<List<DiseaseModelBean>>>() {
+    public Subscription loadDiseaseHistory(String userId, DiseaseHistoryView view) {
+//        return diseaseHistoryApi.getDiseaseHistory(userId)
+//                .compose(RxJavaCustomTransformer.<HttpResult<List<DiseaseModelBean>>>defaultSchedulers())
+//                .subscribe(new Subscriber<HttpResult<List<DiseaseModelBean>>>() {
+//
+//                    @Override
+//                    public void onCompleted() {
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                    }
+//
+//                    @Override
+//                    public void onNext(HttpResult<List<DiseaseModelBean>> result) {
+//                        view.initDiseaseListView(result.getData());
+//                    }
+//                });
+        HttpResult<List<DiseaseModelBean>> result = new HttpResult<List<DiseaseModelBean>>();
 
-                    @Override
-                    public void onCompleted() {
-                    }
+        List<DiseaseModelBean> data = new ArrayList<DiseaseModelBean>();
+        DiseaseModelBean model = new DiseaseModelBean();
 
-                    @Override
-                    public void onError(Throwable e) {
-                    }
+        model.setAcceptExpertName("王成");
+        model.setCommentDetails("还不错");
+        model.setCommentType(DbConstants.CommentType.GOOD);
+        model.setCrop("麦子");
+        model.setDescription("麦子病的很重 :(");
+        model.setDiseaseName("天花");
+        model.setDiseaseStatus(DbConstants.DiagnosedStatus.NOT_DIAGNOSED);
+        model.setHasCommented(false);
+        model.setImageUrl(null);
+        model.setSolution("病入膏肓，无法医治");
+        model.setDiseaseReason("浇水过少");
+        model.setSubmitTime(new Date(System.currentTimeMillis()));
 
-                    @Override
-                    public void onNext(HttpResult<List<DiseaseModelBean>> result) {
-                    }
-                });
+        data.add(model);
+        data.add(model);
+        data.add(model);
+        data.add(model);
+        data.add(model);
+
+        result.setData(data);
+        view.initDiseaseListView(result.getData());
+        return null;
     }
 
     public void downloadImage(String url) {
@@ -164,13 +199,33 @@ public class HttpMethod {
                 });
     }
 
-    public Observable<HttpResult<Void>> submitDisease(String userId, String cropKind, String description, List<File> imageFiles) {
-        RequestBody userIdBody = HttpUtils.createStringBody(userId);
-        RequestBody cropKindBody = HttpUtils.createStringBody(cropKind);
-        RequestBody descriptionBody = HttpUtils.createStringBody(description);
-        Map<String, RequestBody> map = HttpUtils.createMultFileMap(imageFiles);
-
-        return submitApi.submitDisease(userIdBody, cropKindBody, descriptionBody, map);
+    public Subscription submitDisease(String userId, String cropKind
+            , String description, List<File> imageFiles, DiseaseSubmitView view) {
+//        RequestBody userIdBody = HttpUtils.createStringBody(userId);
+//        RequestBody cropKindBody = HttpUtils.createStringBody(cropKind);
+//        RequestBody descriptionBody = HttpUtils.createStringBody(description);
+//        Map<String, RequestBody> map = HttpUtils.createMultFileMap(imageFiles);
+//
+//        return submitApi.submitDisease(userIdBody, cropKindBody, descriptionBody, map)
+//                .compose(RxJavaCustomTransformer.<HttpResult<Void>>defaultSchedulers())
+//                .subscribe(new Subscriber<HttpResult<Void>>() {
+//
+//                    @Override
+//                    public void onCompleted() {
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                    }
+//
+//                    @Override
+//                    public void onNext(HttpResult<Void> voidHttpResult) {
+//                        view.submitSuccess();
+//                    }
+//
+//                });
+        view.submitSuccess();
+        return null;
     }
 
     public Observable<HttpResult<List<DiseaseModelBean>>> getDiseaseInfo(String userId) {

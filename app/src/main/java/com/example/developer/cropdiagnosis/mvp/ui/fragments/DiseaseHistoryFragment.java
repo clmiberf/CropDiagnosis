@@ -2,6 +2,7 @@ package com.example.developer.cropdiagnosis.mvp.ui.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -61,8 +62,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     private ArrayAdapter<String> durationAdapter = null;
     private ArrayAdapter<String> statusAdapter = null;
 
-    @Inject
-    public DiseaseHistoryPresenter mPresenter = null;
+
 
     @Override
     protected int getLayoutId() {
@@ -71,10 +71,10 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     @Override
     protected void initializeInjector() {
-        DaggerActivityComponent.builder()
-                .activityModule(new ActivityModule(getActivity()))
-                .build()
-                .inject(this);
+//        DaggerActivityComponent.builder()
+//                .activityModule(new ActivityModule(getActivity()))
+//                .build()
+//                .inject(this);
     }
 
     protected void initVariables() {
@@ -86,6 +86,8 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = super.onCreateView(inflater, container, savedInstanceState);
+        DiseaseHistoryPresenter mPresenter = new DiseaseHistoryPresenter(getActivity()
+                , PreferenceManager.getDefaultSharedPreferences(getActivity()));
         mPresenter.attachView(this);
         mPresenter.onCreate(savedInstanceState);
 

@@ -1,6 +1,7 @@
 package com.example.developer.cropdiagnosis.mvp.model.impls;
 
 import com.example.developer.cropdiagnosis.mvp.model.interfaces.DiseaseSubmitModelApi;
+import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
 import com.example.developer.cropdiagnosis.network.HttpMethod;
 import com.example.developer.cropdiagnosis.network.HttpResult;
 
@@ -17,7 +18,8 @@ import rx.Subscription;
 
 public class DiseaseSubmitModelApiImpl implements DiseaseSubmitModelApi {
     @Override
-    public Observable<HttpResult<Void>> submitDisease(String userId, String cropKind, String description, List<File> imageFiles) {
-        return HttpMethod.getInstance().submitDisease(userId, cropKind, description, imageFiles);
+    public Subscription submitDisease(String userId, String cropKind
+            , String description, List<File> imageFiles, DiseaseSubmitView view) {
+        return HttpMethod.getInstance().submitDisease(userId, cropKind, description, imageFiles, view);
     }
 }

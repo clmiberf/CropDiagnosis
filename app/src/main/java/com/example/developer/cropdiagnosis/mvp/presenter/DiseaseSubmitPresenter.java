@@ -2,11 +2,8 @@ package com.example.developer.cropdiagnosis.mvp.presenter;
 
 import android.os.Bundle;
 
+import com.example.developer.cropdiagnosis.mvp.model.impls.DiseaseSubmitModelApiImpl;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
-import com.example.developer.cropdiagnosis.network.HttpMethod;
-import com.example.developer.cropdiagnosis.network.HttpResult;
-import com.example.developer.cropdiagnosis.shared.ConfigManager;
-import com.example.developer.cropdiagnosis.shared.rxutils.RxJavaCustomTransformer;
 import com.stormphoenix.imagepicker.bean.ImageItem;
 
 import java.io.File;
@@ -38,7 +35,7 @@ public class DiseaseSubmitPresenter extends BasePresenter<DiseaseSubmitView> {
 
 
     private void initCropKind() {
-        List<String> crops = new ArrayList<String>(ConfigManager.getUserPreferCrops());
+        List<String> crops = new ArrayList<String>();
         crops.add("苹果");
         crops.add("香蕉");
         crops.add("梨子");
@@ -56,7 +53,7 @@ public class DiseaseSubmitPresenter extends BasePresenter<DiseaseSubmitView> {
         mView.setPicturesListView(selImageList);
     }
 
-    public void submitDisease(String userId, String cropKind, String description, List<String> imagePaths) {
+    public void submitDisease(String userId, String cropKind, String description, List<ImageItem> imageItems) {
 //        List<File> files = new ArrayList<>();
 //        for (String path : imagePaths) {
 //            files.add(new File(path));
@@ -78,6 +75,12 @@ public class DiseaseSubmitPresenter extends BasePresenter<DiseaseSubmitView> {
 //                        mView.submitSuccess();
 //                    }
 //                });
+        List<File> imageFiles = new ArrayList<>();
+        for (int i=0; i<imageItems.size(); i++) {
+            imageFiles.add(new File(imageItems.get(i).path));
+        }
+        DiseaseSubmitModelApiImpl diseaseSubmitModelApi = new DiseaseSubmitModelApiImpl();
+        diseaseSubmitModelApi.submitDisease(userId, cropKind, description, imageFiles, mView);
         mView.submitSuccess();
     }
 

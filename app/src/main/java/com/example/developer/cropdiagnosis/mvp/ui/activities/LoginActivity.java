@@ -127,6 +127,7 @@ public class LoginActivity extends BaseActivity implements LoginView {
         editor.putString("user_Id", user.user_Id);
         editor.putString("user_Money", user.user_Money);
         editor.putString("village", user.village);
+        editor.putBoolean("isLogined", true);
         editor.apply();
     }
 
