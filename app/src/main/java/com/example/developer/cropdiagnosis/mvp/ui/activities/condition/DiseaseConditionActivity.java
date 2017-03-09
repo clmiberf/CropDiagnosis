@@ -124,7 +124,7 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
 
     @Override
     public void showProgress() {
-        //alsdjf
+
     }
 
     @Override
