@@ -8,6 +8,7 @@ import java.util.List;
  */
 
 public interface DiagnoseView extends BaseView {
+    public void loadDiseaseImageView(List<String> imageUrlList);
     public void loadDiseaseName(String name);
     public void loadWordInstruction(String instruction);
     public void loadDiseaseCause(String cause);

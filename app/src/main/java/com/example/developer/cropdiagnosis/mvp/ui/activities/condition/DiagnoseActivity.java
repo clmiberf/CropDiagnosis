@@ -67,14 +67,14 @@ public class DiagnoseActivity extends BaseActivity implements DiagnoseView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initDiseaseName("张三");
-        initAccpter("李四");
-        initDiseaseCause("干旱病虫害");
+        loadDiseaseName("张三");
+        loadAccpter("李四");
+        loadDiseaseCause("干旱病虫害");
         List<String> eva = Arrays.asList("sfsd","sdfsd","fdsfds");
-        initEvaluate(eva);
-        initSupplement("有待提高");
-        initSoluteDate("2016.12.12");
-        initSolution("使用杀虫剂");
+        loadEvaluate(eva);
+        loadSupplement("有待提高");
+        loadSoluteDate("2016.12.12");
+        loadSolution("使用杀虫剂");
     }
 
     @Override
@@ -83,7 +83,7 @@ public class DiagnoseActivity extends BaseActivity implements DiagnoseView {
     }
 
     @Override
-    public void initDiseaseImageView(List<String> imageUrlList) {
+    public void loadDiseaseImageView(List<String> imageUrlList) {
 
     }
 

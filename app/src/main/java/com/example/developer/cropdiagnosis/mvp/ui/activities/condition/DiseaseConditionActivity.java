@@ -2,6 +2,8 @@ package com.example.developer.cropdiagnosis.mvp.ui.activities.condition;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.developer.cropdiagnosis.R;
@@ -31,7 +33,10 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     TextView contentWordInstruction;
     @BindView(R.id.crop_diagnose_btn)
     Button cropDiagnoseBtn;
-
+    List<ImageItem> imageList;
+    private int maxImageCount;
+    private ImagePickerAdapter imageAdapter;
+    private RecyclerView recyclerView;
     @Override
     public int getLayoutId() {
         return R.layout.content_disease_condition;
