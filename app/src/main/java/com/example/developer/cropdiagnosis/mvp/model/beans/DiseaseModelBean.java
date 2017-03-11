@@ -1,5 +1,8 @@
 package com.example.developer.cropdiagnosis.mvp.model.beans;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +12,7 @@ import java.util.List;
  */
 
 
-public class DiseaseModelBean {
+public class DiseaseModelBean implements Serializable {
 
     private long id;
 

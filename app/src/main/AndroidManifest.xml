@@ -48,12 +48,9 @@
             android:label="@string/home"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".mvp.ui.activities.condition.CropDiseaseCondition"
-            android:label="@string/title_activity_crop_disease_condition"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
-        <activity
             android:name=".mvp.ui.activities.condition.DiseaseConditionActivity"
             android:label="@string/title_activity_disease_condition"
+            android:launchMode="singleTop"
             android:parentActivityName=".mvp.ui.activities.HomeActivity" />
         <activity
             android:name=".mvp.ui.activities.condition.DiagnoseActivity"
@@ -66,8 +63,7 @@
         <activity
             android:name=".mvp.ui.activities.uersinfo.UserInfoSafeActivity"
             android:label="@string/title_activity_user_info_safe"
-            android:parentActivityName=".mvp.ui.activities.uersinfo.UserInfoActivity"
-            ></activity>
+            android:parentActivityName=".mvp.ui.activities.uersinfo.UserInfoActivity" />
     </application>
 
 </manifest>

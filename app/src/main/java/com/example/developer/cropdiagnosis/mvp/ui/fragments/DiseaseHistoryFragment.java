@@ -104,6 +104,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
             public void onItemClick(View view, int position) {
                 //you问题
                 Intent intent = new Intent(getActivity(), DiseaseConditionActivity.class);
+                intent.putExtra("Disease", diseaseData.get(position));
                 startActivity(intent);
                // Toast.makeText(getActivity(),"4r44r4erfwe",Toast.LENGTH_SHORT).show();
             }

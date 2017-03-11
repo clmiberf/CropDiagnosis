@@ -10,7 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.developer.cropdiagnosis.R;
+import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
+import com.example.developer.cropdiagnosis.mvp.view.DiagnoseView;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseConditionView;
 
 import java.util.Arrays;
@@ -19,7 +21,7 @@ import java.util.List;
 import butterknife.BindView;
 import fr.ganfra.materialspinner.MaterialSpinner;
 
-public class DiagnoseActivity extends BaseActivity implements DiseaseConditionView {
+public class DiagnoseActivity extends BaseActivity implements DiagnoseView {
 
     //评价
     @BindView(R.id.evaluate_selection)
@@ -38,8 +40,10 @@ public class DiagnoseActivity extends BaseActivity implements DiseaseConditionVi
     //受理人
     @BindView(R.id.disease_accept_person)
     TextView acceptPerson;
+    DiseaseModelBean disease;
 
     private ArrayAdapter<String> evaluateAdapter = null;
+
     @Override
     public int getLayoutId() {
         return R.layout.content_diagnose;
@@ -52,20 +56,17 @@ public class DiagnoseActivity extends BaseActivity implements DiseaseConditionVi
 
     @Override
     protected void initViews() {
-
+        disease = (DiseaseModelBean) getIntent().getSerializableExtra("Disease");
+        loadDiseaseName(disease.getDiseaseName());
+        loadDiseaseCause(disease.getDiseaseReason());
+        loadSoluteDate(disease.getSolveTime().toString());
+        loadSolution(disease.getSolution());
+        loadAccpter(disease.getAcceptExpertName());
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initDiseaseName("张三");
-        initAccpter("李四");
-        initDiseaseCause("干旱病虫害");
-        List<String> eva = Arrays.asList("sfsd","sdfsd","fdsfds");
-        initEvaluate(eva);
-        initSupplement("有待提高");
-        initSoluteDate("2016.12.12");
-        initSolution("使用杀虫剂");
     }
 
     @Override
@@ -74,37 +75,37 @@ public class DiagnoseActivity extends BaseActivity implements DiseaseConditionVi
     }
 
     @Override
-    public void initDiseaseName(String name) {
+    public void loadDiseaseName(String name) {
         diseaseName.setText(name);
     }
 
     @Override
-    public void initWordInstruction(String instruction) {
+    public void loadWordInstruction(String instruction) {
 
     }
 
     @Override
-    public void initDiseaseCause(String cause) {
+    public void loadDiseaseCause(String cause) {
         diseaseCause.setText(cause);
     }
 
     @Override
-    public void initSolution(String solution) {
+    public void loadSolution(String solution) {
         this.solution.setText(solution);
     }
 
     @Override
-    public void initSoluteDate(String soluteDate) {
+    public void loadSoluteDate(String soluteDate) {
         this.solutionDate.setText(soluteDate);
     }
 
     @Override
-    public void initAccpter(String accept) {
+    public void loadAccpter(String accept) {
         acceptPerson.setText(accept);
     }
 
     @Override
-    public void initEvaluate(List<String> evaluate) {
+    public void loadEvaluate(List<String> evaluate) {
         evaluateAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item,evaluate);
         evaluateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -113,7 +114,7 @@ public class DiagnoseActivity extends BaseActivity implements DiseaseConditionVi
     }
 
     @Override
-    public void initSupplement(String supplement) {
+    public void loadSupplement(String supplement) {
 
     }
 
@@ -126,5 +127,6 @@ public class DiagnoseActivity extends BaseActivity implements DiseaseConditionVi
     public void hideProgress() {
 
     }
+
 }
 

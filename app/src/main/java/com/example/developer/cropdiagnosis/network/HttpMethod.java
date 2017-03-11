@@ -163,6 +163,8 @@ public class HttpMethod {
         model.setSolution("病入膏肓，无法医治");
         model.setDiseaseReason("浇水过少");
         model.setSubmitTime(new Date(System.currentTimeMillis()));
+        model.setSolveTime(new Date(2016, 10, 1));
+        model.setSolveTime(new Date());
 
         data.add(model);
         data.add(model);
