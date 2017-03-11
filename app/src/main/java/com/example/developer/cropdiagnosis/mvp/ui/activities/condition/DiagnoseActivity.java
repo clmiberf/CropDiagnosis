@@ -74,6 +74,11 @@ public class DiagnoseActivity extends BaseActivity implements DiseaseConditionVi
     }
 
     @Override
+    public void initDiseaseImageView(List<String> imageUrlList) {
+
+    }
+
+    @Override
     public void initDiseaseName(String name) {
         diseaseName.setText(name);
     }

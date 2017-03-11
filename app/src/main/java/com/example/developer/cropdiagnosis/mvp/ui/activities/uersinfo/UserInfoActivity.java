@@ -3,12 +3,15 @@ package com.example.developer.cropdiagnosis.mvp.ui.activities.uersinfo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.presenter.UserInfoPresenter;
@@ -63,6 +66,22 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         userInfoPresenter.attachView(this);
         userInfoPresenter.onCreate(savedInstanceState);
         userInfoPresenter.getData(PreferenceManager.getDefaultSharedPreferences(this));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.user_info_change_menu_layout,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.user_info_change_menu_item:
+                Toast.makeText(this,"平哥最帅",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

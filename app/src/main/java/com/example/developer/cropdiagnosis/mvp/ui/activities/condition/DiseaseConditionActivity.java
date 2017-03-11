@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -16,8 +18,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.developer.cropdiagnosis.R;
+import com.example.developer.cropdiagnosis.adapter.ImagePickerAdapter;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseConditionView;
+import com.example.developer.cropdiagnosis.shared.GetUrlImageHelper;
+import com.stormphoenix.imagepicker.bean.ImageItem;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,7 +50,12 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     TextView supplement;
     @BindView(R.id.crop_diagnose_btn)
     Button diagnoseBtn;
-
+    @BindView(R.id.rv_disease_crop_picture_site)
+    RecyclerView recyclerView;
+    private List<ImageItem> imageList;
+    private int maxImageCount;
+    private ImagePickerAdapter imageAdapter;
+    private ArrayAdapter<String> adapter = null;
 
     @Override
     public int getLayoutId() {
@@ -81,6 +91,7 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     protected void initializeInjector() {
 
     }
+
 
     @Override
     public void initDiseaseName(String name) {
@@ -131,26 +142,32 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     public void hideProgress() {
 
     }
-//
-//    @Override
-//    public void initDiseaseImageView(String imageUrl) {
-//        Bitmap bmp = null;
-//        try {
-//            URL myurl = new URL(imageUrl);
-//            //获得链接
-//            HttpURLConnection connection = (HttpURLConnection) myurl.openConnection();
-//            connection.setConnectTimeout(6000);
-//            connection.setDoInput(true);
-//            connection.setUseCaches(false);
-//            InputStream is = connection.getInputStream();
-//            bmp = BitmapFactory.decodeStream(is);
-//            is.close();
-//            cropImage.setImageBitmap(bmp);
-//        } catch (MalformedURLException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
+
+    @Override
+    public void initDiseaseImageView(List<ImageItem> imageUrlList) {
+//       Bitmap bmp = null;
+        
+        imageList = imageUrlList;
+        maxImageCount = 10;
+        imageAdapter = new ImagePickerAdapter(this, imageList, maxImageCount);
+        imageAdapter.setOnItemClickListener((ImagePickerAdapter.OnRecyclerViewItemClickListener) this);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(imageAdapter);
+//           for (int i=0;i<imageUrlList.size();i++){
+//               // String url = imageUrlList.get(i);
+////                URL myurl = new URL(url);
+////                //获得链接
+////                HttpURLConnection connection = (HttpURLConnection) myurl.openConnection();
+////                connection.setConnectTimeout(6000);
+////                connection.setDoInput(true);
+////        connection.setUseCaches(false);
+////                InputStream is = connection.getInputStream();
+//                bmp = BitmapFactory.decodeStream(new GetUrlImageHelper().getUrlImage(imageUrlList.get(i)));
+//                cropImage.setImageBitmap(bmp);
+//                imageList.add(cropImage);
+//            }
+
+    }
 
 }

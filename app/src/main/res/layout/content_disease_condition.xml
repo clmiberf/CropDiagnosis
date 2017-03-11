@@ -28,23 +28,44 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
                 <TextView
-                    android:id="@+id/picture_instruction"
-                    android:text="@string/caption"
-                    android:textSize="20dp"
-                    android:layout_marginTop="10dp"
+                android:id="@+id/picture_instruction"
+                android:text="@string/caption"
+                android:textSize="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/spins_wrapper"/>
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_disease_crop_picture_site"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/spins_wrapper"/>
-                <ImageView
-                    android:layout_centerInParent="true"
-                    android:id="@+id/image_crop"
-                    android:scaleType="centerCrop"
-                    android:layout_below="@+id/picture_instruction"
-                    android:layout_marginTop="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:background="@mipmap/crop_background"/>
-                <!--android:layout_width="150dp"-->
+                    android:choiceMode="singleChoice"
+                    android:divider="@null"
+                    android:fadingEdge="none"
+                    android:listSelector="@android:color/transparent"
+                    android:scrollbarStyle="outsideOverlay"
+                    app:layoutManager="android.support.v7.widget.GridLayoutManager"
+                    app:spanCount="4"
+                    tools:listitem="@layout/list_item_image" />
+
+                <!--<TextView-->
+                    <!--android:id="@+id/picture_instruction"-->
+                    <!--android:text="@string/caption"-->
+                    <!--android:textSize="20dp"-->
+                    <!--android:layout_marginTop="10dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@+id/spins_wrapper"/>-->
+                <!--<ImageView-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--android:id="@+id/image_crop"-->
+                    <!--android:scaleType="centerCrop"-->
+                    <!--android:layout_below="@+id/picture_instruction"-->
+                    <!--android:layout_marginTop="8dp"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="150dp"-->
+                    <!--android:background="@mipmap/crop_background"/>-->
+                <!--&lt;!&ndash;android:layout_width="150dp"&ndash;&gt;-->
 
             </LinearLayout>
 

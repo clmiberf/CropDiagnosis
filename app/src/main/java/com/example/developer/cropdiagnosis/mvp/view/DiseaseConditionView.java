@@ -3,6 +3,7 @@ package com.example.developer.cropdiagnosis.mvp.view;
 import android.widget.ImageView;
 
 import com.example.developer.cropdiagnosis.mvp.view.base.BaseView;
+import com.stormphoenix.imagepicker.bean.ImageItem;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ import java.util.List;
  */
 
 public interface DiseaseConditionView extends BaseView{
-    //void initDiseaseImageView(String imageUrl);
+    void initDiseaseImageView(List<ImageItem> imageUrlList);
     void initDiseaseName(String name);
     void initWordInstruction(String instruction);
     void initDiseaseCause(String cause);

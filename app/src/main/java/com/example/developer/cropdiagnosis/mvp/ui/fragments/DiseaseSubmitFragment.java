@@ -54,8 +54,8 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
     @BindView(R.id.btn_submit_disease_disease_submit)
     Button btnSubmitDisease;
     private List<ImageItem> selImageList;
-    private int maxImgCount;
     private ImagePickerAdapter imagePickerAdapter;
+    private int maxImgCount;
     private ArrayAdapter<String> adapter = null;
     List<String> cropList;
     ProgressDialog progressDialog;
@@ -172,7 +172,6 @@ public class DiseaseSubmitFragment extends BaseFragment implements DiseaseSubmit
         progressDialog.create();
         progressDialog.show();
     }
-
     @Override
     public void hideProgress() {
         progressDialog.dismiss();

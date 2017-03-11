@@ -9,6 +9,9 @@
     <string name="telphone_number">手机号码:</string>
     <string name="check_code">验证码:</string>
     <string name="get_check_code">获取验证码</string>
+    <string name="chose_register_type">请选择注册类型:</string>
+    <string name="chose_register_type_person">个人注册</string>
+    <string name="chose_register_type_company">公司注册</string>
     <string name="retry_password">再次输入密码:</string>
     <string name="village">所在村镇</string>
     <string name="reset">重置</string>
