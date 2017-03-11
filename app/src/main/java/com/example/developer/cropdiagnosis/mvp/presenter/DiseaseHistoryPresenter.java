@@ -1,15 +1,17 @@
 package com.example.developer.cropdiagnosis.mvp.presenter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import com.example.developer.cropdiagnosis.CropApplication;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.db.DbConstants;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
+import com.example.developer.cropdiagnosis.mvp.model.impls.DiseaseHistoryModelApiImpl;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseHistoryView;
 import com.example.developer.cropdiagnosis.network.HttpResult;
-import com.example.developer.cropdiagnosis.shared.ConfigManager;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,13 +30,17 @@ import rx.Subscriber;
 public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
 
     private Context mContext = null;
-    private List<String> cropDataList;
-    private List<String> diagnosedStatus;
-    private List<String> durationDataList;
+    private SharedPreferences preferences = null;
+    private String userId = null;
 
     @Inject
-    public DiseaseHistoryPresenter(Context context) {
+    DiseaseHistoryPresenter(Context context) {
         mContext = context;
+    }
+
+    public DiseaseHistoryPresenter(Context context, SharedPreferences preferences) {
+        this.preferences = preferences;
+        userId  = preferences.getString("user_Id", "");
     }
 
     @Override
@@ -43,11 +49,11 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
         loadCropKindInfo();
         loadCropStatusInfo();
         loadDurationInfo();
-        loadDiseaseHistoryInfo(ConfigManager.getUserId());
+        loadDiseaseHistoryInfo();
     }
 
     private void loadDurationInfo() {
-        durationDataList = Arrays.asList("一个月", "一年");
+        List<String> durationDataList = Arrays.asList("一个月", "一年");
         mView.initDurationSpinner(durationDataList);
     }
 
@@ -57,8 +63,8 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
      * 1.已诊断
      * 2.未诊断
      */
-    public void loadCropStatusInfo() {
-        diagnosedStatus = new ArrayList<>();
+    private void loadCropStatusInfo() {
+        List<String> diagnosedStatus = new ArrayList<>();
         diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.diagnosed));
         diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.not_diagnosed));
         /**
@@ -70,9 +76,8 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
     /**
      * 获取作物种类信息
      */
-    public void loadCropKindInfo() {
-        ConfigManager.getUserPreferCrops().toArray();
-        cropDataList = Arrays.asList("水稻", "小猫");
+    private void loadCropKindInfo() {
+        List<String> cropDataList = Arrays.asList("水稻", "小猫");
         /**
          * 调用 BaseView
          */
@@ -84,39 +89,15 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
      *
      * @param userId
      */
-    public void loadDiseaseHistoryInfo(String userId) {
+    public void loadDiseaseHistoryInfo1(String userId) {
         /**
          * Fake data
          */
         Observable.create(new Observable.OnSubscribe<HttpResult<List<DiseaseModelBean>>>() {
             @Override
             public void call(Subscriber<? super HttpResult<List<DiseaseModelBean>>> subscriber) {
-                HttpResult<List<DiseaseModelBean>> result = new HttpResult<List<DiseaseModelBean>>();
-                List<DiseaseModelBean> data = new ArrayList<DiseaseModelBean>();
-                DiseaseModelBean model = new DiseaseModelBean();
 
-                model.setAcceptExpertName("王成");
-                model.setCommentDetails("还不错");
-                model.setCommentType(DbConstants.CommentType.GOOD);
-                model.setCrop("麦子");
-                model.setDescription("麦子病的很重 :(");
-                model.setDiseaseName("天花");
-                model.setDiseaseStatus(DbConstants.DiagnosedStatus.NOT_DIAGNOSED);
-                model.setHasCommented(false);
-                model.setImageUrl(null);
-                model.setSolution("病入膏肓，无法医治");
-                model.setDiseaseReason("浇水过少");
-                model.setSubmitTime(new Date(System.currentTimeMillis()));
 
-                data.add(model);
-                data.add(model);
-                data.add(model);
-                data.add(model);
-                data.add(model);
-
-                result.setData(data);
-
-                subscriber.onNext(result);
             }
         }).subscribe(new Subscriber<HttpResult<List<DiseaseModelBean>>>() {
             @Override
@@ -150,5 +131,10 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
         }
         });
          **/
+    }
+
+    private void loadDiseaseHistoryInfo() {
+        DiseaseHistoryModelApiImpl diseaseHistoryModelApi = new DiseaseHistoryModelApiImpl();
+        diseaseHistoryModelApi.loadDiseaseHistory(userId, mView);
     }
 }

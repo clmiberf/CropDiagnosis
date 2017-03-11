@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -12,7 +13,6 @@ import android.widget.ImageView;
 
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
-import com.example.developer.cropdiagnosis.shared.ConfigManager;
 
 import butterknife.BindView;
 
@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                if (ConfigManager.isUserLogin()) {
+                if (PreferenceManager.getDefaultSharedPreferences(MainActivity.this).getBoolean("isLogined", false)) {
                     finish();
                     startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 }

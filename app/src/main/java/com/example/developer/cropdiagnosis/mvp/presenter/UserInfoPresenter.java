@@ -42,9 +42,9 @@ public class UserInfoPresenter extends BasePresenter<UserInfoView> {
 
     //获取数据就在这里
     public void getData(SharedPreferences preferences) {
-        loadUserAccount(preferences.getString("user_Id", ""));
-        loadUserName(preferences.getString("username", ""));
-        loadUserId(preferences.getString("userIdcard", ""));
+        loadUserAccount(preferences.getString("user_Id", "123456"));
+        loadUserName(preferences.getString("user_Name", "项三六"));
+        loadUserId(preferences.getString("IDcard", "3623***********"));
     }
 
     public void onGetDataSuccess() {
