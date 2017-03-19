@@ -80,7 +80,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 
     Handler handler = new Handler() {
         public void handleMessage(Message msg) {
-            Toast.makeText(RegisterActivity.this, "eeeee", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(RegisterActivity.this, "eeeee", Toast.LENGTH_SHORT).show();
             if (msg.what == -1) {
                 //修改控件文本进行倒计时  i 以60秒倒计时为例
                 getCheckCode.setText(i + " s");
@@ -136,7 +136,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
                 String phoneNum = etTelNumber.getText().toString().trim();
                 //待添加添加短信验证信息
                 //初始化SMSSDK
-                cn.smssdk.SMSSDK.initSDK(RegisterActivity.this, "1a8f8e2678f92", "a55e900fcecaa4d136b85733e6336aa3");
+                cn.smssdk.SMSSDK.initSDK(RegisterActivity.this, "1c235bc0af12d", "575be61e723d6879695ea361b439784f");
                 EventHandler eventHandler = new EventHandler() {
                     @Override
                     public void afterEvent(int event, int result, Object data) {

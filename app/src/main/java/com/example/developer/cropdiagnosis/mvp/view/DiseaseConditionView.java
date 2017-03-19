@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 public interface DiseaseConditionView extends BaseView{
-    void initDiseaseImageView(List<ImageItem> imageUrlList);
+    void initDiseaseImageView(List<String> imageUrlList);
     void loadDescription(String description);
     void loadImages(List<String> imageUrl);
 }

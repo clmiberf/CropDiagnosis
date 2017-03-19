@@ -4,15 +4,22 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.developer.cropdiagnosis.R;
+import com.example.developer.cropdiagnosis.adapter.ImageAdapter;
 import com.example.developer.cropdiagnosis.adapter.ImagePickerAdapter;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseConditionView;
 import com.example.developer.cropdiagnosis.shared.GetUrlImageHelper;
+import com.stormphoenix.imagepicker.FishImageType;
+import com.stormphoenix.imagepicker.ImagePicker;
 import com.stormphoenix.imagepicker.bean.ImageItem;
+import com.stormphoenix.imagepicker.ui.ImageGridActivity;
+import com.stormphoenix.imagepicker.ui.ImagePreviewDelActivity;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,6 +33,8 @@ import java.util.List;
 import butterknife.BindView ;
 import butterknife.OnClick ;
 
+import static com.stormphoenix.imagepicker.ImagePicker.REQUEST_CODE_PREVIEW;
+
 public class DiseaseConditionActivity extends BaseActivity implements DiseaseConditionView {
 
     DiseaseModelBean disease;
@@ -33,10 +42,14 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     TextView contentWordInstruction;
     @BindView(R.id.crop_diagnose_btn)
     Button cropDiagnoseBtn;
+    @BindView(R.id.rv_disease_crop_picture_site)
+    RecyclerView recyclerView;
+
     List<ImageItem> imageList;
     private int maxImageCount;
-    private ImagePickerAdapter imageAdapter;
-    private RecyclerView recyclerView;
+    //private ImagePickerAdapter imageAdapter;
+    private ImageAdapter imageAdapter;
+
     @Override
     public int getLayoutId() {
         return R.layout.content_disease_condition;
@@ -57,6 +70,15 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        List<String> imageItems = new ArrayList<String>();
+        imageItems.add("http://img.my.csdn.net/uploads/201407/26/1406383299_1976.jpg");
+        imageItems.add("http://img.my.csdn.net/uploads/201407/26/1406383291_6518.jpg");
+        imageItems.add("http://img.my.csdn.net/uploads/201407/26/1406383291_8239.jpg");
+        imageItems.add("http://img.my.csdn.net/uploads/201407/26/1406383290_9329.jpg");
+        imageItems.add("http://img.my.csdn.net/uploads/201407/26/1406383290_1042.jpg");
+        imageItems.add("http://img.my.csdn.net/uploads/201407/26/1406383275_3977.jpg");
+        initDiseaseImageView(imageItems);
     }
 
     @Override
@@ -75,13 +97,11 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     }
 
     @Override
-    public void initDiseaseImageView(List<ImageItem> imageUrlList) {
+    public void initDiseaseImageView(List<String> imageUrlList) {
 //       Bitmap bmp = null;
-
-        imageList = imageUrlList;
+        
         maxImageCount = 10;
-        imageAdapter = new ImagePickerAdapter(this, imageList, maxImageCount);
-        imageAdapter.setOnItemClickListener((ImagePickerAdapter.OnRecyclerViewItemClickListener) this);
+        imageAdapter = new ImageAdapter(this,imageUrlList);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(imageAdapter);
@@ -117,5 +137,24 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
         intent.putExtra("Disease", disease);
         startActivity(intent);
     }
+
+//    @Override
+//    public void onItemClick(View view, int position) {
+//        switch (position) {
+//            case -1:
+//                ImagePicker.getInstance().setSelectLimit(maxImageCount - imageList.size());
+//                Intent intent = new Intent(this, ImageGridActivity.class);
+//                intent.putExtra(FishImageType.IMAGE_TYPE, FishImageType.MONITORING_SITE);
+//                this.startActivityForResult(intent, HomeActivity.PICK_IMAGE);
+//                break;
+//            default:
+//                Intent intentPreview = new Intent(this, ImagePreviewDelActivity.class);
+//                intentPreview.putExtra(ImagePicker.EXTRA_IMAGE_ITEMS, (ArrayList<ImageItem>) imageAdapter.getItemCount());
+//                intentPreview.putExtra(ImagePicker.EXTRA_SELECTED_IMAGE_POSITION, position);
+//                this.startActivityForResult(intentPreview, REQUEST_CODE_PREVIEW);
+//                break;
+//        }
+//
+//    }
 
 }

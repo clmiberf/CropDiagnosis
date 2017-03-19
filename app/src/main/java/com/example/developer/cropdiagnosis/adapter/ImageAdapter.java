@@ -1,11 +1,14 @@
 package com.example.developer.cropdiagnosis.adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.shared.CropImage;
 
@@ -19,13 +22,15 @@ import static com.example.developer.cropdiagnosis.R.id.image_crop_item;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageCropView> {
 
-    private List<CropImage> imageViewList;
-    public ImageAdapter(List<CropImage> list){
+    private Context mContext;
+    private List<String> imageViewList;
+    public ImageAdapter(Context context,List<String> list){
+        this.mContext = context;
         this.imageViewList = list;
     }
 
     @Override
-    public ImageAdapter.ImageCropView onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ImageCropView onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(
                 R.layout.activity_content_disease_image_item,parent,false);
         return new ImageCropView(view);
@@ -33,8 +38,17 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.ImageCropVie
 
     @Override
     public void onBindViewHolder(ImageCropView holder, int position) {
-        holder.imageView.setImageResource(imageViewList.get(position).getCropImg());
+        String url = imageViewList.get(position);
+        Glide.with(mContext)
+                .load(url).diskCacheStrategy(DiskCacheStrategy.RESULT)
+                .into(holder.imageView);
+        //设置图片的点击事件
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     @Override

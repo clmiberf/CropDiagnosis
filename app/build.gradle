@@ -26,6 +26,12 @@ android {
     }
 }
 
+android {
+    defaultConfig {
+        multiDexEnabled true
+    }
+}
+
 retrolambda {
     //javaVersion JavaVersion.VERSION_1_6
 }
