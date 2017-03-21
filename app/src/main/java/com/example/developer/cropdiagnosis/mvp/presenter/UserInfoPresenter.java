@@ -30,7 +30,6 @@ public class UserInfoPresenter extends BasePresenter<UserInfoView> {
         list.add("武汉");
         list.add("广州");
         loadUserAccount("123456");
-        loadUserVariety("variety");
         loadUserId("id");
         loadUserName("xiangsanliu");
         loadUserLocationSpinner(list);
@@ -53,10 +52,6 @@ public class UserInfoPresenter extends BasePresenter<UserInfoView> {
 
     private void loadUserAccount(String account) {
         mView.loadUserAccount(account);
-    }
-
-    private void loadUserVariety(String variety) {
-        mView.loadUserVariety(variety);
     }
 
     private void loadUserName(String userName) {

@@ -12,7 +12,6 @@ public interface UserInfoView extends BaseView {
 
 
     void loadUserAccount(String account);
-    void loadUserVariety(String variety);
     void loadUserName(String userName);
     void loadUserId(String userId);
     void loadUserSafeOnclik();

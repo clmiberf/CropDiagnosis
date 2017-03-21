@@ -27,8 +27,6 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
 
     @BindView(R.id.user_account)
     TextView userAccount;
-    @BindView(R.id.plant_variety)
-    TextView variety;
     @BindView(R.id.user_name)
     TextView userName;
     @BindView(R.id.user_id)
@@ -104,10 +102,6 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         userAccount.setText(account);
     }
 
-    @Override
-    public void loadUserVariety(String userVariety) {
-        variety.setText(userVariety);
-    }
 
     @Override
     public void loadUserName(String userNameText) {

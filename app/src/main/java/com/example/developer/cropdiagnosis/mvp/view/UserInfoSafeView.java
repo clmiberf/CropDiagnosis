@@ -10,8 +10,6 @@ import java.util.List;
 
 public interface UserInfoSafeView extends BaseView {
     void loadSafeUserAccount(String account);
-    void loadSafeUserQQ(String qq);
-    void loadSafeUserWeChat(String weChat);
     void loadSafeTelephone(String telephone);
     void loadSafeUserMailbox(String mailbox);
 }

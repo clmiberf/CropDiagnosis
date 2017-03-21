@@ -22,10 +22,6 @@ import butterknife.OnClick;
 public class UserInfoSafeActivity extends BaseActivity implements UserInfoSafeView {
     @BindView(R.id.user_safe_account)
     TextView safeAccount;
-    @BindView(R.id.user_safe_qq)
-    TextView safeQQ;
-    @BindView(R.id.user_safe_wechat)
-    TextView safeWeChat;
     @BindView(R.id.user_safe_telephone)
     TextView safeTelephone;
     @BindView(R.id.user_safe_mailbox)
@@ -74,15 +70,6 @@ public class UserInfoSafeActivity extends BaseActivity implements UserInfoSafeVi
         safeAccount.setText(account);
     }
 
-    @Override
-    public void loadSafeUserQQ(String qq) {
-        safeQQ.setText(qq);
-    }
-
-    @Override
-    public void loadSafeUserWeChat(String weChat) {
-        safeWeChat.setText(weChat);
-    }
 
     @Override
     public void loadSafeTelephone(String telephone) {

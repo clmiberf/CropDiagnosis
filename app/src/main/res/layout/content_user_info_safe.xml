@@ -73,31 +73,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:text="微信号："
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent" />
-                <TextView
-                    android:id="@+id/user_safe_wechat"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center"
-                    android:lines="1"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="80dp"
-                android:layout_height="1dp"
-                android:background="#BEBEBE"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -116,31 +91,6 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_marginLeft="80dp"
-                android:layout_height="1dp"
-                android:background="#BEBEBE"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="15dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:text="QQ号："
-                    android:textSize="20dp"
-                    android:gravity="center"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
-                <TextView
-                    android:id="@+id/user_safe_qq"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="center"
-                    android:lines="1"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_marginLeft="70dp"
                 android:layout_height="1dp"
                 android:background="#BEBEBE"/>
             <LinearLayout
