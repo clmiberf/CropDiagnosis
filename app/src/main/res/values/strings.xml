@@ -25,10 +25,10 @@
     <string name="spinner_status_chose_hint">选择状态</string>
     <string name="spinner_evaluate_chose_hint">选择评价</string>
     <string name="spinner_location_chose_hint">选择所在地</string>
-    <string name="crop">作物:</string>
-    <string name="spinner_duration">时间:</string>
-    <string name="status">状态:</string>
-    <string name="crop_time">时间:</string>
+    <string name="crop">作物: </string>
+    <string name="spinner_duration">时间: </string>
+    <string name="status">\t状态: </string>
+    <string name="crop_time">\t时间:</string>
     <string name="diagnosed">已诊断</string>
     <string name="not_diagnosed">未诊断</string>
 

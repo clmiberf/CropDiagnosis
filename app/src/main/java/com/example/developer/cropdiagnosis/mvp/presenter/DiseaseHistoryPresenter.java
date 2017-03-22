@@ -46,43 +46,9 @@ public class DiseaseHistoryPresenter extends BasePresenter<DiseaseHistoryView> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        loadCropKindInfo();
-        loadCropStatusInfo();
-        loadDurationInfo();
         loadDiseaseHistoryInfo();
     }
 
-    private void loadDurationInfo() {
-        List<String> durationDataList = Arrays.asList("一个月", "一年");
-        mView.initDurationSpinner(durationDataList);
-    }
-
-    /**
-     * 获取作物病例状态信息。
-     * 状态：
-     * 1.已诊断
-     * 2.未诊断
-     */
-    private void loadCropStatusInfo() {
-        List<String> diagnosedStatus = new ArrayList<>();
-        diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.diagnosed));
-        diagnosedStatus.add(CropApplication.getInstance().getResources().getString(R.string.not_diagnosed));
-        /**
-         * 调用 BaseView
-         */
-        mView.initStatusSpinner(diagnosedStatus);
-    }
-
-    /**
-     * 获取作物种类信息
-     */
-    private void loadCropKindInfo() {
-        List<String> cropDataList = Arrays.asList("水稻", "小猫");
-        /**
-         * 调用 BaseView
-         */
-        mView.initCropSpinner(cropDataList);
-    }
 
     /**
      * 获取历史病害信息

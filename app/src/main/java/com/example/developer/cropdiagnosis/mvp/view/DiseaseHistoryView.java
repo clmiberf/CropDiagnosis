@@ -13,11 +13,6 @@ import java.util.List;
 public interface DiseaseHistoryView extends BaseView {
     void initDiseaseListView(List<DiseaseModelBean> diseaseData);
 
-    void initCropSpinner(List<String> cropData);
-
-    void initDurationSpinner(List<String> durationData);
-
-    void initStatusSpinner(List<String> statusData);
 
     void loadSuccess(List<DiseaseModelBean> data);
 
