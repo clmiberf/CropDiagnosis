@@ -7,8 +7,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:layout_scrollFlags="enterAlways|scroll"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:layout_gravity="center_horizontal"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
+        android:layout_below="@+id/toolbar"
         android:id="@+id/tl_home"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_layout_height"

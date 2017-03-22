@@ -1,10 +1,14 @@
 package com.example.developer.cropdiagnosis.mvp.ui.activities.base;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
+import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.presenter.BasePresenter;
 import com.example.developer.cropdiagnosis.shared.ThemeManager;
 
@@ -36,6 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initVariables();
         initViews();
+        setUpToolbar();
     }
 
     private void setNigthOrDayMode() {
@@ -47,5 +52,13 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected abstract void initializeInjector();
+
+    private void setUpToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null ) {
+            setSupportActionBar(toolbar);
+            toolbar.setTitleTextColor(Color.WHITE);
+        }
+    }
 
 }

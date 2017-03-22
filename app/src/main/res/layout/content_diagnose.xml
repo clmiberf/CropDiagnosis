@@ -6,20 +6,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.developer.cropdiagnosis.mvp.ui.activities.condition.DiagnoseActivity"
     >
 
-    <!--<android.support.v7.widget.CardView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:background="#FFFFFF"-->
-        <!--app:cardCornerRadius="5dp">-->
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        app:layout_scrollFlags="enterAlways|scroll"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:layout_gravity="center_horizontal"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin">
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -41,7 +47,7 @@
                     android:orientation="horizontal">
                     <TextView
                         android:text="@string/disease_name"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         />
@@ -69,7 +75,7 @@
 
                     <TextView
                         android:text="@string/disease_cause"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         />
@@ -88,21 +94,20 @@
                     android:background="#BEBEBE"/>
                 <LinearLayout
                     android:id="@+id/diagnose_condition_2"
-                    android:layout_below="@+id/diagnose_condition_1"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
                     <TextView
                         android:text="@string/solution_time"
-                        android:textSize="20dp"
+                        android:textSize="20sp"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         />
 
                     <TextView
                         android:id="@+id/solution_time"
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:gravity="center"
@@ -134,7 +139,7 @@
             android:orientation="vertical">
             <TextView
                 android:text="@string/solution"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"/>
@@ -165,7 +170,7 @@
 
                 <TextView
                     android:text="@string/accept_person"
-                    android:textSize="20dp"
+                    android:textSize="20sp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -173,7 +178,7 @@
 
                 <TextView
                     android:id="@+id/disease_accept_person"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -190,7 +195,7 @@
             <fr.ganfra.materialspinner.MaterialSpinner
                 android:id="@+id/evaluate_selection"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
                 app:ms_arrowColor="@color/spinner_arrow_color"
@@ -204,15 +209,6 @@
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
-    <!--<LinearLayout-->
-                    <!--android:id="@+id/diagnose_condition_3"-->
-                    <!--android:layout_marginTop="15dp"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="100dp"-->
-                    <!--android:orientation="vertical">-->
-                   <!---->
-                <!--</LinearLayout>-->
-    <!--</android.support.v7.widget.CardView>-->
 
-
+    </LinearLayout>
 </LinearLayout>
