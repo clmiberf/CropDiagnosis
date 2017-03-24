@@ -7,8 +7,10 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.db.DbConstants;
 
@@ -24,6 +26,8 @@ public class SingleDiseaseItemView extends FrameLayout {
     private TextView tvCrop;
     private TextView tvDate;
     private TextView tvStatus;
+    private TextView tvSummary;
+    private ImageView imageView;
 
     public SingleDiseaseItemView(Context context) {
         super(context);
@@ -49,6 +53,8 @@ public class SingleDiseaseItemView extends FrameLayout {
         tvCrop = (TextView) view.findViewById(R.id.tv_crop_disease_item);
         tvDate = (TextView) view.findViewById(R.id.tv_date_disease_item);
         tvStatus = (TextView) view.findViewById(R.id.tv_status_disease_item);
+        tvSummary = (TextView) view.findViewById(R.id.tv_summary_disease_item);
+        imageView = (ImageView) view.findViewById(R.id.image_view);
     }
 
     public void setStatusText(int status) {
@@ -56,14 +62,23 @@ public class SingleDiseaseItemView extends FrameLayout {
     }
 
     public void setDateText(Date date) {
-        StringBuilder dateBuilder = new StringBuilder()
-                .append(date.getYear() + 1900).append(" ")
-                .append(date.getMonth()).append(" ")
-                .append(date.getDay() + 11);
-        tvDate.setText(dateBuilder.toString());
+        String dateBuilder = String.valueOf(date.getYear() + 1900) + " " +
+                date.getMonth() + " " +
+                (date.getDay() + 11);
+        tvDate.setText(dateBuilder);
     }
 
     public void setCropText(String cropText) {
         this.tvCrop.setText(cropText);
+    }
+
+    public void setSummaryText(String summary) {
+        this.tvSummary.setText(summary);
+    }
+
+    public void setImageView(String imageUrl, Context context) {
+        Glide.with(context)
+                .load(imageUrl)
+                .into(imageView);
     }
 }

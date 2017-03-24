@@ -33,19 +33,8 @@ import fr.ganfra.materialspinner.MaterialSpinner;
 
 public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHistoryView {
 
-    MaterialSpinner mspinStatus;
     @BindView(R.id.rv_content_disease_history)
     RecyclerView rvContent;
-    private List<DiseaseModelBean> diseaseModelList;
-    private DiseaseModelBean diseaseModel;
-
-
-    private DiseaseListAdapter diseaseAdapter = null;
-    private List<DiseaseModelBean> data = new ArrayList<>();
-    private ArrayAdapter<String> cropAdapter = null;
-    private ArrayAdapter<String> durationAdapter = null;
-    private ArrayAdapter<String> statusAdapter = null;
-
 
 
     @Override
@@ -61,11 +50,6 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 //                .inject(this);
     }
 
-    protected void initVariables() {
-        data = new ArrayList<>();
-    }
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,7 +64,7 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
 
     @Override
     public void initDiseaseListView(List<DiseaseModelBean> diseaseData) {
-        diseaseAdapter = new DiseaseListAdapter(this.getActivity(), diseaseData);
+        DiseaseListAdapter diseaseAdapter = new DiseaseListAdapter(this.getActivity(), diseaseData);
         rvContent.setLayoutManager(new LinearLayoutManager(this.getActivity(), LinearLayoutManager.VERTICAL, false));
         rvContent.setAdapter(diseaseAdapter);
         diseaseAdapter.setClickListener(new DiseaseListAdapter.OnItemClickListener() {
@@ -116,10 +100,4 @@ public class DiseaseHistoryFragment extends BaseFragment implements DiseaseHisto
     public void hideProgress() {
 
     }
-
-//    public interface DiseaseHistoryCallback {
-//        void onLoadHistoryInfoSuccess(List<DiseaseModelBean> datas);
-//
-//        void onLoadHistoryInfoFailed(Throwable e);
-//    }
 }

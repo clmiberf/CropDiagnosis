@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.developer.cropdiagnosis.mvp.model.DiseaseModel;
 import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.ui.component.SingleDiseaseItemView;
 
@@ -46,9 +47,16 @@ public class DiseaseListAdapter extends RecyclerView.Adapter<DiseaseListAdapter.
 
     @Override
     public void onBindViewHolder(DiseaseHolder holder, int position) {
-        holder.singleItemView.setCropText(datas.get(position).getCrop());
-        holder.singleItemView.setDateText(datas.get(position).getSubmitTime());
-        holder.singleItemView.setStatusText(datas.get(position).getDiseaseStatus());
+        DiseaseModelBean diseaseModel = datas.get(position);
+        holder.singleItemView.setCropText(diseaseModel.getCrop());
+        holder.singleItemView.setDateText(diseaseModel.getSubmitTime());
+        holder.singleItemView.setStatusText(diseaseModel.getDiseaseStatus());
+        holder.singleItemView.setSummaryText(diseaseModel.getDescription());
+//        if (diseaseModel.getImageUrl().size()>0) {
+//            holder.singleItemView.setImageView(diseaseModel.getImageUrl().get(0), context);
+//        }
+        holder.singleItemView.setImageView("http://img.my.csdn.net/uploads/201407/26/1406383299_1976.jpg", context);
+
 
         holder.singleItemView.setOnClickListener(new View.OnClickListener() {
             @Override

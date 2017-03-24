@@ -7,36 +7,8 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_content_disease_history"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp" />
-
-    <LinearLayout
-        android:id="@+id/btns_wrapper"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btn_delete_disease_history"
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:text="@string/delete"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn_back_disease_history"
-            style="?android:textAppearanceSmall"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_weight="1"
-            android:text="@string/back"
-            android:textStyle="bold" />
-    </LinearLayout>
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>
