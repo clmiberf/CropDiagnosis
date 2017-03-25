@@ -6,33 +6,36 @@
     android:orientation="vertical"
     tools:context="com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment">
 
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:textColor="@android:color/black"
+            android:text="@string/crop" />
+
+        <Spinner
+            android:id="@+id/mspin_crop_kind_disease_submit"
+            android:layout_width="match_parent"
+            android:layout_height="35dp" />
+    </LinearLayout>
+
+
     <TextView
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/crop" />
-
-    <!--<fr.ganfra.materialspinner.MaterialSpinner-->
-        <!--android:id="@+id/mspin_crop_kind_disease_submit"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginLeft="16dp"-->
-        <!--android:layout_marginRight="16dp"-->
-        <!--android:layout_marginTop="16dp"-->
-        <!--app:ms_arrowColor="@color/spinner_arrow_color"-->
-        <!--app:ms_baseColor="@color/spinner_base_color"-->
-        <!--app:ms_enableErrorLabel="true"-->
-        <!--app:ms_enableFloatingLabel="true"-->
-        <!--app:ms_floatingLabelColor="@color/spinner_floating_label_color"-->
-        <!--app:ms_floatingLabelText="@string/crop"-->
-        <!--app:ms_hint="@string/spinner_crop_chose_hint"-->
-        <!--app:ms_multiline="false"></fr.ganfra.materialspinner.MaterialSpinner>-->
-
-    <Spinner
-        android:id="@+id/mspin_crop_kind_disease_submit"
-        android:layout_width="match_parent"
-        android:layout_height="35dp"></Spinner>
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:text="@string/please_add_image" />
 
     <android.support.v7.widget.RecyclerView
+        android:layout_margin="10dp"
         android:id="@+id/rv_pic_monitor_site"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -46,17 +49,23 @@
         tools:listitem="@layout/list_item_image" />
 
     <TextView
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
         android:text="@string/illustration" />
 
     <EditText
+        android:layout_margin="10dp"
         android:id="@+id/et_disease_illustration_disease_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:lines="4"
         android:hint="@string/disease_illustration" />
 
     <Button
+        android:layout_margin="10dp"
         android:id="@+id/btn_submit_disease_disease_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

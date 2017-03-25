@@ -10,6 +10,5 @@ import rx.Subscription;
  */
 
 public interface RegisterModelApi {
-    Subscription register(String phoneNumber, String password, boolean isPerson
-            , String province, String city, String county, String village, RegisterView view);
+    Subscription register(String phoneNumber, String password, RegisterView view);
 }

@@ -63,6 +63,9 @@
             android:name=".mvp.ui.activities.uersinfo.UserInfoSafeActivity"
             android:label="@string/title_activity_user_info_safe"
             android:parentActivityName=".mvp.ui.activities.uersinfo.UserInfoActivity" />
+        <activity android:name=".mvp.ui.activities.EditInfoActivity"
+            android:label="@string/title_activity_edit_info"
+            android:parentActivityName=".mvp.ui.activities.RegisterActivity"/>
     </application>
 
 </manifest>

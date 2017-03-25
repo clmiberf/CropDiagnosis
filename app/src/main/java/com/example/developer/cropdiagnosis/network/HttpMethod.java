@@ -104,8 +104,8 @@ public class HttpMethod {
 
     }
 
-    public Subscription register(String phoneNumber, String password, boolean isPersion
-            , String province, String city, String county, String village, RegisterView view) {
+    public Subscription register(String phoneNumber, String password
+            , RegisterView view) {
 //        return registerApi.register(phoneNumber, password, isPersion, province, city, county, village)
 //                .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
 //                .subscribe(new Subscriber<HttpResult<UserModelBean>>() {

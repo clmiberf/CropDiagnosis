@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.preference.PreferenceManager;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -45,22 +46,20 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     EditText etPassword;
     @BindView(R.id.et_repassword_register)
     EditText etRepassword;
-    @BindView(R.id.rd_person_register)
-    RadioButton rdPerson;
-    @BindView(R.id.rd_company_register)
-    RadioButton rdCompany;
-    @BindView(R.id.spin_province_register)
-    Spinner spinProvince;
-    @BindView(R.id.spin_city_register)
-    Spinner spinCity;
-    @BindView(R.id.spin_county_register)
-    Spinner spinCountry;
-    @BindView(R.id.et_village_register)
-    EditText etVillage;
+//    @BindView(R.id.rd_person_register)
+//    RadioButton rdPerson;
+//    @BindView(R.id.rd_company_register)
+//    RadioButton rdCompany;
+//    @BindView(R.id.spin_province_register)
+//    Spinner spinProvince;
+//    @BindView(R.id.spin_city_register)
+//    Spinner spinCity;
+//    @BindView(R.id.spin_county_register)
+//    Spinner spinCountry;
+//    @BindView(R.id.et_village_register)
+//    EditText etVillage;
     @BindView(R.id.btn_register_register)
     Button btnRegister;
-    @BindView(R.id.btn_reset_register)
-    Button btnReset;
     @BindView(R.id.activity_register)
     LinearLayout activity;
     @BindView(R.id.pb_load_register)
@@ -125,13 +124,13 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         }
     };
 
-    @OnClick({R.id.rd_person_register, R.id.rd_company_register, R.id.btn_get_check_code, R.id.btn_register_register, R.id.btn_reset_register})
+    @OnClick({  R.id.btn_get_check_code, R.id.btn_register_register})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.rd_person_register:
-                break;
-            case R.id.rd_company_register:
-                break;
+//            case R.id.rd_person_register:
+//                break;
+//            case R.id.rd_company_register:
+//                break;
             case R.id.btn_get_check_code:
                 String phoneNum = etTelNumber.getText().toString().trim();
                 //待添加添加短信验证信息
@@ -177,9 +176,11 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
                 }).start();
                 break;
             case R.id.btn_register_register:
-                registe();
-                break;
-            case R.id.btn_reset_register:
+                if (etPassword.getText().toString().equals(etRepassword.getText().toString())) {
+                    registe();
+                } else {
+                    Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+                }
                 break;
         }
     }
@@ -190,7 +191,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initSpinner();
+//        initSpinner();
         hideProgress();
     }
 
@@ -214,8 +215,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
 
     @Override
     protected void initViews() {
-        rdPerson.setChecked(true);
-        rdCompany.setChecked(false);
+//        rdPerson.setChecked(true);
+//        rdCompany.setChecked(false);
         // 初始化 progressDialog 和 messageDialog
     }
 
@@ -230,7 +231,7 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     @Override
     public void registerSuccess() {
         hideProgress();
-        Intent it = new Intent(RegisterActivity.this, LoginActivity.class);
+        Intent it = new Intent(RegisterActivity.this, EditInfoActivity.class);
         startActivity(it);
         finish();
     }
@@ -254,35 +255,31 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
         RegisterModelApiImpl registerModelApi = new RegisterModelApiImpl();
         registerModelApi.register(etTelNumber.getText().toString()
                 , etCheckCode.getText().toString()
-                , rdPerson.isChecked()
-                , provinces.get(spinProvince.getSelectedItemPosition())
-                , cities.get(spinCity.getSelectedItemPosition())
-                , counties.get(spinCountry.getSelectedItemPosition())
-                , etVillage.getText().toString(), this);
+               , this);
         showProgress();
     }
 
-    private void initSpinner() {
-        provinces.add("湖北");
-        provinces.add("江西");
-        provinces.add("湖南");
-        cities.add("武汉");
-        cities.add("黄石");
-        cities.add("黄冈");
-        counties.add("洪山");
-        counties.add("武昌");
-        counties.add("汉口");
-        provinceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, provinces);
-        provinceAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        cityAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities);
-        cityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        countyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, counties);
-        countyAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
-        spinCity.setAdapter(cityAdapter);
-        spinProvince.setAdapter(provinceAdapter);
-        spinCountry.setAdapter(countyAdapter);
-
-
-    }
+//    private void initSpinner() {
+//        provinces.add("湖北");
+//        provinces.add("江西");
+//        provinces.add("湖南");
+//        cities.add("武汉");
+//        cities.add("黄石");
+//        cities.add("黄冈");
+//        counties.add("洪山");
+//        counties.add("武昌");
+//        counties.add("汉口");
+//        provinceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, provinces);
+//        provinceAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+//        cityAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities);
+//        cityAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+//        countyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, counties);
+//        countyAdapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+//        spinCity.setAdapter(cityAdapter);
+//        spinProvince.setAdapter(provinceAdapter);
+//        spinCountry.setAdapter(countyAdapter);
+//
+//
+//    }
 
 }

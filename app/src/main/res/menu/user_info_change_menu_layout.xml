@@ -2,6 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/user_info_change_menu_item"
-        android:title="修改个人信息"/>
+        android:title="编辑个人信息"/>
 
 </menu>

@@ -31,8 +31,8 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
     TextView userName;
     @BindView(R.id.user_id)
     TextView userId;
-    @BindView(R.id.uer_location_selection)
-    Spinner mspinLocation;
+//    @BindView(R.id.uer_location_selection)
+//    Spinner mspinLocation;
 //    @BindView(R.id.user_open_vip)
 //    Button userOpenVip;
     @BindView(R.id.btn_account_safe)
@@ -123,7 +123,7 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
         locationAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, locationList);
         locationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        mspinLocation.setAdapter(locationAdapter);
+//        mspinLocation.setAdapter(locationAdapter);
     }
 
     @Override
