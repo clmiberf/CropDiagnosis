@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.uersinfo.UserInfoActivity;
+import com.example.developer.cropdiagnosis.mvp.ui.activities.uersinfo.UserInfoSafeActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.component.FragmentViewPager;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseHistoryFragment;
 import com.example.developer.cropdiagnosis.mvp.ui.fragments.DiseaseSubmitFragment;

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +29,8 @@ public class UserInfoSafeActivity extends BaseActivity implements UserInfoSafeVi
     TextView safeMailbox;
     @BindView(R.id.content_user_info_safe)
     LinearLayout contentUserInfoSafe;
-    @BindView(R.id.user_safe_change_password)
-    Button userSafeChangePassword;
+    @BindView(R.id.user_info_safe_change_passwd)
+    RelativeLayout relativeLayout;
 
     @Inject
     UserInfoSafePresenter mPresenter = new UserInfoSafePresenter();
@@ -91,7 +92,7 @@ public class UserInfoSafeActivity extends BaseActivity implements UserInfoSafeVi
 
     }
 
-    @OnClick(R.id.user_safe_change_password)
+    @OnClick(R.id.user_info_safe_change_passwd)
     public void onClick() {
         Toast.makeText(UserInfoSafeActivity.this, "敬请期待", Toast.LENGTH_SHORT).show();
     }

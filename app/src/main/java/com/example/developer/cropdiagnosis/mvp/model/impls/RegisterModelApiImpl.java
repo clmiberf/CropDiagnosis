@@ -13,7 +13,7 @@ import rx.Subscription;
 
 public class RegisterModelApiImpl implements RegisterModelApi {
     @Override
-    public Subscription register(String phoneNumber, String password, RegisterView view) {
-        return HttpMethod.getInstance().register(phoneNumber, password, view);
+    public Subscription register(String phoneNumber, String password,String checkCode,RegisterView view) {
+        return HttpMethod.getInstance().register(phoneNumber, password,checkCode,view);
     }
 }

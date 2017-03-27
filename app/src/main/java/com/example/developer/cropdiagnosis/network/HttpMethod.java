@@ -8,12 +8,16 @@ import com.example.developer.cropdiagnosis.mvp.model.beans.DiseaseModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.beans.UserModelBean;
 import com.example.developer.cropdiagnosis.mvp.model.interfaces.DiseaseHistoryModelApi;
 import com.example.developer.cropdiagnosis.mvp.presenter.UserInfoPresenter;
+import com.example.developer.cropdiagnosis.mvp.view.DiagnoseView;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseHistoryView;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseSubmitView;
+import com.example.developer.cropdiagnosis.mvp.view.EditInfoView;
 import com.example.developer.cropdiagnosis.mvp.view.LoginView;
 import com.example.developer.cropdiagnosis.mvp.view.RegisterView;
+import com.example.developer.cropdiagnosis.network.apis.DiagnoseApi;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseHistoryApi;
 import com.example.developer.cropdiagnosis.network.apis.DiseaseSubmitApi;
+import com.example.developer.cropdiagnosis.network.apis.EditInfoApi;
 import com.example.developer.cropdiagnosis.network.apis.ImageApi;
 import com.example.developer.cropdiagnosis.network.apis.LoginApi;
 import com.example.developer.cropdiagnosis.network.apis.RegisterApi;
@@ -54,7 +58,8 @@ public class HttpMethod {
     private DiseaseSubmitApi submitApi = null;
     private RegisterApi registerApi = null;
     private DiseaseHistoryApi diseaseHistoryApi = null;
-
+    private EditInfoApi editInfoApi = null;
+    private DiagnoseApi diagnoseApi = null;
     private HttpMethod() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(NetManager.getBaseUrl())
@@ -62,12 +67,16 @@ public class HttpMethod {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+
         diseaseApi = retrofit.create(DiseaseHistoryApi.class);
         imageApi = retrofit.create(ImageApi.class);
         loginApi = retrofit.create(LoginApi.class);
         submitApi = retrofit.create(DiseaseSubmitApi.class);
         registerApi = retrofit.create(RegisterApi.class);
         diseaseHistoryApi = retrofit.create(DiseaseHistoryApi.class);
+        editInfoApi = retrofit.create(EditInfoApi.class);
+        diagnoseApi = retrofit.create(DiagnoseApi.class);
+
     }
 
     public static HttpMethod getInstance() {
@@ -104,7 +113,16 @@ public class HttpMethod {
 
     }
 
-    public Subscription register(String phoneNumber, String password
+
+    public Subscription editInfo(String nickname, String name, String userId, EditInfoView infoView){
+
+        infoView.editInfoSuccess();
+        return  null;
+    }
+
+
+
+    public Subscription register(String phoneNumber, String password,String checkCode
             , RegisterView view) {
 //        return registerApi.register(phoneNumber, password, isPersion, province, city, county, village)
 //                .compose(RxJavaCustomTransformer.<HttpResult<UserModelBean>>defaultSchedulers())
@@ -176,7 +194,13 @@ public class HttpMethod {
         view.initDiseaseListView(result.getData());
         return null;
     }
+    //对诊断结果进行评价
+    public Subscription diagnoseResultEva(String eva, DiagnoseView view){
 
+        view.evaSuccess();
+        return null;
+
+    }
     public void downloadImage(String url) {
         imageApi.downloadImage(url)
                 .compose(RxJavaCustomTransformer.<ResponseBody>defaultSchedulers())

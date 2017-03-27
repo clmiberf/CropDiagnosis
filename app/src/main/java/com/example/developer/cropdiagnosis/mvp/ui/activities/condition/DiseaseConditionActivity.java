@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.developer.cropdiagnosis.R;
 import com.example.developer.cropdiagnosis.adapter.ImageAdapter;
@@ -15,6 +16,7 @@ import com.example.developer.cropdiagnosis.mvp.ui.activities.HomeActivity;
 import com.example.developer.cropdiagnosis.mvp.ui.activities.base.BaseActivity;
 import com.example.developer.cropdiagnosis.mvp.view.DiseaseConditionView;
 import com.example.developer.cropdiagnosis.shared.GetUrlImageHelper;
+import com.example.developer.cropdiagnosis.shared.SpacesItemDecoration;
 import com.stormphoenix.imagepicker.FishImageType;
 import com.stormphoenix.imagepicker.ImagePicker;
 import com.stormphoenix.imagepicker.bean.ImageItem;
@@ -40,10 +42,11 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
     DiseaseModelBean disease;
     @BindView(R.id.content_word_instruction)
     TextView contentWordInstruction;
-    @BindView(R.id.crop_diagnose_btn)
-    Button cropDiagnoseBtn;
+    @BindView(R.id.crop_diagnose_relativelayout)
+    RelativeLayout cropDiagnoseBtn;
     @BindView(R.id.rv_disease_crop_picture_site)
     RecyclerView recyclerView;
+
 
     List<ImageItem> imageList;
     private int maxImageCount;
@@ -102,7 +105,9 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
         
         maxImageCount = 10;
         imageAdapter = new ImageAdapter(this,imageUrlList);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
+        int distense = 15;
+        recyclerView.addItemDecoration(new SpacesItemDecoration(distense));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(imageAdapter);
 //           for (int i=0;i<imageUrlList.size();i++){
@@ -131,7 +136,7 @@ public class DiseaseConditionActivity extends BaseActivity implements DiseaseCon
 
     }
 
-    @OnClick(R.id.crop_diagnose_btn)
+    @OnClick(R.id.crop_diagnose_relativelayout)
     public void onClick() {
         Intent intent = new Intent(DiseaseConditionActivity.this, DiagnoseActivity.class);
         intent.putExtra("Disease", disease);

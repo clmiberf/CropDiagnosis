@@ -254,7 +254,8 @@ public class RegisterActivity extends BaseActivity implements RegisterView {
     private void registe() {
         RegisterModelApiImpl registerModelApi = new RegisterModelApiImpl();
         registerModelApi.register(etTelNumber.getText().toString()
-                , etCheckCode.getText().toString()
+                , etPassword.getText().toString()
+                ,etCheckCode.getText().toString()
                , this);
         showProgress();
     }

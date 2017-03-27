@@ -12,7 +12,7 @@
         android:id="@+id/edit_info_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/colorPrimary"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
         <RelativeLayout
@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:text="完善个人信息"
+                android:textColor="#ffffff"
                  />
 
             <TextView
@@ -38,8 +39,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
-                android:text="下一步"
+                android:text="完成"
+                android:textColor="#ffffff"
                  />
         </RelativeLayout>
 
@@ -145,4 +148,11 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_chevron_right_black_18dp"/>
     </RelativeLayout>
+
+    <ProgressBar
+        android:visibility="invisible"
+        android:id="@+id/edit_info_load_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

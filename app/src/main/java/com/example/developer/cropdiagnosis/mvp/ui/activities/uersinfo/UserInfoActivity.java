@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,10 +36,12 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
 //    Spinner mspinLocation;
 //    @BindView(R.id.user_open_vip)
 //    Button userOpenVip;
-    @BindView(R.id.btn_account_safe)
-    Button btnAccountSafe;
-    @BindView(R.id.content_user_information)
-    LinearLayout contentUserInformation;
+//    @BindView(R.id.btn_account_safe)
+//    Button btnAccountSafe;
+//    @BindView(R.id.content_user_information)
+//    LinearLayout contentUserInformation;
+    @BindView(R.id.user_info_safe_relativelayout)
+    RelativeLayout relativeLayout;
     UserInfoPresenter userInfoPresenter = new UserInfoPresenter();
 
     private ArrayAdapter<String> locationAdapter = null;
@@ -131,12 +134,12 @@ public class UserInfoActivity extends BaseActivity implements UserInfoView {
 
     }
 
-    @OnClick({R.id.btn_account_safe})
+    @OnClick({R.id.user_info_safe_relativelayout})
     public void onClick(View view) {
         switch (view.getId()) {
 //            case R.id.user_open_vip:
 //                break;
-            case R.id.btn_account_safe:
+            case R.id.user_info_safe_relativelayout:
                 Intent intent = new Intent(UserInfoActivity.this, UserInfoSafeActivity.class);
                 startActivity(intent);
                 break;

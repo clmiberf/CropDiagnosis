@@ -10,5 +10,5 @@ import rx.Subscription;
  */
 
 public interface RegisterModelApi {
-    Subscription register(String phoneNumber, String password, RegisterView view);
+    Subscription register(String phoneNumber, String password,String checkCode, RegisterView view);
 }

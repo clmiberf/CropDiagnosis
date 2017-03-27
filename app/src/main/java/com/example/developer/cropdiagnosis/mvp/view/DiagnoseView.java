@@ -17,4 +17,7 @@ public interface DiagnoseView extends BaseView {
     public void loadAccpter(String accept);
     public void loadEvaluate(List<String> evaluate);
     public void loadSupplement(String supplement);
+
+    public void evaSuccess();
+    public void evaFailed(String errMsg);
 }
