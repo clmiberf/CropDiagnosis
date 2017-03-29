@@ -70,6 +70,7 @@ dependencies {
     compile 'com.github.ganfra:material-spinner:1.1.1'
     compile 'com.android.support:support-v4:25.1.0'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'com.github.chihane:JDAddressSelector:1.1.4'
     compile 'com.google.dagger:dagger:2.4'
     compile 'com.google.dagger:dagger-compiler:2.4'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
