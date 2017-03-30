@@ -18,7 +18,15 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:layout_gravity="center_horizontal"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:popupTheme="@style/AppTheme.PopupOverlay" >
+        <TextView
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:text="@string/title_activity_user_info_safe"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
 
     <LinearLayout
         android:layout_marginTop="30dp"
@@ -40,7 +48,7 @@
                 <TextView
                     android:id="@+id/info_safe_account"
                     android:text="账号"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />

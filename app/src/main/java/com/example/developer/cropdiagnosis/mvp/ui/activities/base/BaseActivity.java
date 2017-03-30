@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.developer.cropdiagnosis.R;
@@ -23,6 +24,8 @@ import rx.Subscription;
 public abstract class BaseActivity extends AppCompatActivity {
 
     protected Subscription mSubscription = null;
+
+    private Toolbar toolbar;
 
     public abstract int getLayoutId();
 
@@ -54,10 +57,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initializeInjector();
 
     private void setUpToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null ) {
             setSupportActionBar(toolbar);
-            toolbar.setTitleTextColor(Color.WHITE);
+            getSupportActionBar().setTitle("");
+            Log.d("xiangjianjian", "xiangjianjian");
         }
     }
 
